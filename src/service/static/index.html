@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Chat</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f0f2f5;
+            color: #1a1a2e;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+            max-height: 900px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .header p {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 4px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 32px;
+            overflow: hidden;
+            gap: 20px;
+        }
+
+        .upload-area {
+            border: 2px dashed #d0d5dd;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: #fafbfc;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f0f2ff;
+        }
+
+        .upload-area.drag-over {
+            border-color: #667eea;
+            background: #eef0ff;
+            transform: scale(1.01);
+        }
+
+        .upload-area.has-file {
+            border-color: #34d399;
+            background: #ecfdf5;
+            border-style: solid;
+        }
+
+        .upload-area .upload-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .upload-area .upload-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .upload-area .upload-text strong {
+            color: #667eea;
+        }
+
+        .upload-area .upload-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .upload-area .file-info {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #065f46;
+        }
+
+        .upload-area.has-file .upload-icon,
+        .upload-area.has-file .upload-text,
+        .upload-area.has-file .upload-hint {
+            display: none;
+        }
+
+        .upload-area.has-file .file-info {
+            display: flex;
+        }
+
+        .upload-area .file-info .file-name {
+            font-weight: 500;
+            max-width: 260px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .upload-area .file-info .remove-file {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            padding: 0 4px;
+        }
+
+        .upload-area .file-info .remove-file:hover {
+            color: #dc2626;
+        }
+
+        #fileInput {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .input-row textarea {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: none;
+            height: 56px;
+            line-height: 1.5;
+            transition: border-color 0.2s;
+            outline: none;
+            background: #fafbfc;
+        }
+
+        .input-row textarea:focus {
+            border-color: #667eea;
+            background: #fff;
+        }
+
+        .input-row textarea::placeholder {
+            color: #a0aec0;
+        }
+
+        .btn-submit {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-submit.loading::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .status-bar {
+            font-size: 13px;
+            color: #999;
+            min-height: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-bar.error {
+            color: #ef4444;
+        }
+
+        .status-bar.success {
+            color: #10b981;
+        }
+
+        .output-section {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-section .output-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .output-area {
+            flex: 1;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-y: auto;
+            background: #fafbfc;
+            font-size: 15px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .output-area:empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a0aec0;
+            font-size: 14px;
+        }
+
+        .output-area:empty::before {
+            content: 'Answer will be displayed here';
+        }
+
+        .output-area .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: #667eea;
+            margin-left: 2px;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                height: 95vh;
+                border-radius: 14px;
+            }
+            .header {
+                padding: 18px 20px;
+            }
+            .main-content {
+                padding: 16px 18px;
+            }
+            .upload-area {
+                padding: 20px 14px;
+            }
+            .input-row {
+                flex-direction: column;
+            }
+            .btn-submit {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Document Chat</h1>
+            <p>Upload a PDF document and ask questions about its content</p>
+        </div>
+
+        <div class="main-content">
+            <input type="file" id="fileInput" accept=".pdf">
+            <div class="upload-area" id="uploadArea">
+                <span class="upload-icon">📄</span>
+                <div class="upload-text">
+                    Drag & drop your PDF here, or <strong>browse</strong> to select
+                </div>
+                <div class="upload-hint">Only PDF files are supported</div>
+                <div class="file-info">
+                    <span>📎</span>
+                    <span class="file-name" id="fileName"></span>
+                    <button class="remove-file" id="removeFile" title="Remove file">&times;</button>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <div class="input-row">
+                    <textarea id="questionInput" placeholder="Type your question about the document..." rows="2"></textarea>
+                    <button class="btn-submit" id="submitBtn">Send</button>
+                </div>
+                <div class="status-bar" id="statusBar"></div>
+            </div>
+
+            <div class="output-section">
+                <div class="output-label">Answer</div>
+                <div class="output-area" id="outputArea"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileName = document.getElementById('fileName');
+        const removeFile = document.getElementById('removeFile');
+        const questionInput = document.getElementById('questionInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const outputArea = document.getElementById('outputArea');
+        const statusBar = document.getElementById('statusBar');
+
+        let uploadedFilePath = '';
+        let isUploading = false;
+        let isSubmitting = false;
+
+        function setStatus(msg, type) {
+            statusBar.textContent = msg;
+            statusBar.className = 'status-bar' + (type ? ' ' + type : '');
+        }
+
+        function clearStatus() {
+            statusBar.textContent = '';
+            statusBar.className = 'status-bar';
+        }
+
+        function setOutput(text) {
+            outputArea.textContent = text;
+        }
+
+        function streamOutput(text) {
+            let index = 0;
+            outputArea.textContent = '';
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            outputArea.appendChild(cursor);
+
+            function typeChar() {
+                if (index < text.length) {
+                    cursor.before(document.createTextNode(text[index]));
+                    index++;
+                    outputArea.scrollTop = outputArea.scrollHeight;
+                    setTimeout(typeChar, 30);
+                } else {
+                    cursor.remove();
+                }
+            }
+            typeChar();
+        }
+
+        uploadArea.addEventListener('click', (e) => {
+            if (e.target === removeFile || removeFile.contains(e.target)) return;
+            if (uploadedFilePath) return;
+            fileInput.click();
+        });
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('drag-over');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                handleFile(fileInput.files[0]);
+            }
+        });
+
+        removeFile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            resetUpload();
+        });
+
+        function resetUpload() {
+            uploadedFilePath = '';
+            uploadArea.classList.remove('has-file');
+            fileInput.value = '';
+            clearStatus();
+        }
+
+        async function handleFile(file) {
+            if (!file.name.toLowerCase().endsWith('.pdf')) {
+                setStatus('Only PDF files are supported', 'error');
+                return;
+            }
+
+            isUploading = true;
+            setStatus('Uploading...');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const res = await fetch('/upload', { method: 'POST', body: formData });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    setStatus(data.error || 'Upload failed', 'error');
+                    return;
+                }
+
+                uploadedFilePath = data.path;
+                fileName.textContent = data.filename;
+                uploadArea.classList.add('has-file');
+                setStatus('File uploaded successfully', 'success');
+            } catch (err) {
+                setStatus('Network error during upload', 'error');
+            } finally {
+                isUploading = false;
+            }
+        }
+
+        questionInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                submitQuestion();
+            }
+        });
+
+        submitBtn.addEventListener('click', submitQuestion);
+
+        async function submitQuestion() {
+            const question = questionInput.value.trim();
+
+            if (!uploadedFilePath) {
+                setStatus('Please upload a PDF file first', 'error');
+                return;
+            }
+
+            if (!question) {
+                setStatus('Please enter a question', 'error');
+                return;
+            }
+
+            if (isSubmitting) return;
+
+            isSubmitting = true;
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            setOutput('');
+            setStatus('Processing...');
+
+            const formData = new FormData();
+            formData.append('pdf_path', uploadedFilePath);
+            formData.append('question', question);
+
+            try {
+                const res = await fetch('/chat', { method: 'POST', body: formData });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    setStatus(data.error || 'Request failed', 'error');
+                    return;
+                }
+
+                streamOutput(data.answer);
+                setStatus('Completed', 'success');
+            } catch (err) {
+                setStatus('Network error, please try again', 'error');
+            } finally {
+                isSubmitting = false;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            }
+        }
+    </script>
+</body>
+</html>
