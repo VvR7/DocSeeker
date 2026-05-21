@@ -1,0 +1,803 @@
+2026-05-19 03:47:59,757 [INFO] === 对比实验（直接多图 QA）===
+2026-05-19 03:47:59,758 [INFO] Log: /HOME/sysu_gbli2/sysu_gbli2xy_1/HDD_POOL/zdw/Docproject/project/compare_experiment/Qwen2.5-VL-7b-instruct/new_results/eval_20260519_034759.log  JSON: /HOME/sysu_gbli2/sysu_gbli2xy_1/HDD_POOL/zdw/Docproject/project/compare_experiment/Qwen2.5-VL-7b-instruct/new_results/eval_20260519_034759.json
+2026-05-19 03:47:59,758 [INFO] MAX_PIXELS per image: 1572864  (1536 tokens/image budget)
+2026-05-19 03:47:59,765 [INFO] 总题数: 537  本次评测: 24 (start_idx=513, limit=None)
+2026-05-19 03:47:59,765 [INFO] 
+######################################################################
+[Q478] paper=2605.09622  type=text  level=5  page_idx=1
+######################################################################
+2026-05-19 03:47:59,765 [INFO] Rendering PDF pages for: 2605.09622
+2026-05-19 03:48:00,514 [INFO]   渲染完成：22 页
+2026-05-19 03:48:00,514 [INFO] Initializing vLLM  model=/HOME/sysu_gbli2/sysu_gbli2xy_1/HDD_POOL/zdw/model/Qwen2.5-VL-7B-Instruct  max_model_len=81920  gpu_memory_utilization=0.7  dtype=bfloat16
+2026-05-19 03:48:00,514 [INFO] tensor_parallel_size: 1 (parsed from CUDA_VISIBLE_DEVICES='7')
+2026-05-19 03:49:36,783 [INFO] vLLM initialized.
+2026-05-19 03:49:39,218 [INFO] [Q478] 页数: 22  输入 tokens: 43368
+2026-05-19 03:49:55,823 [INFO] Input tokens: 43368
+2026-05-19 03:49:55,823 [INFO] [Q478] 模型完整输出:
+============================================================
+To determine the primary challenge in clinical dose prediction as implied by the paper, let's analyze the key points:
+
+1. **Knowledge Transfer**: The paper discusses leveraging prior knowledge from pretrained video diffusion models to improve dose prediction. This indicates that there is a significant domain gap between the source (video) and target (dose prediction) domains. The framework aims to bridge this gap through transfer learning.
+
+2. **Clinical Alignment**: The paper emphasizes aligning predictions with clinical guidelines and preferences. This suggests that the model needs to adapt to different institutional protocols and patient-specific conditions, which can vary widely.
+
+3. **Data Scarcity**: The paper mentions that existing models trained from scratch often struggle to generalize across diverse clinical settings due to the scarcity of annotated data. This implies that the primary challenge is not just computational resource limitations but also the availability of high-quality, diverse datasets.
+
+4. **RL Post-training**: The framework uses reinforcement learning post-training to align predictions with clinical preferences, indicating that the challenge lies in capturing and aligning these preferences effectively.
+
+Considering these points, the primary challenge is the need for models to generalize across diverse patient anatomies and institutional protocols, which is addressed through transfer learning and clinical alignment mechanisms.
+
+<answer>C. The primary challenge is the need for models to generalize across diverse patient anatomies and institutional protocols.</answer>
+============================================================
+2026-05-19 03:49:55,824 [INFO] ======================================================================
+2026-05-19 03:49:55,824 [INFO] [Q478] QUESTION:
+Given the paper's emphasis on both knowledge transfer from distant domains and alignment with clinical preferences, what does the overall framework imply about the primary challenge in clinical dose prediction?
+A. The primary challenge is the lack of sufficient computational resources for training large models.
+B. The primary challenge is the scarcity of annotated data for training, which the framework addresses via transfer learning and RL.
+C. The primary challenge is the need for models to generalize across diverse patient anatomies and institutional protocols.
+D. The primary challenge is the inherent complexity of 3D diffusion models, which requires simplification for clinical use.
+2026-05-19 03:49:55,824 [INFO] [Q478] GROUND TRUTH: C
+2026-05-19 03:49:55,824 [INFO] [Q478] MODEL ANSWER (raw): "To determine the primary challenge in clinical dose prediction as implied by the paper, let's analyze the key points:\n\n1. **Knowledge Transfer**: The paper discusses leveraging prior knowledge from pretrained video diffusion models to improve dose prediction. This indicates that there is a significant domain gap between the source (video) and target (dose prediction) domains. The framework aims to bridge this gap through transfer learning.\n\n2. **Clinical Alignment**: The paper emphasizes aligning predictions with clinical guidelines and preferences. This suggests that the model needs to adapt to different institutional protocols and patient-specific conditions, which can vary widely.\n\n3. **Data Scarcity**: The paper mentions that existing models trained from scratch often struggle to generalize across diverse clinical settings due to the scarcity of annotated data. This implies that the primary challenge is not just computational resource limitations but also the availability of high-quality, diverse datasets.\n\n4. **RL Post-training**: The framework uses reinforcement learning post-training to align predictions with clinical preferences, indicating that the challenge lies in capturing and aligning these preferences effectively.\n\nConsidering these points, the primary challenge is the need for models to generalize across diverse patient anatomies and institutional protocols, which is addressed through transfer learning and clinical alignment mechanisms.\n\n<answer>C. The primary challenge is the need for models to generalize across diverse patient anatomies and institutional protocols.</answer>"  → extracted letter: 'C'
+2026-05-19 03:49:55,824 [INFO] [Q478] CORRECT: True
+2026-05-19 03:49:55,824 [INFO] ======================================================================
+2026-05-19 03:49:55,825 [INFO] 
+######################################################################
+[Q479] paper=2605.09622  type=text  level=4  page_idx=5
+######################################################################
+2026-05-19 03:49:58,194 [INFO] [Q479] 页数: 22  输入 tokens: 43333
+2026-05-19 03:50:03,239 [INFO] Input tokens: 43333
+2026-05-19 03:50:03,240 [INFO] [Q479] 模型完整输出:
+============================================================
+To determine the correct answer, let's analyze the relevant information from the document:
+
+1. The paper discusses the use of multi-step refinement in the context of dose prediction.
+2. In Section 4.4 (Ablations and Supporting Studies), it mentions that iterative refinement from 1 to 10 steps consistently improves predictions.
+3. The paper states: "Furthermore, iterative refinement from 1 to 10 steps consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance."
+
+Given this information, we can conclude that the multi-step refinement process consistently improves predictions without any indication of reduced PSNR or increased computational cost being a trade-off.
+
+Therefore, the correct answer is:
+<answer>D. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.</answer>
+============================================================
+2026-05-19 03:50:03,240 [INFO] ======================================================================
+2026-05-19 03:50:03,240 [INFO] [Q479] QUESTION:
+What trade-off does the multi-step refinement process introduce in the context of dose prediction, according to the paper?
+A. It improves clinical scorecard performance at the cost of reduced PSNR.
+B. It increases computational cost while providing diminishing returns in accuracy.
+C. It enhances prediction accuracy but requires more training data.
+D. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.
+2026-05-19 03:50:03,240 [INFO] [Q479] GROUND TRUTH: D
+2026-05-19 03:50:03,241 [INFO] [Q479] MODEL ANSWER (raw): 'To determine the correct answer, let\'s analyze the relevant information from the document:\n\n1. The paper discusses the use of multi-step refinement in the context of dose prediction.\n2. In Section 4.4 (Ablations and Supporting Studies), it mentions that iterative refinement from 1 to 10 steps consistently improves predictions.\n3. The paper states: "Furthermore, iterative refinement from 1 to 10 steps consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance."\n\nGiven this information, we can conclude that the multi-step refinement process consistently improves predictions without any indication of reduced PSNR or increased computational cost being a trade-off.\n\nTherefore, the correct answer is:\n<answer>D. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.</answer>'  → extracted letter: 'D'
+2026-05-19 03:50:03,241 [INFO] [Q479] CORRECT: True
+2026-05-19 03:50:03,241 [INFO] ======================================================================
+2026-05-19 03:50:03,243 [INFO] 
+######################################################################
+[Q480] paper=2605.09622  type=text  level=4  page_idx=15
+######################################################################
+2026-05-19 03:50:05,753 [INFO] [Q480] 页数: 22  输入 tokens: 43396
+2026-05-19 03:50:13,872 [INFO] Input tokens: 43396
+2026-05-19 03:50:13,873 [INFO] [Q480] 模型完整输出:
+============================================================
+To determine the correct answer, let's analyze each option in relation to the information provided in Section B.6:
+
+A. The use of bfloat16 mixed precision reduces computational cost but may compromise model accuracy, which is mitigated by gradient clipping.
+- This option mentions bfloat16 mixed precision, which is not explicitly mentioned in the section. It also talks about gradient clipping, which is mentioned but not as a primary trade-off.
+
+B. Training on eight B200 GPUs with data parallelism increases computational cost but is necessary to achieve the desired learning rate and batch size.
+- This option correctly identifies the use of multiple GPUs and data parallelism, which can increase computational cost. However, it doesn't directly address the trade-off between computational efficiency and model performance.
+
+C. The linear warm-up of 500 steps and constant learning rate are designed to balance convergence speed and stability, avoiding premature overfitting.
+- This option accurately describes the purpose of the linear warm-up and constant learning rate, which are indeed used to balance convergence speed and stability, thus avoiding premature overfitting.
+
+D. Disabling gradient accumulation and using a global norm of 0.1 for clipping is a trade-off that prioritizes training speed over model stability.
+- This option correctly identifies the disabling of gradient accumulation and the use of a global norm for clipping, which are indeed part of the trade-off to manage computational efficiency and model stability.
+
+Given the detailed analysis, both options C and D seem relevant. However, option C specifically addresses the balance between convergence speed and stability, which is a more direct trade-off related to the training setup.
+
+Therefore, the most accurate answer is:
+<answer>C. The linear warm-up of 500 steps and constant learning rate are designed to balance convergence speed and stability, avoiding premature overfitting.</answer>
+============================================================
+2026-05-19 03:50:13,874 [INFO] ======================================================================
+2026-05-19 03:50:13,874 [INFO] [Q480] QUESTION:
+What trade-off does the training setup described in Section B.6 imply between computational efficiency and model performance, and how is it managed?
+A. The use of bfloat16 mixed precision reduces computational cost but may compromise model accuracy, which is mitigated by gradient clipping.
+B. Training on eight B200 GPUs with data parallelism increases computational cost but is necessary to achieve the desired learning rate and batch size.
+C. The linear warm-up of 500 steps and constant learning rate are designed to balance convergence speed and stability, avoiding premature overfitting.
+D. Disabling gradient accumulation and using a global norm of 0.1 for clipping is a trade-off that prioritizes training speed over model stability.
+2026-05-19 03:50:13,874 [INFO] [Q480] GROUND TRUTH: A
+2026-05-19 03:50:13,874 [INFO] [Q480] MODEL ANSWER (raw): "To determine the correct answer, let's analyze each option in relation to the information provided in Section B.6:\n\nA. The use of bfloat16 mixed precision reduces computational cost but may compromise model accuracy, which is mitigated by gradient clipping.\n- This option mentions bfloat16 mixed precision, which is not explicitly mentioned in the section. It also talks about gradient clipping, which is mentioned but not as a primary trade-off.\n\nB. Training on eight B200 GPUs with data parallelism increases computational cost but is necessary to achieve the desired learning rate and batch size.\n- This option correctly identifies the use of multiple GPUs and data parallelism, which can increase computational cost. However, it doesn't directly address the trade-off between computational efficiency and model performance.\n\nC. The linear warm-up of 500 steps and constant learning rate are designed to balance convergence speed and stability, avoiding premature overfitting.\n- This option accurately describes the purpose of the linear warm-up and constant learning rate, which are indeed used to balance convergence speed and stability, thus avoiding premature overfitting.\n\nD. Disabling gradient accumulation and using a global norm of 0.1 for clipping is a trade-off that prioritizes training speed over model stability.\n- This option correctly identifies the disabling of gradient accumulation and the use of a global norm for clipping, which are indeed part of the trade-off to manage computational efficiency and model stability.\n\nGiven the detailed analysis, both options C and D seem relevant. However, option C specifically addresses the balance between convergence speed and stability, which is a more direct trade-off related to the training setup.\n\nTherefore, the most accurate answer is:\n<answer>C. The linear warm-up of 500 steps and constant learning rate are designed to balance convergence speed and stability, avoiding premature overfitting.</answer>"  → extracted letter: 'C'
+2026-05-19 03:50:13,875 [INFO] [Q480] CORRECT: False
+2026-05-19 03:50:13,875 [INFO] ======================================================================
+2026-05-19 03:50:13,877 [INFO] 
+######################################################################
+[Q481] paper=2605.09622  type=text  level=3  page_idx=18
+######################################################################
+2026-05-19 03:50:16,379 [INFO] [Q481] 页数: 22  输入 tokens: 43358
+2026-05-19 03:50:22,683 [INFO] Input tokens: 43358
+2026-05-19 03:50:22,684 [INFO] [Q481] 模型完整输出:
+============================================================
+To determine the correct answer, let's analyze the information provided in the document:
+
+1. The document discusses various baseline models and their performance on the GDP-HMM dataset.
+2. It mentions that the 3D ControlNet approach is evaluated against other diffusion-based models.
+3. The analysis states: "The 3D ControlNet approach, while effective in natural image domains, performs substantially worse (MAE 2.42, Score 125.79) when applied to heterogeneous RT modalities."
+4. The reason given for this underperformance is: "We attribute this to the fundamental mismatch between the ControlNet design—which assumes a single conditioning modality of the same domain as the generation target—and the RT setting where multiple structurally diverse modalities (CT, binary masks, beam plates, angle encodings) must jointly guide generation."
+
+Given this information, we can conclude that the primary reason for the 3D ControlNet approach's underperformance is its inability to handle multiple structurally diverse modalities jointly, which is a key requirement in the RT setting.
+
+Therefore, the correct answer is:
+<answer>A. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.</answer>
+============================================================
+2026-05-19 03:50:22,684 [INFO] ======================================================================
+2026-05-19 03:50:22,684 [INFO] [Q481] QUESTION:
+How does the performance of the 3D ControlNet approach compare to the main models, and what is the primary reason attributed for its underperformance?
+A. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.
+B. It performs better than the main models because it uses a more efficient copy-branch architecture.
+C. It performs similarly to the main models but requires less GPU memory.
+D. It performs worse due to its sequential processing of slices, which discards 3D context.
+2026-05-19 03:50:22,684 [INFO] [Q481] GROUND TRUTH: A
+2026-05-19 03:50:22,684 [INFO] [Q481] MODEL ANSWER (raw): 'To determine the correct answer, let\'s analyze the information provided in the document:\n\n1. The document discusses various baseline models and their performance on the GDP-HMM dataset.\n2. It mentions that the 3D ControlNet approach is evaluated against other diffusion-based models.\n3. The analysis states: "The 3D ControlNet approach, while effective in natural image domains, performs substantially worse (MAE 2.42, Score 125.79) when applied to heterogeneous RT modalities."\n4. The reason given for this underperformance is: "We attribute this to the fundamental mismatch between the ControlNet design—which assumes a single conditioning modality of the same domain as the generation target—and the RT setting where multiple structurally diverse modalities (CT, binary masks, beam plates, angle encodings) must jointly guide generation."\n\nGiven this information, we can conclude that the primary reason for the 3D ControlNet approach\'s underperformance is its inability to handle multiple structurally diverse modalities jointly, which is a key requirement in the RT setting.\n\nTherefore, the correct answer is:\n<answer>A. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.</answer>'  → extracted letter: 'A'
+2026-05-19 03:50:22,685 [INFO] [Q481] CORRECT: True
+2026-05-19 03:50:22,685 [INFO] ======================================================================
+2026-05-19 03:50:22,688 [INFO] 
+######################################################################
+[Q482] paper=2605.09622  type=table  level=3  page_idx=19
+######################################################################
+2026-05-19 03:50:25,123 [INFO] [Q482] 页数: 22  输入 tokens: 43380
+2026-05-19 03:50:32,075 [INFO] Input tokens: 43380
+2026-05-19 03:50:32,075 [INFO] [Q482] 模型完整输出:
+============================================================
+To determine the trend in performance metrics as the number of steps increases from 1 to 10 for ε-pred and v-pred, let's analyze the data provided in Table 7:
+
+1. At 1 step:
+   - ε-pred: MAE = 2.16, Score = 133.09
+   - v-pred: MAE = 2.12, Score = 133.59
+
+2. At 10 steps:
+   - ε-pred: MAE = 1.93, Score = 137.82
+   - v-pred: MAE = 1.91, Score = 138.17
+
+From this data, we can observe that:
+- Both ε-pred and v-pred show improvements as the number of steps increases from 1 to 10.
+- The MAE for both methods decreases, indicating better performance.
+- The Score for both methods also increases, indicating better alignment with clinical preferences.
+
+The MAE difference between ε-pred and v-pred is minimal (0.02 Gy) at 10 steps, suggesting that v-pred maintains a slight edge in both MAE and Score.
+
+Therefore, the correct answer is:
+<answer>A. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.</answer>
+============================================================
+2026-05-19 03:50:32,076 [INFO] ======================================================================
+2026-05-19 03:50:32,076 [INFO] [Q482] QUESTION:
+According to Table 7, what does the trend in performance metrics as the number of steps increases from 1 to 10 reveal about the relative effectiveness of ε-pred and v-pred?
+A. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.
+B. ε-pred improves more than v-pred, closing the performance gap between them.
+C. v-pred degrades significantly at 10 steps, while ε-pred improves, making ε-pred superior at higher steps.
+D. Both methods degrade in performance as steps increase, indicating instability.
+2026-05-19 03:50:32,076 [INFO] [Q482] GROUND TRUTH: A
+2026-05-19 03:50:32,076 [INFO] [Q482] MODEL ANSWER (raw): "To determine the trend in performance metrics as the number of steps increases from 1 to 10 for ε-pred and v-pred, let's analyze the data provided in Table 7:\n\n1. At 1 step:\n   - ε-pred: MAE = 2.16, Score = 133.09\n   - v-pred: MAE = 2.12, Score = 133.59\n\n2. At 10 steps:\n   - ε-pred: MAE = 1.93, Score = 137.82\n   - v-pred: MAE = 1.91, Score = 138.17\n\nFrom this data, we can observe that:\n- Both ε-pred and v-pred show improvements as the number of steps increases from 1 to 10.\n- The MAE for both methods decreases, indicating better performance.\n- The Score for both methods also increases, indicating better alignment with clinical preferences.\n\nThe MAE difference between ε-pred and v-pred is minimal (0.02 Gy) at 10 steps, suggesting that v-pred maintains a slight edge in both MAE and Score.\n\nTherefore, the correct answer is:\n<answer>A. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.</answer>"  → extracted letter: 'A'
+2026-05-19 03:50:32,077 [INFO] [Q482] CORRECT: True
+2026-05-19 03:50:32,077 [INFO] ======================================================================
+2026-05-19 03:50:32,080 [INFO] 
+######################################################################
+[Q483] paper=2605.09622  type=table  level=3  page_idx=20
+######################################################################
+2026-05-19 03:50:34,504 [INFO] [Q483] 页数: 22  输入 tokens: 43359
+2026-05-19 03:50:40,669 [INFO] Input tokens: 43359
+2026-05-19 03:50:40,670 [INFO] [Q483] 模型完整输出:
+============================================================
+To determine the trend in the test MAE as the number of sampling steps increases from 5 to 50 for the noise-prediction variants of the MAISI backbone, let's analyze the data provided in Table 9:
+
+1. For the "Ours (MAISI, noise-pred, 5 steps)" variant, the test MAE is 11.945 Gy.
+2. For the "Ours (MAISI, noise-pred, 50 steps)" variant, the test MAE is 11.969 Gy.
+
+Comparing these two values:
+- The test MAE at 5 steps is 11.945 Gy.
+- The test MAE at 50 steps is 11.969 Gy.
+
+The test MAE increases slightly from 11.945 Gy to 11.969 Gy as the number of sampling steps increases from 5 to 50. This indicates a marginal degradation in performance with more sampling steps.
+
+Therefore, the correct answer is:
+<answer>C. The test MAE increases slightly, indicating a marginal degradation in performance.</answer>
+============================================================
+2026-05-19 03:50:40,670 [INFO] ======================================================================
+2026-05-19 03:50:40,670 [INFO] [Q483] QUESTION:
+According to Table 9, what trend is observed in the test MAE as the number of sampling steps increases from 5 to 50 for the noise-prediction variants of the MAISI backbone?
+A. The test MAE decreases significantly, indicating improved performance with more steps.
+B. The test MAE remains constant, suggesting no benefit from increasing sampling steps.
+C. The test MAE increases slightly, indicating a marginal degradation in performance.
+D. The test MAE decreases initially but then increases, forming a U-shaped curve.
+2026-05-19 03:50:40,671 [INFO] [Q483] GROUND TRUTH: C
+2026-05-19 03:50:40,671 [INFO] [Q483] MODEL ANSWER (raw): 'To determine the trend in the test MAE as the number of sampling steps increases from 5 to 50 for the noise-prediction variants of the MAISI backbone, let\'s analyze the data provided in Table 9:\n\n1. For the "Ours (MAISI, noise-pred, 5 steps)" variant, the test MAE is 11.945 Gy.\n2. For the "Ours (MAISI, noise-pred, 50 steps)" variant, the test MAE is 11.969 Gy.\n\nComparing these two values:\n- The test MAE at 5 steps is 11.945 Gy.\n- The test MAE at 50 steps is 11.969 Gy.\n\nThe test MAE increases slightly from 11.945 Gy to 11.969 Gy as the number of sampling steps increases from 5 to 50. This indicates a marginal degradation in performance with more sampling steps.\n\nTherefore, the correct answer is:\n<answer>C. The test MAE increases slightly, indicating a marginal degradation in performance.</answer>'  → extracted letter: 'C'
+2026-05-19 03:50:40,671 [INFO] [Q483] CORRECT: True
+2026-05-19 03:50:40,671 [INFO] ======================================================================
+2026-05-19 03:50:40,674 [INFO] 
+######################################################################
+[Q484] paper=2605.09662  type=formula  level=5  page_idx=3
+######################################################################
+2026-05-19 03:50:40,675 [INFO] Rendering PDF pages for: 2605.09662
+2026-05-19 03:50:43,068 [INFO]   渲染完成：17 页
+2026-05-19 03:50:44,915 [INFO] [Q484] 页数: 17  输入 tokens: 33589
+2026-05-19 03:50:59,603 [INFO] Input tokens: 33589
+2026-05-19 03:50:59,618 [INFO] [Q484] 模型完整输出:
+============================================================
+To determine the design intent of the indicator function \( H_i(u) \) in Equation (2) and its influence on the training behavior of Gaussians, let's break down the equation:
+
+The equation provided is:
+\[ L_{bound}(u) = \sum_{i=1}^{N} H_i(u) \alpha_i \hat{G}_i(x) \prod_{j=1}^{i-1} \left( 1 - \alpha_j \hat{G}_j(x) \right) \]
+
+Here, \( L_{bound}(u) \) represents the boundary loss, which is designed to penalize Gaussians for contributing to pixels of different classes. The term \( H_i(u) \) is defined as:
+\[ H_i(u) = \begin{cases} 
+0, & \text{if } \phi_i = M'(u) \\
+1, & \text{if } \phi_i \neq M'(u)
+\end{cases} \]
+
+This indicates that \( H_i(u) \) is an indicator function that checks whether the Gaussian at position \( u \) belongs to the same class as the semantic label \( M'(u) \). If the Gaussian contributes to a pixel of a different class, \( H_i(u) \) will be 1, leading to a penalty in the loss function.
+
+The purpose of this design is to ensure that Gaussians adapt to the scene by adjusting their position, shape, or opacity rather than altering their assigned class. This promotes class-specific rendering, where each Gaussian remains within its intended object boundary.
+
+Now, let's evaluate the options:
+
+A. H_i(u) ensures that Gaussians are only penalized when they contribute to pixels of their own class, promoting class-specific rendering.
+B. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.
+C. H_i(u) normalizes the contribution of each Gaussian based on its opacity, ensuring uniform pixel coverage.
+D. H_i(u) is a random noise term added to prevent overfitting during training.
+
+Option A directly aligns with the explanation above, as it correctly states that \( H_i(u) \) ensures Gaussians are penalized only when they contribute to pixels of different classes, promoting class-specific rendering.
+
+Therefore, the correct answer is:
+<answer>A. H_i(u) ensures that Gaussians are only penalized when they contribute to pixels of their own class, promoting class-specific rendering.</answer>
+============================================================
+2026-05-19 03:50:59,619 [INFO] ======================================================================
+2026-05-19 03:50:59,619 [INFO] [Q484] QUESTION:
+In Equation (2), what is the design intent of the indicator function H_i(u), and how does it influence the training behavior of Gaussians?
+A. H_i(u) ensures that Gaussians are only penalized when they contribute to pixels of their own class, promoting class-specific rendering.
+B. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.
+C. H_i(u) normalizes the contribution of each Gaussian based on its opacity, ensuring uniform pixel coverage.
+D. H_i(u) is a random noise term added to prevent overfitting during training.
+2026-05-19 03:50:59,619 [INFO] [Q484] GROUND TRUTH: B
+2026-05-19 03:50:59,619 [INFO] [Q484] MODEL ANSWER (raw): "To determine the design intent of the indicator function \\( H_i(u) \\) in Equation (2) and its influence on the training behavior of Gaussians, let's break down the equation:\n\nThe equation provided is:\n\\[ L_{bound}(u) = \\sum_{i=1}^{N} H_i(u) \\alpha_i \\hat{G}_i(x) \\prod_{j=1}^{i-1} \\left( 1 - \\alpha_j \\hat{G}_j(x) \\right) \\]\n\nHere, \\( L_{bound}(u) \\) represents the boundary loss, which is designed to penalize Gaussians for contributing to pixels of different classes. The term \\( H_i(u) \\) is defined as:\n\\[ H_i(u) = \\begin{cases} \n0, & \\text{if } \\phi_i = M'(u) \\\\\n1, & \\text{if } \\phi_i \\neq M'(u)\n\\end{cases} \\]\n\nThis indicates that \\( H_i(u) \\) is an indicator function that checks whether the Gaussian at position \\( u \\) belongs to the same class as the semantic label \\( M'(u) \\). If the Gaussian contributes to a pixel of a different class, \\( H_i(u) \\) will be 1, leading to a penalty in the loss function.\n\nThe purpose of this design is to ensure that Gaussians adapt to the scene by adjusting their position, shape, or opacity rather than altering their assigned class. This promotes class-specific rendering, where each Gaussian remains within its intended object boundary.\n\nNow, let's evaluate the options:\n\nA. H_i(u) ensures that Gaussians are only penalized when they contribute to pixels of their own class, promoting class-specific rendering.\nB. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.\nC. H_i(u) normalizes the contribution of each Gaussian based on its opacity, ensuring uniform pixel coverage.\nD. H_i(u) is a random noise term added to prevent overfitting during training.\n\nOption A directly aligns with the explanation above, as it correctly states that \\( H_i(u) \\) ensures Gaussians are penalized only when they contribute to pixels of different classes, promoting class-specific rendering.\n\nTherefore, the correct answer is:\n<answer>A. H_i(u) ensures that Gaussians are only penalized when they contribute to pixels of their own class, promoting class-specific rendering.</answer>"  → extracted letter: 'A'
+2026-05-19 03:50:59,619 [INFO] [Q484] CORRECT: False
+2026-05-19 03:50:59,620 [INFO] ======================================================================
+2026-05-19 03:50:59,623 [INFO] 
+######################################################################
+[Q485] paper=2605.09662  type=figure  level=3  page_idx=7
+######################################################################
+2026-05-19 03:51:01,541 [INFO] [Q485] 页数: 17  输入 tokens: 33561
+2026-05-19 03:51:06,764 [INFO] Input tokens: 33561
+2026-05-19 03:51:06,779 [INFO] [Q485] 模型完整输出:
+============================================================
+To determine the trend in the quality of object boundaries across the different methods for the 'teatime' scene in Figure 5, let's analyze the images row by row:
+
+1. **GT (Ground Truth)**: This is the ideal boundary, which serves as a reference.
+2. **FlashSplat**: The boundaries appear somewhat blurry and not as clean as the GT.
+3. **ObjectGS**: The boundaries are clearer than FlashSplat but still not as sharp as the GT.
+4. **COB-GS**: The boundaries are quite clear, almost matching the GT.
+5. **Trace3D**: The boundaries are very close to the GT, indicating high accuracy.
+6. **BEA-GS**: The boundaries are the sharpest and closest to the GT among all methods shown.
+
+From this analysis, it is evident that the quality of object boundaries improves consistently from FlashSplat to BEA-GS, with BEA-GS showing the least artifacts.
+
+Therefore, the correct answer is:
+<answer>B. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.</answer>
+============================================================
+2026-05-19 03:51:06,780 [INFO] ======================================================================
+2026-05-19 03:51:06,780 [INFO] [Q485] QUESTION:
+According to Figure 5, what trend is observed in the quality of object boundaries across the different methods for the 'teatime' scene (second column)?
+A. All methods produce similarly clean object boundaries with no visible artifacts.
+B. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.
+C. FlashSplat and ObjectGS show the most accurate boundaries, while BEA-GS introduces noticeable blurring.
+D. The quality of boundaries is inconsistent, with no clear trend across methods.
+2026-05-19 03:51:06,780 [INFO] [Q485] GROUND TRUTH: B
+2026-05-19 03:51:06,780 [INFO] [Q485] MODEL ANSWER (raw): "To determine the trend in the quality of object boundaries across the different methods for the 'teatime' scene in Figure 5, let's analyze the images row by row:\n\n1. **GT (Ground Truth)**: This is the ideal boundary, which serves as a reference.\n2. **FlashSplat**: The boundaries appear somewhat blurry and not as clean as the GT.\n3. **ObjectGS**: The boundaries are clearer than FlashSplat but still not as sharp as the GT.\n4. **COB-GS**: The boundaries are quite clear, almost matching the GT.\n5. **Trace3D**: The boundaries are very close to the GT, indicating high accuracy.\n6. **BEA-GS**: The boundaries are the sharpest and closest to the GT among all methods shown.\n\nFrom this analysis, it is evident that the quality of object boundaries improves consistently from FlashSplat to BEA-GS, with BEA-GS showing the least artifacts.\n\nTherefore, the correct answer is:\n<answer>B. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.</answer>"  → extracted letter: 'B'
+2026-05-19 03:51:06,780 [INFO] [Q485] CORRECT: True
+2026-05-19 03:51:06,781 [INFO] ======================================================================
+2026-05-19 03:51:06,784 [INFO] 
+######################################################################
+[Q486] paper=2605.09802  type=figure  level=3  page_idx=0
+######################################################################
+2026-05-19 03:51:15,633 [INFO] Rendering PDF pages for: 2605.09802
+2026-05-19 03:51:16,096 [INFO]   渲染完成：10 页
+2026-05-19 03:51:17,174 [INFO] [Q486] 页数: 10  输入 tokens: 19812
+2026-05-19 03:51:24,082 [INFO] Input tokens: 19812
+2026-05-19 03:51:24,086 [INFO] [Q486] 模型完整输出:
+============================================================
+To determine the trend in the median box area and coverage percentage as one transitions from ground to aerial views, let's analyze the data provided in Figure 1:
+
+1. **Median Box Area**: 
+   - For ground view: 9240 px²
+   - For aerial view: 2702 px²
+
+2. **Coverage Percentage**: 
+   - For ground view: 2.74%
+   - For aerial view: 1.92%
+
+From these values, we can observe that:
+- The median box area for the ground view (9240 px²) is higher than that for the aerial view (2702 px²).
+- The coverage percentage for the ground view (2.74%) is higher than that for the aerial view (1.92%).
+
+Therefore, as one transitions from ground to aerial views, the median box area decreases, and the coverage percentage also decreases.
+
+The correct answer is:
+<answer>C. Median box area decreases and coverage percentage decreases</answer>
+============================================================
+2026-05-19 03:51:24,086 [INFO] ======================================================================
+2026-05-19 03:51:24,086 [INFO] [Q486] QUESTION:
+According to Figure 1, what trend is observed in the median box area and coverage percentage as one transitions from ground to aerial views?
+A. Median box area increases and coverage percentage increases
+B. Median box area decreases and coverage percentage increases
+C. Median box area decreases and coverage percentage decreases
+D. Median box area increases and coverage percentage decreases
+2026-05-19 03:51:24,086 [INFO] [Q486] GROUND TRUTH: C
+2026-05-19 03:51:24,087 [INFO] [Q486] MODEL ANSWER (raw): "To determine the trend in the median box area and coverage percentage as one transitions from ground to aerial views, let's analyze the data provided in Figure 1:\n\n1. **Median Box Area**: \n   - For ground view: 9240 px²\n   - For aerial view: 2702 px²\n\n2. **Coverage Percentage**: \n   - For ground view: 2.74%\n   - For aerial view: 1.92%\n\nFrom these values, we can observe that:\n- The median box area for the ground view (9240 px²) is higher than that for the aerial view (2702 px²).\n- The coverage percentage for the ground view (2.74%) is higher than that for the aerial view (1.92%).\n\nTherefore, as one transitions from ground to aerial views, the median box area decreases, and the coverage percentage also decreases.\n\nThe correct answer is:\n<answer>C. Median box area decreases and coverage percentage decreases</answer>"  → extracted letter: 'C'
+2026-05-19 03:51:24,087 [INFO] [Q486] CORRECT: True
+2026-05-19 03:51:24,087 [INFO] ======================================================================
+2026-05-19 03:51:24,089 [INFO] 
+######################################################################
+[Q487] paper=2605.09802  type=text  level=3  page_idx=4
+######################################################################
+2026-05-19 03:51:25,179 [INFO] [Q487] 页数: 10  输入 tokens: 19833
+2026-05-19 03:51:29,313 [INFO] Input tokens: 19833
+2026-05-19 03:51:29,321 [INFO] [Q487] 模型完整输出:
+============================================================
+To determine how the interaction between the curriculum and CPA contributes to training stability, let's analyze the relevant sections of the paper:
+
+1. **Curriculum Learning**: The paper discusses that curriculum learning can exhibit severe training instability due to the geometric gap between viewpoints. It mentions that when used independently, curriculum learning shows large variance across seeds and can lead to catastrophic failures.
+
+2. **Complexity-Aware Pathway Aggregation (CPA)**: CPA is described as providing stable training dynamics. It remains highly stable across all seeds (+1.09 std) while offering consistent improvements over the baseline (+2.00pp mean gain).
+
+3. **Mutual Regularization Effect**: The paper states that there is a mutual regularization effect between CPA and the curriculum. This means that CPA prevents curriculum-induced collapse, while the curriculum schedule enhances CPA's absolute performance.
+
+Given these points, the correct answer should reflect the synergistic relationship where CPA stabilizes the curriculum and vice versa.
+
+<answer>B. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.</answer>
+============================================================
+2026-05-19 03:51:29,321 [INFO] ======================================================================
+2026-05-19 03:51:29,321 [INFO] [Q487] QUESTION:
+How does the interaction between the curriculum and CPA contribute to training stability, according to the paper?
+A. The curriculum provides complexity-aware representations, while CPA shapes the sampling distribution.
+B. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.
+C. The curriculum and CPA operate independently, each contributing to stability through separate mechanisms.
+D. The curriculum reduces variance, while CPA enables robust ground-aerial detection.
+2026-05-19 03:51:29,322 [INFO] [Q487] GROUND TRUTH: B
+2026-05-19 03:51:29,322 [INFO] [Q487] MODEL ANSWER (raw): "To determine how the interaction between the curriculum and CPA contributes to training stability, let's analyze the relevant sections of the paper:\n\n1. **Curriculum Learning**: The paper discusses that curriculum learning can exhibit severe training instability due to the geometric gap between viewpoints. It mentions that when used independently, curriculum learning shows large variance across seeds and can lead to catastrophic failures.\n\n2. **Complexity-Aware Pathway Aggregation (CPA)**: CPA is described as providing stable training dynamics. It remains highly stable across all seeds (+1.09 std) while offering consistent improvements over the baseline (+2.00pp mean gain).\n\n3. **Mutual Regularization Effect**: The paper states that there is a mutual regularization effect between CPA and the curriculum. This means that CPA prevents curriculum-induced collapse, while the curriculum schedule enhances CPA's absolute performance.\n\nGiven these points, the correct answer should reflect the synergistic relationship where CPA stabilizes the curriculum and vice versa.\n\n<answer>B. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.</answer>"  → extracted letter: 'B'
+2026-05-19 03:51:29,322 [INFO] [Q487] CORRECT: True
+2026-05-19 03:51:29,322 [INFO] ======================================================================
+2026-05-19 03:51:29,326 [INFO] 
+######################################################################
+[Q488] paper=2605.09802  type=table  level=3  page_idx=5
+######################################################################
+2026-05-19 03:51:30,481 [INFO] [Q488] 页数: 10  输入 tokens: 19884
+2026-05-19 03:51:37,338 [INFO] Input tokens: 19884
+2026-05-19 03:51:37,341 [INFO] [Q488] 模型完整输出:
+============================================================
+To determine the trend in mAP_S and mAP_M across the Vision-Language Models (from Florence-2 to + Both), let's analyze the data in Table 1:
+
+1. **Florence-2 (random)**: 
+   - mAP_S = 62.08
+   - mAP_M = 49.26
+
+2. **Florence-2 + CPA**: 
+   - mAP_S = 61.80
+   - mAP_M = 59.66
+
+3. **Florence-2 + Curriculum**: 
+   - mAP_S = 63.77
+   - mAP_M = 51.92
+
+4. **Florence-2 + Both**: 
+   - mAP_S = 62.74
+   - mAP_M = 57.41
+
+Now, let's compare the changes in mAP_S and mAP_M:
+
+- For **mAP_S**:
+  - Florence-2 to Florence-2 + CPA: Increase of 0.72
+  - Florence-2 + CPA to Florence-2 + Curriculum: Increase of 1.97
+  - Florence-2 + Curriculum to Florence-2 + Both: Increase of 0.97
+
+- For **mAP_M**:
+  - Florence-2 to Florence-2 + CPA: Increase of 10.40
+  - Florence-2 + CPA to Florence-2 + Curriculum: Decrease of 8.74
+  - Florence-2 + Curriculum to Florence-2 + Both: Increase of 5.49
+
+From this analysis, we can see that the gains in mAP_M are significantly larger than those in mAP_S when adding components. This suggests that the model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.
+
+Therefore, the correct answer is:
+<answer>B. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.</answer>
+============================================================
+2026-05-19 03:51:37,341 [INFO] ======================================================================
+2026-05-19 03:51:37,341 [INFO] [Q488] QUESTION:
+According to Table 1, what does the trend in mAP_S and mAP_M across the Vision-Language Models (from Florence-2 to + Both) reveal about the relative performance gains on small versus medium objects?
+A. The model gains more on small objects (mAP_S) than on medium objects (mAP_M) as components are added.
+B. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.
+C. The gains are roughly equal for small and medium objects across all components.
+D. The model's performance on small objects (mAP_S) decreases while performance on medium objects (mAP_M) increases.
+2026-05-19 03:51:37,341 [INFO] [Q488] GROUND TRUTH: B
+2026-05-19 03:51:37,341 [INFO] [Q488] MODEL ANSWER (raw): "To determine the trend in mAP_S and mAP_M across the Vision-Language Models (from Florence-2 to + Both), let's analyze the data in Table 1:\n\n1. **Florence-2 (random)**: \n   - mAP_S = 62.08\n   - mAP_M = 49.26\n\n2. **Florence-2 + CPA**: \n   - mAP_S = 61.80\n   - mAP_M = 59.66\n\n3. **Florence-2 + Curriculum**: \n   - mAP_S = 63.77\n   - mAP_M = 51.92\n\n4. **Florence-2 + Both**: \n   - mAP_S = 62.74\n   - mAP_M = 57.41\n\nNow, let's compare the changes in mAP_S and mAP_M:\n\n- For **mAP_S**:\n  - Florence-2 to Florence-2 + CPA: Increase of 0.72\n  - Florence-2 + CPA to Florence-2 + Curriculum: Increase of 1.97\n  - Florence-2 + Curriculum to Florence-2 + Both: Increase of 0.97\n\n- For **mAP_M**:\n  - Florence-2 to Florence-2 + CPA: Increase of 10.40\n  - Florence-2 + CPA to Florence-2 + Curriculum: Decrease of 8.74\n  - Florence-2 + Curriculum to Florence-2 + Both: Increase of 5.49\n\nFrom this analysis, we can see that the gains in mAP_M are significantly larger than those in mAP_S when adding components. This suggests that the model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.\n\nTherefore, the correct answer is:\n<answer>B. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.</answer>"  → extracted letter: 'B'
+2026-05-19 03:51:37,342 [INFO] [Q488] CORRECT: True
+2026-05-19 03:51:37,342 [INFO] ======================================================================
+2026-05-19 03:51:37,344 [INFO] 
+######################################################################
+[Q489] paper=2605.09802  type=text  level=3  page_idx=5
+######################################################################
+2026-05-19 03:51:38,439 [INFO] [Q489] 页数: 10  输入 tokens: 19840
+2026-05-19 03:51:42,663 [INFO] Input tokens: 19840
+2026-05-19 03:51:42,671 [INFO] [Q489] 模型完整输出:
+============================================================
+To answer this question, let's break down the relevant information from the document:
+
+1. **CPA (Complexity-Aware Pathway Aggregation)**: The document states that CPA particularly benefits medium-sized objects, reaching 85.69% mAP_M, outperforming both the baseline (+17.04pp; 68.65% → 85.69%). This indicates that CPA is effective for medium-sized objects.
+
+2. **Curriculum Learning**: The document mentions that curriculum learning improves small-object detection (+1.69pp mAP_S). This suggests that curriculum learning is beneficial for small objects.
+
+3. **Complementary Strengths**: The text explicitly states that "Individual components provide modest but complementary gains." It further elaborates that CPA benefits medium-sized objects, while curriculum learning benefits small objects, indicating a complementary relationship between the two components.
+
+Given these points, we can conclude that CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.
+
+<answer>B. CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.</answer>
+============================================================
+2026-05-19 03:51:42,671 [INFO] ======================================================================
+2026-05-19 03:51:42,672 [INFO] [Q489] QUESTION:
+How do the performance gains of CPA and curriculum learning differ across object scales, and what does this imply about their complementary strengths?
+A. CPA benefits small objects more, while curriculum learning benefits large objects, making them complementary.
+B. CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.
+C. Both components benefit medium-sized objects equally, indicating no complementary strength.
+D. Curriculum learning benefits medium-sized objects, while CPA benefits small objects, indicating a mismatch in strengths.
+2026-05-19 03:51:42,672 [INFO] [Q489] GROUND TRUTH: B
+2026-05-19 03:51:42,672 [INFO] [Q489] MODEL ANSWER (raw): 'To answer this question, let\'s break down the relevant information from the document:\n\n1. **CPA (Complexity-Aware Pathway Aggregation)**: The document states that CPA particularly benefits medium-sized objects, reaching 85.69% mAP_M, outperforming both the baseline (+17.04pp; 68.65% → 85.69%). This indicates that CPA is effective for medium-sized objects.\n\n2. **Curriculum Learning**: The document mentions that curriculum learning improves small-object detection (+1.69pp mAP_S). This suggests that curriculum learning is beneficial for small objects.\n\n3. **Complementary Strengths**: The text explicitly states that "Individual components provide modest but complementary gains." It further elaborates that CPA benefits medium-sized objects, while curriculum learning benefits small objects, indicating a complementary relationship between the two components.\n\nGiven these points, we can conclude that CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.\n\n<answer>B. CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.</answer>'  → extracted letter: 'B'
+2026-05-19 03:51:42,672 [INFO] [Q489] CORRECT: True
+2026-05-19 03:51:42,672 [INFO] ======================================================================
+2026-05-19 03:51:42,677 [INFO] 
+######################################################################
+[Q490] paper=2605.09802  type=text  level=4  page_idx=6
+######################################################################
+2026-05-19 03:51:43,821 [INFO] [Q490] 页数: 10  输入 tokens: 19832
+2026-05-19 03:51:47,140 [INFO] Input tokens: 19832
+2026-05-19 03:51:47,143 [INFO] [Q490] 模型完整输出:
+============================================================
+To determine the correct answer, let's analyze the relevant information from the document:
+
+1. The document discusses the impact of curriculum learning on cross-view robustness.
+2. It mentions that curriculum learning exhibits severe training instability when used independently.
+3. The text states: "Curriculum learning increases ground-view performance but suffers from lower aerial-view consistency, resulting in the largest test set gap (12.59pp)."
+
+Given this information, we can conclude that the curriculum learning component introduces a trade-off where it improves ground-view performance but at the cost of lower aerial-view consistency, leading to a larger test set gap.
+
+Therefore, the correct answer is:
+<answer>C. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.</answer>
+============================================================
+2026-05-19 03:51:47,143 [INFO] ======================================================================
+2026-05-19 03:51:47,143 [INFO] [Q490] QUESTION:
+What trade-off does the curriculum learning component introduce in the context of cross-view robustness?
+A. It improves aerial performance at the cost of reduced ground performance.
+B. It reduces the cross-view gap by improving both ground and aerial performance equally.
+C. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.
+D. It stabilizes complexity-induced variation but reduces the model's ability to handle small objects.
+2026-05-19 03:51:47,143 [INFO] [Q490] GROUND TRUTH: C
+2026-05-19 03:51:47,143 [INFO] [Q490] MODEL ANSWER (raw): 'To determine the correct answer, let\'s analyze the relevant information from the document:\n\n1. The document discusses the impact of curriculum learning on cross-view robustness.\n2. It mentions that curriculum learning exhibits severe training instability when used independently.\n3. The text states: "Curriculum learning increases ground-view performance but suffers from lower aerial-view consistency, resulting in the largest test set gap (12.59pp)."\n\nGiven this information, we can conclude that the curriculum learning component introduces a trade-off where it improves ground-view performance but at the cost of lower aerial-view consistency, leading to a larger test set gap.\n\nTherefore, the correct answer is:\n<answer>C. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.</answer>'  → extracted letter: 'C'
+2026-05-19 03:51:47,143 [INFO] [Q490] CORRECT: True
+2026-05-19 03:51:47,143 [INFO] ======================================================================
+2026-05-19 03:51:47,145 [INFO] 
+######################################################################
+[Q491] paper=2605.09802  type=text  level=4  page_idx=7
+######################################################################
+2026-05-19 03:51:48,232 [INFO] [Q491] 页数: 10  输入 tokens: 19862
+2026-05-19 03:51:52,666 [INFO] Input tokens: 19862
+2026-05-19 03:51:52,674 [INFO] [Q491] 模型完整输出:
+============================================================
+To determine the correct answer, let's analyze the relevant section of the document:
+
+1. The document discusses the training stability analysis in Section 4.5.
+2. It mentions that curriculum learning exhibits severe training instability, as evidenced by the performance drop for seed 123 when used independently.
+3. The combined method (Both) achieves the best performance with highest stability, while curriculum learning alone exhibits severe instability with catastrophic failure for seed 123.
+4. The text states: "The previously catastrophic seed 123 improves from 49.77% under curriculum-only training to 62.34% when CPA is included."
+
+From this information, we can infer that the combined method introduces a trade-off where it improves the performance of seed 123 significantly (from 49.77% to 62.34%) by leveraging CPA's stable representations, which mitigates the catastrophic failure observed with curriculum learning alone.
+
+Therefore, the correct answer is:
+<answer>B. It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure.</answer>
+============================================================
+2026-05-19 03:51:52,674 [INFO] ======================================================================
+2026-05-19 03:51:52,674 [INFO] [Q491] QUESTION:
+What trade-off does the combined method introduce regarding the performance of seed 123, and why is this significant for the overall training process?
+A. It sacrifices performance for seed 123 to improve stability across all seeds.
+B. It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure.
+C. It reduces the mean performance to prioritize stability for seed 123.
+D. It increases variance for seed 123 to achieve higher peak performance.
+2026-05-19 03:51:52,675 [INFO] [Q491] GROUND TRUTH: B
+2026-05-19 03:51:52,675 [INFO] [Q491] MODEL ANSWER (raw): 'To determine the correct answer, let\'s analyze the relevant section of the document:\n\n1. The document discusses the training stability analysis in Section 4.5.\n2. It mentions that curriculum learning exhibits severe training instability, as evidenced by the performance drop for seed 123 when used independently.\n3. The combined method (Both) achieves the best performance with highest stability, while curriculum learning alone exhibits severe instability with catastrophic failure for seed 123.\n4. The text states: "The previously catastrophic seed 123 improves from 49.77% under curriculum-only training to 62.34% when CPA is included."\n\nFrom this information, we can infer that the combined method introduces a trade-off where it improves the performance of seed 123 significantly (from 49.77% to 62.34%) by leveraging CPA\'s stable representations, which mitigates the catastrophic failure observed with curriculum learning alone.\n\nTherefore, the correct answer is:\n<answer>B. It improves seed 123\'s performance from 49.77% to 62.34% by leveraging CPA\'s stable representations, which mitigates catastrophic failure.</answer>'  → extracted letter: 'B'
+2026-05-19 03:51:52,675 [INFO] [Q491] CORRECT: True
+2026-05-19 03:51:52,675 [INFO] ======================================================================
+2026-05-19 03:51:52,680 [INFO] 
+######################################################################
+[Q492] paper=2605.10204  type=figure  level=3  page_idx=2
+######################################################################
+2026-05-19 03:51:52,681 [INFO] Rendering PDF pages for: 2605.10204
+2026-05-19 03:51:54,888 [INFO]   渲染完成：30 页
+2026-05-19 03:51:57,959 [INFO] [Q492] 页数: 30  输入 tokens: 59021
+2026-05-19 03:52:16,424 [INFO] Input tokens: 59021
+2026-05-19 03:52:16,429 [INFO] [Q492] 模型完整输出:
+============================================================
+To determine the trend in PSNR as the IOR increases from 1.0 to 1.9, let's analyze Figure 4:
+
+1. The figure shows a plot where each line represents a single trial, colored by reconstruction quality (PSNR).
+2. The x-axis represents the IOR values ranging from 1.0 to 1.9.
+3. Observing the lines for different IOR values, we can see that there is no consistent upward or downward trend across all trials.
+4. Some trials show an increase in PSNR as IOR increases, while others show a decrease or remain relatively stable.
+5. This suggests a non-monotonic relationship between IOR and PSNR, with some trials improving and others degrading.
+
+Therefore, the correct answer is:
+
+<answer>D. PSNR shows a non-monotonic relationship with IOR, with some trials improving and others degrading.</answer>
+============================================================
+2026-05-19 03:52:16,430 [INFO] ======================================================================
+2026-05-19 03:52:16,430 [INFO] [Q492] QUESTION:
+According to Figure 4, what trend is observed in PSNR as the IOR (Index of Refraction) increases from 1.0 to 1.9 across the material parameter sweep?
+A. PSNR consistently increases with higher IOR values.
+B. PSNR remains constant regardless of IOR changes.
+C. PSNR consistently decreases with higher IOR values.
+D. PSNR shows a non-monotonic relationship with IOR, with some trials improving and others degrading.
+2026-05-19 03:52:16,430 [INFO] [Q492] GROUND TRUTH: C
+2026-05-19 03:52:16,430 [INFO] [Q492] MODEL ANSWER (raw): "To determine the trend in PSNR as the IOR increases from 1.0 to 1.9, let's analyze Figure 4:\n\n1. The figure shows a plot where each line represents a single trial, colored by reconstruction quality (PSNR).\n2. The x-axis represents the IOR values ranging from 1.0 to 1.9.\n3. Observing the lines for different IOR values, we can see that there is no consistent upward or downward trend across all trials.\n4. Some trials show an increase in PSNR as IOR increases, while others show a decrease or remain relatively stable.\n5. This suggests a non-monotonic relationship between IOR and PSNR, with some trials improving and others degrading.\n\nTherefore, the correct answer is:\n\n<answer>D. PSNR shows a non-monotonic relationship with IOR, with some trials improving and others degrading.</answer>"  → extracted letter: 'D'
+2026-05-19 03:52:16,430 [INFO] [Q492] CORRECT: False
+2026-05-19 03:52:16,430 [INFO] ======================================================================
+2026-05-19 03:52:16,432 [INFO] 
+######################################################################
+[Q493] paper=2605.10204  type=text  level=4  page_idx=7
+######################################################################
+2026-05-19 03:52:19,647 [INFO] [Q493] 页数: 30  输入 tokens: 59056
+2026-05-19 03:52:28,457 [INFO] Input tokens: 59056
+2026-05-19 03:52:28,471 [INFO] [Q493] 模型完整输出:
+============================================================
+To determine the correct answer, let's analyze the content of the paper and the context provided:
+
+1. The paper discusses the challenges faced by existing datasets in handling complex materials like reflective, transparent, and low-texture objects.
+2. It mentions that current methods struggle with these materials due to assumptions that do not hold true for non-Lambertian surfaces.
+3. The paper introduces 3DReflecNet as a solution to address these challenges, emphasizing the need for a dataset that can handle such materials effectively.
+
+Now, let's evaluate each option:
+
+A. The trade-off between dataset size and annotation quality: While this is mentioned, it doesn't directly relate to the primary challenge discussed in the paper, which is the handling of complex materials.
+
+B. The trade-off between synthetic and real-world data: This is also mentioned, but the paper focuses more on the limitations of existing methods rather than the trade-off between synthetic and real-world data.
+
+C. The trade-off between methodological simplicity and robustness: This is a significant point in the paper. The authors highlight that existing methods struggle with complex materials, indicating a need for more robust methods. This trade-off is crucial because simple methods fail on complex materials, necessitating more sophisticated models.
+
+D. The trade-off between computational efficiency and reconstruction accuracy: Although computational efficiency is important, the paper does not primarily discuss this trade-off; instead, it focuses on the robustness of methods.
+
+Given the analysis, the most significant trade-off acknowledged in the paper is related to methodological simplicity versus robustness.
+
+Therefore, the final answer is:
+<answer>C. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.</answer>
+============================================================
+2026-05-19 03:52:28,472 [INFO] ======================================================================
+2026-05-19 03:52:28,472 [INFO] [Q493] QUESTION:
+What trade-off does the paper implicitly acknowledge in its design of 3DReflecNet, and why is it significant for future research?
+A. The trade-off between dataset size and annotation quality, which is significant because high-quality annotations are essential for training generative models.
+B. The trade-off between synthetic and real-world data, which is significant because real-world data is more diverse but harder to annotate.
+C. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.
+D. The trade-off between computational efficiency and reconstruction accuracy, which is significant because accurate reconstruction requires more computational resources.
+2026-05-19 03:52:28,472 [INFO] [Q493] GROUND TRUTH: C
+2026-05-19 03:52:28,472 [INFO] [Q493] MODEL ANSWER (raw): "To determine the correct answer, let's analyze the content of the paper and the context provided:\n\n1. The paper discusses the challenges faced by existing datasets in handling complex materials like reflective, transparent, and low-texture objects.\n2. It mentions that current methods struggle with these materials due to assumptions that do not hold true for non-Lambertian surfaces.\n3. The paper introduces 3DReflecNet as a solution to address these challenges, emphasizing the need for a dataset that can handle such materials effectively.\n\nNow, let's evaluate each option:\n\nA. The trade-off between dataset size and annotation quality: While this is mentioned, it doesn't directly relate to the primary challenge discussed in the paper, which is the handling of complex materials.\n\nB. The trade-off between synthetic and real-world data: This is also mentioned, but the paper focuses more on the limitations of existing methods rather than the trade-off between synthetic and real-world data.\n\nC. The trade-off between methodological simplicity and robustness: This is a significant point in the paper. The authors highlight that existing methods struggle with complex materials, indicating a need for more robust methods. This trade-off is crucial because simple methods fail on complex materials, necessitating more sophisticated models.\n\nD. The trade-off between computational efficiency and reconstruction accuracy: Although computational efficiency is important, the paper does not primarily discuss this trade-off; instead, it focuses on the robustness of methods.\n\nGiven the analysis, the most significant trade-off acknowledged in the paper is related to methodological simplicity versus robustness.\n\nTherefore, the final answer is:\n<answer>C. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.</answer>"  → extracted letter: 'C'
+2026-05-19 03:52:28,472 [INFO] [Q493] CORRECT: True
+2026-05-19 03:52:28,473 [INFO] ======================================================================
+2026-05-19 03:52:28,477 [INFO] 
+######################################################################
+[Q494] paper=2605.10204  type=table  level=3  page_idx=15
+######################################################################
+2026-05-19 03:52:31,708 [INFO] [Q494] 页数: 30  输入 tokens: 59016
+2026-05-19 03:52:38,346 [INFO] Input tokens: 59016
+2026-05-19 03:52:38,361 [INFO] [Q494] 模型完整输出:
+============================================================
+To determine the trend in the performance of the methods as the angular threshold increases from 5° to 20°, let's analyze the data in Table 7:
+
+1. The table lists several methods along with their AUC scores for different angular thresholds (5°, 10°, and 20°).
+2. We need to compare the AUC scores across these thresholds for each method.
+3. Observing the trends:
+   - For most methods, the AUC score decreases as the angular threshold increases from 5° to 10°.
+   - For most methods, the AUC score continues to decrease further as the angular threshold increases from 10° to 20°.
+
+This indicates that the performance of most methods generally decreases as the angular threshold increases, which suggests that they perform better at lower thresholds.
+
+Therefore, the correct answer is:
+<answer>C. Most methods show a decrease in AUC scores, indicating improved performance at higher thresholds.</answer>
+============================================================
+2026-05-19 03:52:38,362 [INFO] ======================================================================
+2026-05-19 03:52:38,362 [INFO] [Q494] QUESTION:
+According to Table 7, what trend is observed in the performance of the methods as the angular threshold increases from 5° to 20°?
+A. All methods show a consistent decrease in AUC scores.
+B. All methods show a consistent increase in AUC scores.
+C. Most methods show a decrease in AUC scores, indicating improved performance at higher thresholds.
+D. Most methods show an increase in AUC scores, indicating improved performance at higher thresholds.
+2026-05-19 03:52:38,362 [INFO] [Q494] GROUND TRUTH: B
+2026-05-19 03:52:38,362 [INFO] [Q494] MODEL ANSWER (raw): "To determine the trend in the performance of the methods as the angular threshold increases from 5° to 20°, let's analyze the data in Table 7:\n\n1. The table lists several methods along with their AUC scores for different angular thresholds (5°, 10°, and 20°).\n2. We need to compare the AUC scores across these thresholds for each method.\n3. Observing the trends:\n   - For most methods, the AUC score decreases as the angular threshold increases from 5° to 10°.\n   - For most methods, the AUC score continues to decrease further as the angular threshold increases from 10° to 20°.\n\nThis indicates that the performance of most methods generally decreases as the angular threshold increases, which suggests that they perform better at lower thresholds.\n\nTherefore, the correct answer is:\n<answer>C. Most methods show a decrease in AUC scores, indicating improved performance at higher thresholds.</answer>"  → extracted letter: 'C'
+2026-05-19 03:52:38,362 [INFO] [Q494] CORRECT: False
+2026-05-19 03:52:38,363 [INFO] ======================================================================
+2026-05-19 03:52:38,368 [INFO] 
+######################################################################
+[Q495] paper=2605.10204  type=formula  level=5  page_idx=15
+######################################################################
+2026-05-19 03:52:41,612 [INFO] [Q495] 页数: 30  输入 tokens: 59018
+2026-05-19 03:52:50,275 [INFO] Input tokens: 59018
+2026-05-19 03:52:50,292 [INFO] [Q495] 模型完整输出:
+============================================================
+To determine the correct answer, let's break down the equation and understand its context:
+
+Equation (2) is given as:
+\[ I = I_t + I_r \]
+
+This equation models the observed image \(I\) as the sum of two components: \(I_t\) (transmission layer) and \(I_r\) (reflection layer). This is a common approach in computer vision and rendering when dealing with transparent materials.
+
+Let's analyze each option:
+
+A. "To separate the image into its diffuse and specular components for material classification."
+   - This is not accurate because the equation does not separate diffuse and specular components; it separates transmission and reflection layers.
+
+B. "To enable the recovery of the underlying scene by removing the reflection layer."
+   - While this might be a goal, the equation itself does not directly enable the recovery of the underlying scene. It merely models the observed image.
+
+C. "To model the physical process of light interacting with transparent media, allowing for reflection removal."
+   - This is correct. The equation models how light interacts with transparent materials, where the transmission layer \(I_t\) represents the light that passes through the material without being reflected, and the reflection layer \(I_r\) represents the light that is reflected off the surface. This separation allows for the removal of reflections, which is a common task in image processing and computer vision.
+
+D. "To compute the total intensity of light in the scene for exposure correction."
+   - This is incorrect because the equation is specifically about separating the transmission and reflection components, not computing the total light intensity for exposure correction.
+
+Therefore, the correct answer is:
+<answer>C. To model the physical process of light interacting with transparent media, allowing for reflection removal.</answer>
+============================================================
+2026-05-19 03:52:50,292 [INFO] ======================================================================
+2026-05-19 03:52:50,293 [INFO] [Q495] QUESTION:
+In Equation (2), what is the design intent behind modeling the observed image I as the sum of a transmission layer It and a reflection layer Ir?
+A. To separate the image into its diffuse and specular components for material classification.
+B. To enable the recovery of the underlying scene by removing the reflection layer.
+C. To model the physical process of light interacting with transparent media, allowing for reflection removal.
+D. To compute the total intensity of light in the scene for exposure correction.
+2026-05-19 03:52:50,293 [INFO] [Q495] GROUND TRUTH: C
+2026-05-19 03:52:50,293 [INFO] [Q495] MODEL ANSWER (raw): 'To determine the correct answer, let\'s break down the equation and understand its context:\n\nEquation (2) is given as:\n\\[ I = I_t + I_r \\]\n\nThis equation models the observed image \\(I\\) as the sum of two components: \\(I_t\\) (transmission layer) and \\(I_r\\) (reflection layer). This is a common approach in computer vision and rendering when dealing with transparent materials.\n\nLet\'s analyze each option:\n\nA. "To separate the image into its diffuse and specular components for material classification."\n   - This is not accurate because the equation does not separate diffuse and specular components; it separates transmission and reflection layers.\n\nB. "To enable the recovery of the underlying scene by removing the reflection layer."\n   - While this might be a goal, the equation itself does not directly enable the recovery of the underlying scene. It merely models the observed image.\n\nC. "To model the physical process of light interacting with transparent media, allowing for reflection removal."\n   - This is correct. The equation models how light interacts with transparent materials, where the transmission layer \\(I_t\\) represents the light that passes through the material without being reflected, and the reflection layer \\(I_r\\) represents the light that is reflected off the surface. This separation allows for the removal of reflections, which is a common task in image processing and computer vision.\n\nD. "To compute the total intensity of light in the scene for exposure correction."\n   - This is incorrect because the equation is specifically about separating the transmission and reflection components, not computing the total light intensity for exposure correction.\n\nTherefore, the correct answer is:\n<answer>C. To model the physical process of light interacting with transparent media, allowing for reflection removal.</answer>'  → extracted letter: 'C'
+2026-05-19 03:52:50,293 [INFO] [Q495] CORRECT: True
+2026-05-19 03:52:50,293 [INFO] ======================================================================
+2026-05-19 03:52:50,298 [INFO] 
+######################################################################
+[Q496] paper=2605.10204  type=text  level=3  page_idx=16
+######################################################################
+2026-05-19 03:52:53,407 [INFO] [Q496] 页数: 30  输入 tokens: 59049
+2026-05-19 03:53:00,808 [INFO] Input tokens: 59049
+2026-05-19 03:53:00,823 [INFO] [Q496] 模型完整输出:
+============================================================
+To answer this question, let's break down the information provided:
+
+1. The paper discusses two tasks: highlight removal and specular reflection removal.
+2. It mentions that highlight removal focuses on separating localized reflections on opaque surfaces.
+3. Specular reflection removal addresses global reflections through transparent materials.
+4. Figure 15 shows qualitative results on reflective, transparent, and low-texture materials.
+
+Given these points, we can infer the following:
+- Highlight removal is associated with opaque materials (Diffuse and Metallic).
+- Specular reflection removal is associated with transparent materials (Transparent).
+
+Now, let's look at the options:
+A. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.
+B. Specular reflection removal targets transparent materials, which are represented in Figure 15 by the Transparent category.
+C. Both tasks target the same materials, so the categories in Figure 15 are irrelevant to the distinction.
+D. Highlight removal targets transparent materials, while specular reflection removal targets opaque materials, which is the opposite of what Figure 15 shows.
+
+Option A correctly aligns with the paper's description and the categories in Figure 15.
+
+<answer>A</answer>
+============================================================
+2026-05-19 03:53:00,823 [INFO] ======================================================================
+2026-05-19 03:53:00,823 [INFO] [Q496] QUESTION:
+How does the paper's description of the physical assumptions of highlight removal versus specular reflection removal relate to the types of materials shown in Figure 15?
+A. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.
+B. Specular reflection removal targets transparent materials, which are represented in Figure 15 by the Transparent category.
+C. Both tasks target the same materials, so the categories in Figure 15 are irrelevant to the distinction.
+D. Highlight removal targets transparent materials, while specular reflection removal targets opaque materials, which is the opposite of what Figure 15 shows.
+2026-05-19 03:53:00,824 [INFO] [Q496] GROUND TRUTH: B
+2026-05-19 03:53:00,824 [INFO] [Q496] MODEL ANSWER (raw): "To answer this question, let's break down the information provided:\n\n1. The paper discusses two tasks: highlight removal and specular reflection removal.\n2. It mentions that highlight removal focuses on separating localized reflections on opaque surfaces.\n3. Specular reflection removal addresses global reflections through transparent materials.\n4. Figure 15 shows qualitative results on reflective, transparent, and low-texture materials.\n\nGiven these points, we can infer the following:\n- Highlight removal is associated with opaque materials (Diffuse and Metallic).\n- Specular reflection removal is associated with transparent materials (Transparent).\n\nNow, let's look at the options:\nA. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.\nB. Specular reflection removal targets transparent materials, which are represented in Figure 15 by the Transparent category.\nC. Both tasks target the same materials, so the categories in Figure 15 are irrelevant to the distinction.\nD. Highlight removal targets transparent materials, while specular reflection removal targets opaque materials, which is the opposite of what Figure 15 shows.\n\nOption A correctly aligns with the paper's description and the categories in Figure 15.\n\n<answer>A</answer>"  → extracted letter: 'A'
+2026-05-19 03:53:00,824 [INFO] [Q496] CORRECT: False
+2026-05-19 03:53:00,824 [INFO] ======================================================================
+2026-05-19 03:53:00,830 [INFO] 
+######################################################################
+[Q497] paper=2605.10204  type=figure  level=3  page_idx=18
+######################################################################
+2026-05-19 03:53:04,093 [INFO] [Q497] 页数: 30  输入 tokens: 59011
+2026-05-19 03:53:09,981 [INFO] Input tokens: 59011
+2026-05-19 03:53:09,997 [INFO] [Q497] 模型完整输出:
+============================================================
+To determine the correct answer, let's analyze the information provided in Figure 16:
+
+1. The figure shows heatmaps representing the impact of roughness (x-axis) and Index of Refraction (IOR) (y-axis) on reconstruction quality metrics like PSNR.
+2. The PSNR values are plotted across different combinations of roughness and IOR.
+3. Observing the trend as roughness increases from 0.0 to 0.9, we can see that the PSNR values improve significantly, indicating better reconstruction quality.
+
+Given this analysis, the correct interpretation is that as roughness increases, the reconstruction quality improves.
+
+<answer>B. Reconstruction quality improves significantly as roughness increases.</answer>
+============================================================
+2026-05-19 03:53:09,998 [INFO] ======================================================================
+2026-05-19 03:53:09,998 [INFO] [Q497] QUESTION:
+According to Figure 16, what does the trend in PSNR values as roughness increases from 0.0 to 0.9 indicate about the reconstruction quality for opaque, non-metallic materials?
+A. Reconstruction quality remains constant regardless of roughness.
+B. Reconstruction quality improves significantly as roughness increases.
+C. Reconstruction quality degrades as roughness increases.
+D. Reconstruction quality is primarily affected by IOR, not roughness.
+2026-05-19 03:53:09,998 [INFO] [Q497] GROUND TRUTH: B
+2026-05-19 03:53:09,998 [INFO] [Q497] MODEL ANSWER (raw): "To determine the correct answer, let's analyze the information provided in Figure 16:\n\n1. The figure shows heatmaps representing the impact of roughness (x-axis) and Index of Refraction (IOR) (y-axis) on reconstruction quality metrics like PSNR.\n2. The PSNR values are plotted across different combinations of roughness and IOR.\n3. Observing the trend as roughness increases from 0.0 to 0.9, we can see that the PSNR values improve significantly, indicating better reconstruction quality.\n\nGiven this analysis, the correct interpretation is that as roughness increases, the reconstruction quality improves.\n\n<answer>B. Reconstruction quality improves significantly as roughness increases.</answer>"  → extracted letter: 'B'
+2026-05-19 03:53:09,998 [INFO] [Q497] CORRECT: True
+2026-05-19 03:53:09,999 [INFO] ======================================================================
+2026-05-19 03:53:10,004 [INFO] 
+######################################################################
+[Q498] paper=2605.10204  type=table  level=3  page_idx=24
+######################################################################
+2026-05-19 03:53:24,101 [INFO] [Q498] 页数: 30  输入 tokens: 59019
+2026-05-19 03:53:30,354 [INFO] Input tokens: 59019
+2026-05-19 03:53:30,370 [INFO] [Q498] 模型完整输出:
+============================================================
+To determine the most prevalent lighting condition category in Table 14, we need to look at the percentages provided for each category:
+
+- Indoor - Furnished: 8.58%
+- Indoor - Empty: 16.22%
+- Outdoor - Natural: 28.24%
+- Outdoor - Urban: 21.22%
+- Studio: 25.74%
+
+From these percentages, we can see that the 'Studio' category has the highest percentage at 25.74%.
+
+This implies that the dataset includes a significant number of objects captured under studio conditions, which typically offer controlled lighting environments for consistent rendering.
+
+Therefore, the correct answer is:
+<answer>C. Studio is the most prevalent, implying a controlled environment for consistent rendering.</answer>
+============================================================
+2026-05-19 03:53:30,370 [INFO] ======================================================================
+2026-05-19 03:53:30,371 [INFO] [Q498] QUESTION:
+Based on Table 14, which lighting condition category is the most prevalent, and what might this imply about the dataset's design?
+A. Indoor - Furnished is the most prevalent, suggesting a focus on domestic environments.
+B. Outdoor - Natural is the most prevalent, indicating a strong emphasis on natural lighting scenarios.
+C. Studio is the most prevalent, implying a controlled environment for consistent rendering.
+D. Outdoor - Urban is the most prevalent, reflecting a focus on cityscapes.
+2026-05-19 03:53:30,371 [INFO] [Q498] GROUND TRUTH: B
+2026-05-19 03:53:30,371 [INFO] [Q498] MODEL ANSWER (raw): "To determine the most prevalent lighting condition category in Table 14, we need to look at the percentages provided for each category:\n\n- Indoor - Furnished: 8.58%\n- Indoor - Empty: 16.22%\n- Outdoor - Natural: 28.24%\n- Outdoor - Urban: 21.22%\n- Studio: 25.74%\n\nFrom these percentages, we can see that the 'Studio' category has the highest percentage at 25.74%.\n\nThis implies that the dataset includes a significant number of objects captured under studio conditions, which typically offer controlled lighting environments for consistent rendering.\n\nTherefore, the correct answer is:\n<answer>C. Studio is the most prevalent, implying a controlled environment for consistent rendering.</answer>"  → extracted letter: 'C'
+2026-05-19 03:53:30,371 [INFO] [Q498] CORRECT: False
+2026-05-19 03:53:30,371 [INFO] ======================================================================
+2026-05-19 03:53:30,377 [INFO] 
+######################################################################
+[Q499] paper=2605.10349  type=text  level=3  page_idx=7
+######################################################################
+2026-05-19 03:53:30,378 [INFO] Rendering PDF pages for: 2605.10349
+2026-05-19 03:53:31,253 [INFO]   渲染完成：10 页
+2026-05-19 03:53:32,309 [INFO] [Q499] 页数: 10  输入 tokens: 19852
+2026-05-19 03:53:39,676 [INFO] Input tokens: 19852
+2026-05-19 03:53:39,676 [INFO] [Q499] 模型完整输出:
+============================================================
+To answer this question, let's break down the relevant information from Fig. 5(b):
+
+1. The figure shows the impact of varying the GUIDE weightage (d) in the selection score equation.
+2. The x-axis represents different values of d, ranging from 0 to 0.2.
+3. The y-axis represents COCO AP@0.5-0.95, which is a measure of performance.
+4. The graph indicates that as the GUIDE weight increases from 0 to 0.1, there is a clear improvement in performance.
+5. Further increasing the GUIDE weight beyond 0.1 does not show a significant increase in performance, suggesting diminishing returns.
+6. The performance appears to plateau around a GUIDE weight of 0.1, indicating that this value is near-optimal.
+
+Given these observations, we can conclude that the optimal balance between LIUS and GUIDE scores in the selection score equation is achieved when the GUIDE weight is set to 0.1, and neither increasing nor decreasing it further improves performance.
+
+<answer>C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.</answer>
+============================================================
+2026-05-19 03:53:39,677 [INFO] ======================================================================
+2026-05-19 03:53:39,677 [INFO] [Q499] QUESTION:
+What does the ablation study on GUIDE weightage (Fig. 5b) reveal about the optimal balance between LIUS and GUIDE scores in the selection score equation?
+A. Increasing the GUIDE weight beyond 0.1 leads to diminishing returns and potential performance degradation.
+B. The GUIDE weight should be set to 0 to maximize early-round performance.
+C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.
+D. The performance is most sensitive to GUIDE weight in later rounds of training.
+2026-05-19 03:53:39,677 [INFO] [Q499] GROUND TRUTH: C
+2026-05-19 03:53:39,677 [INFO] [Q499] MODEL ANSWER (raw): "To answer this question, let's break down the relevant information from Fig. 5(b):\n\n1. The figure shows the impact of varying the GUIDE weightage (d) in the selection score equation.\n2. The x-axis represents different values of d, ranging from 0 to 0.2.\n3. The y-axis represents COCO AP@0.5-0.95, which is a measure of performance.\n4. The graph indicates that as the GUIDE weight increases from 0 to 0.1, there is a clear improvement in performance.\n5. Further increasing the GUIDE weight beyond 0.1 does not show a significant increase in performance, suggesting diminishing returns.\n6. The performance appears to plateau around a GUIDE weight of 0.1, indicating that this value is near-optimal.\n\nGiven these observations, we can conclude that the optimal balance between LIUS and GUIDE scores in the selection score equation is achieved when the GUIDE weight is set to 0.1, and neither increasing nor decreasing it further improves performance.\n\n<answer>C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.</answer>"  → extracted letter: 'C'
+2026-05-19 03:53:39,677 [INFO] [Q499] CORRECT: True
+2026-05-19 03:53:39,677 [INFO] ======================================================================
+2026-05-19 03:53:39,683 [INFO] 
+======================================================================
+2026-05-19 03:53:39,683 [INFO] 评测完成。评测题数: 24
+2026-05-19 03:53:39,683 [INFO] 准确率: 17/24 = 0.7083
+2026-05-19 03:53:39,683 [INFO] Log:  /HOME/sysu_gbli2/sysu_gbli2xy_1/HDD_POOL/zdw/Docproject/project/compare_experiment/Qwen2.5-VL-7b-instruct/new_results/eval_20260519_034759.log
+2026-05-19 03:53:39,683 [INFO] JSON: /HOME/sysu_gbli2/sysu_gbli2xy_1/HDD_POOL/zdw/Docproject/project/compare_experiment/Qwen2.5-VL-7b-instruct/new_results/eval_20260519_034759.json
+2026-05-19 03:53:39,683 [INFO] ======================================================================

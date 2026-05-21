@@ -1,0 +1,41 @@
+# ─── Model paths ──────────────────────────────────────────────────────────────
+QWEN_MODEL_PATH = "/data3/zdw/model/Qwen3-VL-8b-Instruct"
+EMBEDDING_MODEL_PATH = "/data3/zdw/model/Qwen3-Embedding-0.6B"
+
+# ─── ColPali service ──────────────────────────────────────────────────────────
+# URL of the running colqwen_server.py  (see service/server.py)
+COLPALI_SERVER_URL = "http://localhost:8787"
+# HTTP timeout in seconds for ColPali requests (increase for large batches)
+COLPALI_TIMEOUT = 240
+
+# ─── Retrieval hyperparameters ────────────────────────────────────────────────
+K1 = 5   # number of text chunks to retrieve per query
+K2 = 1   # number of page images to retrieve per query
+
+# ─── Pipeline hyperparameters ─────────────────────────────────────────────────
+# MAX_TURN: total number of model calls allowed.
+# On the final call the "last turn" notice is injected before the model responds.
+MAX_TURN = 5
+
+# ─── Text chunking ────────────────────────────────────────────────────────────
+CHUNK_SIZE = 1024    # target chunk size in characters
+CHUNK_OVERLAP = 128  # overlap between consecutive chunks
+
+# ─── Inference ────────────────────────────────────────────────────────────────
+# Switch between "local" (transformers) and "api" (DashScope OpenAI-compatible)
+INFERENCE_MODE = "local"   # "local" | "api"
+
+MAX_NEW_TOKENS = 2048
+REPETITION_PENALTY = 1.05
+
+# ─── API inference (used when INFERENCE_MODE == "api") ────────────────────────
+
+API_KEY = ""
+API_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+API_MODEL = "qwen2.5-vl-72b-instruct"   # e.g. "qwen-vl-max", "qwen-vl-plus"
+
+# ─── Page image rendering ─────────────────────────────────────────────────────
+PAGE_RENDER_DPI = 200  # DPI used when rasterising PDF pages to PIL images
+
+
+

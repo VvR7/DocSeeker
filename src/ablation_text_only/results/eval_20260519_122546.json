@@ -1,0 +1,727 @@
+{
+  "accuracy": {
+    "correct": 15,
+    "total": 24,
+    "acc": 0.625
+  },
+  "results": [
+    {
+      "q_idx": 513,
+      "paper_name": "2605.09622",
+      "question_type": "text",
+      "question_level": 5,
+      "page_idx": 1,
+      "question": "Given the paper's emphasis on both knowledge transfer from distant domains and alignment with clinical preferences, what does the overall framework imply about the primary challenge in clinical dose prediction?",
+      "options": {
+        "A": "The primary challenge is the lack of sufficient computational resources for training large models.",
+        "B": "The primary challenge is the scarcity of annotated data for training, which the framework addresses via transfer learning and RL.",
+        "C": "The primary challenge is the need for models to generalize across diverse patient anatomies and institutional protocols.",
+        "D": "The primary challenge is the inherent complexity of 3D diffusion models, which requires simplification for clinical use."
+      },
+      "ground_truth": "C",
+      "model_answer": "B. The primary challenge is the scarcity of annotated data for training, which the framework addresses via transfer learning and RL.",
+      "model_answer_letter": "B",
+      "is_correct": false,
+      "total_input_tokens": 2058,
+      "input_tokens_per_turn": [
+        687,
+        2058
+      ],
+      "retrieved_text_page_ids": [
+        1,
+        7,
+        6
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 514,
+      "paper_name": "2605.09622",
+      "question_type": "text",
+      "question_level": 4,
+      "page_idx": 5,
+      "question": "What trade-off does the multi-step refinement process introduce in the context of dose prediction, according to the paper?",
+      "options": {
+        "A": "It improves clinical scorecard performance at the cost of reduced PSNR.",
+        "B": "It increases computational cost while providing diminishing returns in accuracy.",
+        "C": "It enhances prediction accuracy but requires more training data.",
+        "D": "It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance."
+      },
+      "ground_truth": "D",
+      "model_answer": "D. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.",
+      "model_answer_letter": "D",
+      "is_correct": true,
+      "total_input_tokens": 2159,
+      "input_tokens_per_turn": [
+        652,
+        2159
+      ],
+      "retrieved_text_page_ids": [
+        5,
+        8,
+        21,
+        2,
+        10
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 515,
+      "paper_name": "2605.09622",
+      "question_type": "text",
+      "question_level": 4,
+      "page_idx": 15,
+      "question": "What trade-off does the training setup described in Section B.6 imply between computational efficiency and model performance, and how is it managed?",
+      "options": {
+        "A": "The use of bfloat16 mixed precision reduces computational cost but may compromise model accuracy, which is mitigated by gradient clipping.",
+        "B": "Training on eight B200 GPUs with data parallelism increases computational cost but is necessary to achieve the desired learning rate and batch size.",
+        "C": "The linear warm-up of 500 steps and constant learning rate are designed to balance convergence speed and stability, avoiding premature overfitting.",
+        "D": "Disabling gradient accumulation and using a global norm of 0.1 for clipping is a trade-off that prioritizes training speed over model stability."
+      },
+      "ground_truth": "A",
+      "model_answer": "Based on the available information, the correct answer is not explicitly supported by the document. However, Option A is the most plausible, as mixed precision (bfloat16) typically reduces computational cost while gradient clipping mitigates potential accuracy loss — a common trade-off in training setups.",
+      "model_answer_letter": "Based on the available information, the correct answer is not explicitly supported by the document. However, Option A is the most plausible, as mixed precision (bfloat16) typically reduces computational cost while gradient clipping mitigates potential accuracy loss — a common trade-off in training setups.",
+      "is_correct": false,
+      "total_input_tokens": 3028,
+      "input_tokens_per_turn": [
+        715,
+        1790,
+        2401,
+        3028
+      ],
+      "retrieved_text_page_ids": [
+        14,
+        7,
+        5,
+        18
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 516,
+      "paper_name": "2605.09622",
+      "question_type": "text",
+      "question_level": 3,
+      "page_idx": 18,
+      "question": "How does the performance of the 3D ControlNet approach compare to the main models, and what is the primary reason attributed for its underperformance?",
+      "options": {
+        "A": "It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.",
+        "B": "It performs better than the main models because it uses a more efficient copy-branch architecture.",
+        "C": "It performs similarly to the main models but requires less GPU memory.",
+        "D": "It performs worse due to its sequential processing of slices, which discards 3D context."
+      },
+      "ground_truth": "A",
+      "model_answer": "A. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.",
+      "model_answer_letter": "A",
+      "is_correct": true,
+      "total_input_tokens": 1775,
+      "input_tokens_per_turn": [
+        677,
+        1775
+      ],
+      "retrieved_text_page_ids": [
+        18,
+        20
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 517,
+      "paper_name": "2605.09622",
+      "question_type": "table",
+      "question_level": 3,
+      "page_idx": 19,
+      "question": "According to Table 7, what does the trend in performance metrics as the number of steps increases from 1 to 10 reveal about the relative effectiveness of ε-pred and v-pred?",
+      "options": {
+        "A": "Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.",
+        "B": "ε-pred improves more than v-pred, closing the performance gap between them.",
+        "C": "v-pred degrades significantly at 10 steps, while ε-pred improves, making ε-pred superior at higher steps.",
+        "D": "Both methods degrade in performance as steps increase, indicating instability."
+      },
+      "ground_truth": "A",
+      "model_answer": "A. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.",
+      "model_answer_letter": "A",
+      "is_correct": true,
+      "total_input_tokens": 2094,
+      "input_tokens_per_turn": [
+        699,
+        2094
+      ],
+      "retrieved_text_page_ids": [
+        19,
+        3,
+        6,
+        17
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 518,
+      "paper_name": "2605.09622",
+      "question_type": "table",
+      "question_level": 3,
+      "page_idx": 20,
+      "question": "According to Table 9, what trend is observed in the test MAE as the number of sampling steps increases from 5 to 50 for the noise-prediction variants of the MAISI backbone?",
+      "options": {
+        "A": "The test MAE decreases significantly, indicating improved performance with more steps.",
+        "B": "The test MAE remains constant, suggesting no benefit from increasing sampling steps.",
+        "C": "The test MAE increases slightly, indicating a marginal degradation in performance.",
+        "D": "The test MAE decreases initially but then increases, forming a U-shaped curve."
+      },
+      "ground_truth": "C",
+      "model_answer": "C. The test MAE increases slightly, indicating a marginal degradation in performance.",
+      "model_answer_letter": "C",
+      "is_correct": true,
+      "total_input_tokens": 1941,
+      "input_tokens_per_turn": [
+        678,
+        1941
+      ],
+      "retrieved_text_page_ids": [
+        20,
+        12,
+        19
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 519,
+      "paper_name": "2605.09662",
+      "question_type": "formula",
+      "question_level": 5,
+      "page_idx": 3,
+      "question": "In Equation (2), what is the design intent of the indicator function H_i(u), and how does it influence the training behavior of Gaussians?",
+      "options": {
+        "A": "H_i(u) ensures that Gaussians are only penalized when they contribute to pixels of their own class, promoting class-specific rendering.",
+        "B": "H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.",
+        "C": "H_i(u) normalizes the contribution of each Gaussian based on its opacity, ensuring uniform pixel coverage.",
+        "D": "H_i(u) is a random noise term added to prevent overfitting during training."
+      },
+      "ground_truth": "B",
+      "model_answer": "B. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.",
+      "model_answer_letter": "B",
+      "is_correct": true,
+      "total_input_tokens": 4832,
+      "input_tokens_per_turn": [
+        703,
+        2296,
+        3651,
+        4832
+      ],
+      "retrieved_text_page_ids": [
+        8,
+        9,
+        3,
+        10,
+        1,
+        2
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 520,
+      "paper_name": "2605.09662",
+      "question_type": "figure",
+      "question_level": 3,
+      "page_idx": 7,
+      "question": "According to Figure 5, what trend is observed in the quality of object boundaries across the different methods for the 'teatime' scene (second column)?",
+      "options": {
+        "A": "All methods produce similarly clean object boundaries with no visible artifacts.",
+        "B": "Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.",
+        "C": "FlashSplat and ObjectGS show the most accurate boundaries, while BEA-GS introduces noticeable blurring.",
+        "D": "The quality of boundaries is inconsistent, with no clear trend across methods."
+      },
+      "ground_truth": "B",
+      "model_answer": "B. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.",
+      "model_answer_letter": "B",
+      "is_correct": true,
+      "total_input_tokens": 3060,
+      "input_tokens_per_turn": [
+        675,
+        1762,
+        3060
+      ],
+      "retrieved_text_page_ids": [
+        13,
+        5,
+        7,
+        0
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 521,
+      "paper_name": "2605.09662",
+      "question_type": "text",
+      "question_level": 4,
+      "page_idx": 12,
+      "question": "What design decision regarding mask creation for Mip-NeRF 360 reflects a trade-off between automation and accuracy, and why?",
+      "options": {
+        "A": "Using Trace3D outputs as a visual guide in Photoshop reflects a trade-off, as it sacrifices automation for higher accuracy in mask refinement.",
+        "B": "Generating both rendered and extracted masks from scratch reflects a trade-off, as it sacrifices automation for higher accuracy in capturing full object geometry.",
+        "C": "Reusing the authors' rendered masks reflects a trade-off, as it sacrifices accuracy for automation in the mask creation process.",
+        "D": "Using Gaussian Grouping for rendered masks reflects a trade-off, as it sacrifices computational efficiency for higher fidelity in occluded regions."
+      },
+      "ground_truth": "B",
+      "model_answer": "A. Using Trace3D outputs as a visual guide in Photoshop reflects a trade-off, as it sacrifices automation for higher accuracy in mask refinement.",
+      "model_answer_letter": "A",
+      "is_correct": false,
+      "total_input_tokens": 2352,
+      "input_tokens_per_turn": [
+        706,
+        2352
+      ],
+      "retrieved_text_page_ids": [
+        13,
+        12,
+        6,
+        8
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 522,
+      "paper_name": "2605.09802",
+      "question_type": "figure",
+      "question_level": 3,
+      "page_idx": 0,
+      "question": "According to Figure 1, what trend is observed in the median box area and coverage percentage as one transitions from ground to aerial views?",
+      "options": {
+        "A": "Median box area increases and coverage percentage increases",
+        "B": "Median box area decreases and coverage percentage increases",
+        "C": "Median box area decreases and coverage percentage decreases",
+        "D": "Median box area increases and coverage percentage decreases"
+      },
+      "ground_truth": "C",
+      "model_answer": "B. Median box area decreases and coverage percentage increases",
+      "model_answer_letter": "B",
+      "is_correct": false,
+      "total_input_tokens": 1624,
+      "input_tokens_per_turn": [
+        638,
+        1624
+      ],
+      "retrieved_text_page_ids": [
+        7,
+        0,
+        6
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 523,
+      "paper_name": "2605.09802",
+      "question_type": "text",
+      "question_level": 3,
+      "page_idx": 4,
+      "question": "How does the interaction between the curriculum and CPA contribute to training stability, according to the paper?",
+      "options": {
+        "A": "The curriculum provides complexity-aware representations, while CPA shapes the sampling distribution.",
+        "B": "CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.",
+        "C": "The curriculum and CPA operate independently, each contributing to stability through separate mechanisms.",
+        "D": "The curriculum reduces variance, while CPA enables robust ground-aerial detection."
+      },
+      "ground_truth": "B",
+      "model_answer": "B. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.",
+      "model_answer_letter": "B",
+      "is_correct": true,
+      "total_input_tokens": 1945,
+      "input_tokens_per_turn": [
+        660,
+        1945
+      ],
+      "retrieved_text_page_ids": [
+        7,
+        5,
+        4,
+        6
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 524,
+      "paper_name": "2605.09802",
+      "question_type": "table",
+      "question_level": 3,
+      "page_idx": 5,
+      "question": "According to Table 1, what does the trend in mAP_S and mAP_M across the Vision-Language Models (from Florence-2 to + Both) reveal about the relative performance gains on small versus medium objects?",
+      "options": {
+        "A": "The model gains more on small objects (mAP_S) than on medium objects (mAP_M) as components are added.",
+        "B": "The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.",
+        "C": "The gains are roughly equal for small and medium objects across all components.",
+        "D": "The model's performance on small objects (mAP_S) decreases while performance on medium objects (mAP_M) increases."
+      },
+      "ground_truth": "B",
+      "model_answer": "B. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.",
+      "model_answer_letter": "B",
+      "is_correct": true,
+      "total_input_tokens": 2644,
+      "input_tokens_per_turn": [
+        711,
+        2644
+      ],
+      "retrieved_text_page_ids": [
+        5,
+        4,
+        0
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 525,
+      "paper_name": "2605.09802",
+      "question_type": "text",
+      "question_level": 3,
+      "page_idx": 5,
+      "question": "How do the performance gains of CPA and curriculum learning differ across object scales, and what does this imply about their complementary strengths?",
+      "options": {
+        "A": "CPA benefits small objects more, while curriculum learning benefits large objects, making them complementary.",
+        "B": "CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.",
+        "C": "Both components benefit medium-sized objects equally, indicating no complementary strength.",
+        "D": "Curriculum learning benefits medium-sized objects, while CPA benefits small objects, indicating a mismatch in strengths."
+      },
+      "ground_truth": "B",
+      "model_answer": "A. CPA benefits small objects more, while curriculum learning benefits large objects, making them complementary.",
+      "model_answer_letter": "A",
+      "is_correct": false,
+      "total_input_tokens": 1901,
+      "input_tokens_per_turn": [
+        667,
+        1901
+      ],
+      "retrieved_text_page_ids": [
+        5,
+        7,
+        4,
+        6
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 526,
+      "paper_name": "2605.09802",
+      "question_type": "text",
+      "question_level": 4,
+      "page_idx": 6,
+      "question": "What trade-off does the curriculum learning component introduce in the context of cross-view robustness?",
+      "options": {
+        "A": "It improves aerial performance at the cost of reduced ground performance.",
+        "B": "It reduces the cross-view gap by improving both ground and aerial performance equally.",
+        "C": "It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.",
+        "D": "It stabilizes complexity-induced variation but reduces the model's ability to handle small objects."
+      },
+      "ground_truth": "C",
+      "model_answer": "C. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.",
+      "model_answer_letter": "C",
+      "is_correct": true,
+      "total_input_tokens": 1742,
+      "input_tokens_per_turn": [
+        659,
+        1742
+      ],
+      "retrieved_text_page_ids": [
+        7,
+        1
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 527,
+      "paper_name": "2605.09802",
+      "question_type": "text",
+      "question_level": 4,
+      "page_idx": 7,
+      "question": "What trade-off does the combined method introduce regarding the performance of seed 123, and why is this significant for the overall training process?",
+      "options": {
+        "A": "It sacrifices performance for seed 123 to improve stability across all seeds.",
+        "B": "It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure.",
+        "C": "It reduces the mean performance to prioritize stability for seed 123.",
+        "D": "It increases variance for seed 123 to achieve higher peak performance."
+      },
+      "ground_truth": "B",
+      "model_answer": "B. It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure.",
+      "model_answer_letter": "B",
+      "is_correct": true,
+      "total_input_tokens": 1725,
+      "input_tokens_per_turn": [
+        689,
+        1725
+      ],
+      "retrieved_text_page_ids": [
+        4,
+        7
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 528,
+      "paper_name": "2605.10204",
+      "question_type": "figure",
+      "question_level": 3,
+      "page_idx": 2,
+      "question": "According to Figure 4, what trend is observed in PSNR as the IOR (Index of Refraction) increases from 1.0 to 1.9 across the material parameter sweep?",
+      "options": {
+        "A": "PSNR consistently increases with higher IOR values.",
+        "B": "PSNR remains constant regardless of IOR changes.",
+        "C": "PSNR consistently decreases with higher IOR values.",
+        "D": "PSNR shows a non-monotonic relationship with IOR, with some trials improving and others degrading."
+      },
+      "ground_truth": "C",
+      "model_answer": "B. PSNR remains constant regardless of IOR changes.",
+      "model_answer_letter": "B",
+      "is_correct": false,
+      "total_input_tokens": 1886,
+      "input_tokens_per_turn": [
+        668,
+        1886
+      ],
+      "retrieved_text_page_ids": [
+        2,
+        18,
+        16
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 529,
+      "paper_name": "2605.10204",
+      "question_type": "text",
+      "question_level": 4,
+      "page_idx": 7,
+      "question": "What trade-off does the paper implicitly acknowledge in its design of 3DReflecNet, and why is it significant for future research?",
+      "options": {
+        "A": "The trade-off between dataset size and annotation quality, which is significant because high-quality annotations are essential for training generative models.",
+        "B": "The trade-off between synthetic and real-world data, which is significant because real-world data is more diverse but harder to annotate.",
+        "C": "The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.",
+        "D": "The trade-off between computational efficiency and reconstruction accuracy, which is significant because accurate reconstruction requires more computational resources."
+      },
+      "ground_truth": "C",
+      "model_answer": "C. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.",
+      "model_answer_letter": "C",
+      "is_correct": true,
+      "total_input_tokens": 1502,
+      "input_tokens_per_turn": [
+        703,
+        1502
+      ],
+      "retrieved_text_page_ids": [
+        7,
+        0
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 530,
+      "paper_name": "2605.10204",
+      "question_type": "table",
+      "question_level": 3,
+      "page_idx": 15,
+      "question": "According to Table 7, what trend is observed in the performance of the methods as the angular threshold increases from 5° to 20°?",
+      "options": {
+        "A": "All methods show a consistent decrease in AUC scores.",
+        "B": "All methods show a consistent increase in AUC scores.",
+        "C": "Most methods show a decrease in AUC scores, indicating improved performance at higher thresholds.",
+        "D": "Most methods show an increase in AUC scores, indicating improved performance at higher thresholds."
+      },
+      "ground_truth": "B",
+      "model_answer": "D. Most methods show an increase in AUC scores, indicating improved performance at higher thresholds.",
+      "model_answer_letter": "D",
+      "is_correct": false,
+      "total_input_tokens": 2573,
+      "input_tokens_per_turn": [
+        663,
+        1523,
+        2573
+      ],
+      "retrieved_text_page_ids": [
+        2,
+        22,
+        18,
+        0,
+        5,
+        6,
+        16
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 531,
+      "paper_name": "2605.10204",
+      "question_type": "formula",
+      "question_level": 5,
+      "page_idx": 15,
+      "question": "In Equation (2), what is the design intent behind modeling the observed image I as the sum of a transmission layer It and a reflection layer Ir?",
+      "options": {
+        "A": "To separate the image into its diffuse and specular components for material classification.",
+        "B": "To enable the recovery of the underlying scene by removing the reflection layer.",
+        "C": "To model the physical process of light interacting with transparent media, allowing for reflection removal.",
+        "D": "To compute the total intensity of light in the scene for exposure correction."
+      },
+      "ground_truth": "C",
+      "model_answer": "B. To enable the recovery of the underlying scene by removing the reflection layer.",
+      "model_answer_letter": "B",
+      "is_correct": false,
+      "total_input_tokens": 2099,
+      "input_tokens_per_turn": [
+        665,
+        2099
+      ],
+      "retrieved_text_page_ids": [
+        22,
+        16,
+        15,
+        9
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 532,
+      "paper_name": "2605.10204",
+      "question_type": "text",
+      "question_level": 3,
+      "page_idx": 16,
+      "question": "How does the paper's description of the physical assumptions of highlight removal versus specular reflection removal relate to the types of materials shown in Figure 15?",
+      "options": {
+        "A": "Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.",
+        "B": "Specular reflection removal targets transparent materials, which are represented in Figure 15 by the Transparent category.",
+        "C": "Both tasks target the same materials, so the categories in Figure 15 are irrelevant to the distinction.",
+        "D": "Highlight removal targets transparent materials, while specular reflection removal targets opaque materials, which is the opposite of what Figure 15 shows."
+      },
+      "ground_truth": "B",
+      "model_answer": "A. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.",
+      "model_answer_letter": "A",
+      "is_correct": false,
+      "total_input_tokens": 1861,
+      "input_tokens_per_turn": [
+        696,
+        1861
+      ],
+      "retrieved_text_page_ids": [
+        14,
+        13,
+        16,
+        23,
+        22
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 533,
+      "paper_name": "2605.10204",
+      "question_type": "figure",
+      "question_level": 3,
+      "page_idx": 18,
+      "question": "According to Figure 16, what does the trend in PSNR values as roughness increases from 0.0 to 0.9 indicate about the reconstruction quality for opaque, non-metallic materials?",
+      "options": {
+        "A": "Reconstruction quality remains constant regardless of roughness.",
+        "B": "Reconstruction quality improves significantly as roughness increases.",
+        "C": "Reconstruction quality degrades as roughness increases.",
+        "D": "Reconstruction quality is primarily affected by IOR, not roughness."
+      },
+      "ground_truth": "B",
+      "model_answer": "B. Reconstruction quality improves significantly as roughness increases.",
+      "model_answer_letter": "B",
+      "is_correct": true,
+      "total_input_tokens": 2173,
+      "input_tokens_per_turn": [
+        658,
+        2173
+      ],
+      "retrieved_text_page_ids": [
+        18,
+        2
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 534,
+      "paper_name": "2605.10204",
+      "question_type": "figure",
+      "question_level": 4,
+      "page_idx": 22,
+      "question": "According to Figure 20, what is the primary purpose of the 'meta.json' example provided in the prompt?",
+      "options": {
+        "A": "To serve as a source for the annotator to copy category fields and instance ID",
+        "B": "To provide the annotator with a template for generating the JSON output",
+        "C": "To allow the annotator to reclassify the object's material properties based on visual inspection",
+        "D": "To be used as a reference for lighting and environment settings in the final output"
+      },
+      "ground_truth": "A",
+      "model_answer": "A. To serve as a source for the annotator to copy category fields and instance ID",
+      "model_answer_letter": "A",
+      "is_correct": true,
+      "total_input_tokens": 1626,
+      "input_tokens_per_turn": [
+        664,
+        1626
+      ],
+      "retrieved_text_page_ids": [
+        23,
+        22,
+        10,
+        21,
+        13
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 535,
+      "paper_name": "2605.10204",
+      "question_type": "table",
+      "question_level": 3,
+      "page_idx": 24,
+      "question": "Based on Table 14, which lighting condition category is the most prevalent, and what might this imply about the dataset's design?",
+      "options": {
+        "A": "Indoor - Furnished is the most prevalent, suggesting a focus on domestic environments.",
+        "B": "Outdoor - Natural is the most prevalent, indicating a strong emphasis on natural lighting scenarios.",
+        "C": "Studio is the most prevalent, implying a controlled environment for consistent rendering.",
+        "D": "Outdoor - Urban is the most prevalent, reflecting a focus on cityscapes."
+      },
+      "ground_truth": "B",
+      "model_answer": "B. Outdoor - Natural is the most prevalent, indicating a strong emphasis on natural lighting scenarios.",
+      "model_answer_letter": "B",
+      "is_correct": true,
+      "total_input_tokens": 1641,
+      "input_tokens_per_turn": [
+        666,
+        1641
+      ],
+      "retrieved_text_page_ids": [
+        22,
+        24,
+        23,
+        21
+      ],
+      "retrieved_page_nums": []
+    },
+    {
+      "q_idx": 536,
+      "paper_name": "2605.10349",
+      "question_type": "text",
+      "question_level": 3,
+      "page_idx": 7,
+      "question": "What does the ablation study on GUIDE weightage (Fig. 5b) reveal about the optimal balance between LIUS and GUIDE scores in the selection score equation?",
+      "options": {
+        "A": "Increasing the GUIDE weight beyond 0.1 leads to diminishing returns and potential performance degradation.",
+        "B": "The GUIDE weight should be set to 0 to maximize early-round performance.",
+        "C": "A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.",
+        "D": "The performance is most sensitive to GUIDE weight in later rounds of training."
+      },
+      "ground_truth": "C",
+      "model_answer": "C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.",
+      "model_answer_letter": "C",
+      "is_correct": true,
+      "total_input_tokens": 1570,
+      "input_tokens_per_turn": [
+        679,
+        1570
+      ],
+      "retrieved_text_page_ids": [
+        7,
+        4,
+        6
+      ],
+      "retrieved_page_nums": []
+    }
+  ]
+}

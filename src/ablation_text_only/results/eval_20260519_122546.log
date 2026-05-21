@@ -1,0 +1,1552 @@
+2026-05-19 12:25:46,231 [INFO] === 消融实验：仅 text_retrieval 工具 ===
+2026-05-19 12:25:46,232 [INFO] Log: ./ablation_text_only/results/eval_20260519_122546.log  JSON: ./ablation_text_only/results/eval_20260519_122546.json
+2026-05-19 12:25:46,232 [INFO] K1=5  MAX_TURN=5
+2026-05-19 12:25:46,240 [INFO] 总题数: 537  本次评测: 24 (start_idx=513, limit=None)
+2026-05-19 12:25:46,241 [INFO] Loading embedding model from /HOME/sysu_gbli2/sysu_gbli2xy_1/HDD_POOL/zdw/model/Qwen3-Embedding-0.6B ...
+2026-05-19 12:26:31,881 [INFO] Embedding model loaded.
+2026-05-19 12:26:31,882 [INFO] Loading embedding model from /HOME/sysu_gbli2/sysu_gbli2xy_1/HDD_POOL/zdw/model/Qwen3-Embedding-0.6B ...
+2026-05-19 12:26:53,731 [INFO] Embedding model loaded.
+2026-05-19 12:26:53,731 [INFO] 
+######################################################################
+[Q478] paper=2605.09622  type=text  level=5  page_idx=1
+######################################################################
+2026-05-19 12:26:53,735 [INFO] Processing PDF for paper: 2605.09622
+2026-05-19 12:26:53,736 [INFO] Processing PDF: /XYFS01/HDD_POOL/sysu_gbli2/sysu_gbli2xy_1/zdw/Docproject/project/Mybenchmark/data/2605.09622.pdf
+2026-05-19 12:26:53,736 [INFO] Extracting text from PDF via fitz ...
+2026-05-19 12:26:54,457 [INFO] Extracted 82884 characters from 22 pages.
+2026-05-19 12:26:54,458 [INFO] Text split into 121 chunks. Embedding ...
+2026-05-19 12:27:11,244 [INFO]   Embedded 50/121 chunks ...
+2026-05-19 12:27:13,244 [INFO]   Embedded 100/121 chunks ...
+2026-05-19 12:27:14,139 [INFO] Text chunk embedding complete.
+2026-05-19 12:27:14,140 [INFO] Rendering PDF pages to images ...
+2026-05-19 12:27:15,143 [INFO] Rendered 22 pages. Computing ColPali embeddings ...
+2026-05-19 12:27:15,144 [INFO] Connecting to ColPali service at http://localhost:8788 ...
+2026-05-19 12:27:15,144 [INFO] Requesting image embeddings for 22 page(s) ...
+2026-05-19 12:27:16,150 [ERROR] Unexpected error while computing ColPali embeddings: Cannot reach ColQwen server at http://localhost:8788. Is colqwen_server.py running?. Page retrieval will be unavailable.
+2026-05-19 12:27:16,151 [INFO] PDF processed: 121 text chunks, 22 pages.
+2026-05-19 12:27:16,152 [INFO] Pipeline (text_only) started. Question="Given the paper's emphasis on both knowledge transfer from distant domains and alignment with clinical preferences, what does the overall framework imply about the primary challenge in clinical dose prediction?\nA. The primary challenge is the lack of sufficient computational resources for training large models.\nB. The primary challenge is the scarcity of annotated data for training, which the framework addresses via transfer learning and RL.\nC. The primary challenge is the need for models to generalize across diverse patient anatomies and institutional protocols.\nD. The primary challenge is the inherent complexity of 3D diffusion models, which requires simplification for clinical use."  MAX_TURN=5  K1=5
+2026-05-19 12:27:16,152 [INFO] Initializing vLLM  model=/HOME/sysu_gbli2/sysu_gbli2xy_1/HDD_POOL/zdw/model/Qwen3-VL-8B-Instruct  max_model_len=81920  gpu_memory_utilization=0.7  dtype=bfloat16
+2026-05-19 12:27:16,152 [INFO] tensor_parallel_size: 1 (parsed from CUDA_VISIBLE_DEVICES='3')
+2026-05-19 12:34:45,756 [INFO] vLLM initialized.
+2026-05-19 12:34:45,842 [INFO] [Turn 1] 输入 tokens: 687
+2026-05-19 12:34:45,848 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:34:49,285 [INFO] Input tokens: 687
+2026-05-19 12:34:49,286 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the correct answer, I need to analyze the paper’s emphasis on knowledge transfer from distant domains and alignment with clinical preferences. This suggests that the framework is designed to overcome limitations related to data availability or domain-specific adaptation. I will retrieve relevant sections discussing these themes to identify the primary challenge implied by the framework.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "framework's focus on knowledge transfer from distant domains and alignment with clinical preferences"}}
+</tool_call>
+============================================================
+2026-05-19 12:34:49,286 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input="framework's focus on knowledge transfer from distant domains and alignment with clinical preferences"
+2026-05-19 12:34:50,131 [INFO] TextRetriever: query="framework's focus on knowledge transfer from distant domains", top-5 chunk_ids=[8, 6, 48, 7, 44], scores=[0.6129, 0.5856, 0.5766, 0.5702, 0.5691]
+2026-05-19 12:34:50,131 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[8, 6, 48, 7, 44]  page_ids=[1, 1, 7, 1, 6]
+2026-05-19 12:34:50,141 [INFO] [Turn 2] 输入 tokens: 2058
+2026-05-19 12:34:50,142 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:34:56,558 [INFO] Input tokens: 2058
+2026-05-19 12:34:56,559 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, we can infer the following:
+
+1. The paper explicitly discusses **knowledge transfer from distant domains**, indicating that the primary challenge lies in bridging domain gaps — likely due to limited annotated data in clinical settings. This is addressed via transfer learning from pre-trained models (e.g., Wan 2.1 or MAISI).
+
+2. The framework also emphasizes **alignment with clinical preferences**, which involves adapting models to institutional protocols and user-defined goals (e.g., PTV coverage vs. OAR sparing). This is tackled via RL post-training (ScardNFT), suggesting that the challenge is not just technical but also contextual — i.e., models must adapt to real-world clinical variability.
+
+3. The mention of “heterogeneous nature of DP data” and “variable input combinations” implies that generalizing across diverse anatomies and protocols is a key challenge — but the paper’s solutions (transfer learning + RL) are specifically aimed at overcoming **data scarcity** and **clinical misalignment**, not computational complexity or model architecture.
+
+Thus, the primary challenge implied by the framework is **the scarcity of annotated data**, which is addressed through transfer learning and RL to align with clinical preferences.
+
+<answer>B. The primary challenge is the scarcity of annotated data for training, which the framework addresses via transfer learning and RL.</answer>
+============================================================
+2026-05-19 12:34:56,559 [INFO] [Turn 2] Answer extracted: 'B. The primary challenge is the scarcity of annotated data for training, which the framework addresses via transfer learning and RL.'
+2026-05-19 12:34:56,559 [INFO] ======================================================================
+2026-05-19 12:34:56,559 [INFO] [Q478] paper=2605.09622  page_idx=1  type=text  level=5
+2026-05-19 12:34:56,560 [INFO] [Q478] QUESTION:
+Given the paper's emphasis on both knowledge transfer from distant domains and alignment with clinical preferences, what does the overall framework imply about the primary challenge in clinical dose prediction?
+A. The primary challenge is the lack of sufficient computational resources for training large models.
+B. The primary challenge is the scarcity of annotated data for training, which the framework addresses via transfer learning and RL.
+C. The primary challenge is the need for models to generalize across diverse patient anatomies and institutional protocols.
+D. The primary challenge is the inherent complexity of 3D diffusion models, which requires simplification for clinical use.
+2026-05-19 12:34:56,560 [INFO] [Q478] GROUND TRUTH: C
+2026-05-19 12:34:56,560 [INFO] [Q478] MODEL ANSWER (raw): 'B. The primary challenge is the scarcity of annotated data for training, which the framework addresses via transfer learning and RL.'  → extracted letter: 'B'
+2026-05-19 12:34:56,560 [INFO] [Q478] CORRECT: False
+2026-05-19 12:34:56,560 [INFO] [Q478] 最终轮输入 tokens: 2058  各轮: [687, 2058]
+2026-05-19 12:34:56,560 [INFO] [Q478] 检索调用 (1 次):
+2026-05-19 12:34:56,560 [INFO]   [1] tool=text_retrieval  query="framework's focus on knowledge transfer from distant domains and alignment with clinical preferences"
+2026-05-19 12:34:56,561 [INFO]       chunk_id=8  [page_id=1]  score=0.6129
+2026-05-19 12:34:56,561 [INFO]       chunk_id=6  [page_id=1]  score=0.5856
+2026-05-19 12:34:56,561 [INFO]       chunk_id=48  [page_id=7]  score=0.5766
+2026-05-19 12:34:56,561 [INFO]       chunk_id=7  [page_id=1]  score=0.5702
+2026-05-19 12:34:56,562 [INFO]       chunk_id=44  [page_id=6]  score=0.5691
+2026-05-19 12:34:56,562 [INFO] ======================================================================
+2026-05-19 12:34:56,565 [INFO] 
+######################################################################
+[Q479] paper=2605.09622  type=text  level=4  page_idx=5
+######################################################################
+2026-05-19 12:34:56,565 [INFO] Pipeline (text_only) started. Question='What trade-off does the multi-step refinement process introduce in the context of dose prediction, according to the paper?\nA. It improves clinical scorecard performance at the cost of reduced PSNR.\nB. It increases computational cost while providing diminishing returns in accuracy.\nC. It enhances prediction accuracy but requires more training data.\nD. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.'  MAX_TURN=5  K1=5
+2026-05-19 12:34:56,568 [INFO] [Turn 1] 输入 tokens: 652
+2026-05-19 12:34:56,568 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:34:58,040 [INFO] Input tokens: 652
+2026-05-19 12:34:58,040 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the trade-off introduced by the multi-step refinement process in the context of dose prediction, I need to retrieve relevant information from the paper. My first step is to formulate a precise query that targets this specific concept.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "trade-off of multi-step refinement process in dose prediction"}}
+</tool_call>
+============================================================
+2026-05-19 12:34:58,041 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='trade-off of multi-step refinement process in dose prediction'
+2026-05-19 12:34:58,474 [INFO] TextRetriever: query='trade-off of multi-step refinement process in dose predictio', top-5 chunk_ids=[38, 59, 120, 15, 73], scores=[0.695, 0.6461, 0.6455, 0.6314, 0.6312]
+2026-05-19 12:34:58,477 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[38, 59, 120, 15, 73]  page_ids=[5, 8, 21, 2, 10]
+2026-05-19 12:34:58,533 [INFO] [Turn 2] 输入 tokens: 2159
+2026-05-19 12:34:58,538 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:35:03,732 [INFO] Input tokens: 2159
+2026-05-19 12:35:03,732 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, particularly Chunk 38, it is stated:  
+> "iterative refinement from 1 to 10 steps consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance."
+
+This indicates that multi-step refinement leads to improved performance, specifically “peak dosimetric performance,” which aligns with option D. Additionally, Chunk 120 discusses the clinical importance of multi-step refinement for localized accuracy in high-gradient regions, reinforcing its necessity in clinical deployment.
+
+None of the other options (A, B, C) are supported by the retrieved text. Option A mentions PSNR, which is not discussed; Option B refers to computational cost and diminishing returns, which are not mentioned; Option C suggests increased training data requirements, which is also unsupported.
+
+Thus, the correct answer is D.
+
+<answer>D. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.</answer>
+============================================================
+2026-05-19 12:35:03,732 [INFO] [Turn 2] Answer extracted: 'D. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.'
+2026-05-19 12:35:03,732 [INFO] ======================================================================
+2026-05-19 12:35:03,732 [INFO] [Q479] paper=2605.09622  page_idx=5  type=text  level=4
+2026-05-19 12:35:03,732 [INFO] [Q479] QUESTION:
+What trade-off does the multi-step refinement process introduce in the context of dose prediction, according to the paper?
+A. It improves clinical scorecard performance at the cost of reduced PSNR.
+B. It increases computational cost while providing diminishing returns in accuracy.
+C. It enhances prediction accuracy but requires more training data.
+D. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.
+2026-05-19 12:35:03,732 [INFO] [Q479] GROUND TRUTH: D
+2026-05-19 12:35:03,732 [INFO] [Q479] MODEL ANSWER (raw): 'D. It consistently improves predictions, confirming that multi-step refinement remains essential for peak dosimetric performance.'  → extracted letter: 'D'
+2026-05-19 12:35:03,732 [INFO] [Q479] CORRECT: True
+2026-05-19 12:35:03,732 [INFO] [Q479] 最终轮输入 tokens: 2159  各轮: [652, 2159]
+2026-05-19 12:35:03,732 [INFO] [Q479] 检索调用 (1 次):
+2026-05-19 12:35:03,732 [INFO]   [1] tool=text_retrieval  query='trade-off of multi-step refinement process in dose prediction'
+2026-05-19 12:35:03,732 [INFO]       chunk_id=38  [page_id=5]  score=0.6950
+2026-05-19 12:35:03,732 [INFO]       chunk_id=59  [page_id=8]  score=0.6461
+2026-05-19 12:35:03,732 [INFO]       chunk_id=120  [page_id=21]  score=0.6455
+2026-05-19 12:35:03,732 [INFO]       chunk_id=15  [page_id=2]  score=0.6314
+2026-05-19 12:35:03,732 [INFO]       chunk_id=73  [page_id=10]  score=0.6312
+2026-05-19 12:35:03,732 [INFO] ======================================================================
+2026-05-19 12:35:03,734 [INFO] 
+######################################################################
+[Q480] paper=2605.09622  type=text  level=4  page_idx=15
+######################################################################
+2026-05-19 12:35:03,734 [INFO] Pipeline (text_only) started. Question='What trade-off does the training setup described in Section B.6 imply between computational efficiency and model performance, and how is it managed?\nA. The use of bfloat16 mixed precision reduces computational cost but may compromise model accuracy, which is mitigated by gradient clipping.\nB. Training on eight B200 GPUs with data parallelism increases computational cost but is necessary to achieve the desired learning rate and batch size.\nC. The linear warm-up of 500 steps and constant learning rate are designed to balance convergence speed and stability, avoiding premature overfitting.\nD. Disabling gradient accumulation and using a global norm of 0.1 for clipping is a trade-off that prioritizes training speed over model stability.'  MAX_TURN=5  K1=5
+2026-05-19 12:35:03,737 [INFO] [Turn 1] 输入 tokens: 715
+2026-05-19 12:35:03,737 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:35:06,532 [INFO] Input tokens: 715
+2026-05-19 12:35:06,532 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To address the question, I need to analyze the trade-off implied by the training setup described in Section B.6 and how it is managed. Since the exact content of Section B.6 is not provided, I will retrieve relevant text chunks from the document to understand the specifics of the training setup.
+
+I will start by retrieving text related to Section B.6 and its implications on computational efficiency and model performance.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Section B.6 training setup trade-off between computational efficiency and model performance"}}
+</tool_call>
+============================================================
+2026-05-19 12:35:06,533 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Section B.6 training setup trade-off between computational efficiency and model performance'
+2026-05-19 12:35:06,707 [INFO] TextRetriever: query='Section B.6 training setup trade-off between computational e', top-5 chunk_ids=[95, 96, 48, 40, 34], scores=[0.6085, 0.5923, 0.584, 0.584, 0.5493]
+2026-05-19 12:35:06,711 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[95, 96, 48, 40, 34]  page_ids=[14, 14, 7, 5, 5]
+2026-05-19 12:35:06,734 [INFO] [Turn 2] 输入 tokens: 1790
+2026-05-19 12:35:06,767 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:35:10,929 [INFO] Input tokens: 1790
+2026-05-19 12:35:10,930 [INFO] [Turn 2] 模型完整输出:
+============================================================
+None of the retrieved chunks explicitly discuss the trade-off between computational efficiency and model performance in Section B.6 or how it is managed. However, Chunk 48 mentions “Figure 3 further elucidates our model’s training efficiency and transferability,” suggesting that training efficiency might be addressed in the context of pretraining and transfer learning. Additionally, Chunk 34 includes metrics and comparisons that hint at performance trade-offs, such as MAE and clinical preference scores.
+
+Since the direct information about Section B.6 is not available in these chunks, I will now retrieve more specific details about the training setup, particularly focusing on computational efficiency and model performance trade-offs.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Training setup in Section B.6 details on computational efficiency and model performance trade-offs"}}
+</tool_call>
+============================================================
+2026-05-19 12:35:10,930 [INFO] [Turn 2] Tool call: name='text_retrieval'  text_input='Training setup in Section B.6 details on computational efficiency and model performance trade-offs'
+2026-05-19 12:35:11,100 [INFO] TextRetriever: query='Training setup in Section B.6 details on computational effic', top-5 chunk_ids=[95, 96, 40, 108, 48], scores=[0.5459, 0.5341, 0.533, 0.5326, 0.5223]
+2026-05-19 12:35:11,100 [INFO] [Turn 2] text_retrieval executed. chunk_ids=[95, 96, 40, 108, 48]  page_ids=[14, 14, 5, 18, 7]
+2026-05-19 12:35:11,158 [INFO] [Turn 3] 输入 tokens: 2401
+2026-05-19 12:35:11,164 [INFO] [Turn 3] Calling model ...
+2026-05-19 12:35:15,880 [INFO] Input tokens: 2401
+2026-05-19 12:35:15,880 [INFO] [Turn 3] 模型完整输出:
+============================================================
+The retrieved chunks still do not contain explicit details about Section B.6 or the specific trade-off between computational efficiency and model performance as described therein. However, Chunk 48 provides some indirect insight into training efficiency, mentioning “substantial efficiency gains from Wan pretraining compared to training from scratch” and “rapidly converging” models. This suggests that efficiency gains are achieved through pretraining and transfer learning, which may imply a trade-off where computational resources are saved during training, potentially at the cost of initial performance or convergence speed.
+
+Given the lack of direct information from Section B.6, I will now retrieve text specifically discussing gradient clipping, mixed precision, or other techniques that manage trade-offs between computational efficiency and model performance.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Techniques used in Section B.6 to manage trade-off between computational efficiency and model performance"}}
+</tool_call>
+============================================================
+2026-05-19 12:35:15,880 [INFO] [Turn 3] Tool call: name='text_retrieval'  text_input='Techniques used in Section B.6 to manage trade-off between computational efficiency and model performance'
+2026-05-19 12:35:16,079 [INFO] TextRetriever: query='Techniques used in Section B.6 to manage trade-off between c', top-5 chunk_ids=[40, 96, 95, 48, 108], scores=[0.5741, 0.5693, 0.5134, 0.5095, 0.4995]
+2026-05-19 12:35:16,084 [INFO] [Turn 3] text_retrieval executed. chunk_ids=[40, 96, 95, 48, 108]  page_ids=[5, 14, 14, 7, 18]
+2026-05-19 12:35:16,147 [INFO] [Turn 4] 输入 tokens: 3028
+2026-05-19 12:35:16,154 [INFO] [Turn 4] Calling model ...
+2026-05-19 12:35:24,300 [INFO] Input tokens: 3028
+2026-05-19 12:35:24,300 [INFO] [Turn 4] 模型完整输出:
+============================================================
+None of the retrieved chunks provide explicit information about the trade-off between computational efficiency and model performance as described in Section B.6 or how it is managed. The closest references are to training efficiency gains from pretraining (Chunk 48) and future work on deployment optimizations (Chunk 108), but neither directly addresses the specific trade-off or management strategy mentioned in Section B.6.
+
+Given the absence of direct evidence in the retrieved text, I cannot confidently determine the correct answer based solely on the provided document excerpts. However, since the question presents four options (A, B, C, D), and none of them are directly supported by the retrieved text, I must rely on logical inference based on common practices in machine learning training setups.
+
+Option A mentions mixed precision (bfloat16) reducing computational cost but possibly compromising accuracy, mitigated by gradient clipping — a plausible trade-off commonly seen in training setups. Option B discusses GPU usage increasing computational cost — again, plausible but not directly tied to Section B.6. Option C refers to warm-up and constant learning rate for convergence — also plausible but unrelated to computational efficiency. Option D mentions disabling gradient accumulation and using a global norm for clipping — which might prioritize speed over stability, but this is speculative.
+
+Since the document does not provide sufficient information to confirm any of the options, I must conclude that the correct answer cannot be determined from the given text. However, if forced to choose based on common practices, Option A is the most likely candidate, as mixed precision and gradient clipping are standard techniques for managing computational efficiency vs. model performance trade-offs.
+
+<answer>Based on the available information, the correct answer is not explicitly supported by the document. However, Option A is the most plausible, as mixed precision (bfloat16) typically reduces computational cost while gradient clipping mitigates potential accuracy loss — a common trade-off in training setups.</answer>
+============================================================
+2026-05-19 12:35:24,300 [INFO] [Turn 4] Answer extracted: 'Based on the available information, the correct answer is not explicitly supported by the document. However, Option A is the most plausible, as mixed precision (bfloat16) typically reduces computational cost while gradient clipping mitigates potential accuracy loss — a common trade-off in training setups.'
+2026-05-19 12:35:24,300 [INFO] ======================================================================
+2026-05-19 12:35:24,300 [INFO] [Q480] paper=2605.09622  page_idx=15  type=text  level=4
+2026-05-19 12:35:24,300 [INFO] [Q480] QUESTION:
+What trade-off does the training setup described in Section B.6 imply between computational efficiency and model performance, and how is it managed?
+A. The use of bfloat16 mixed precision reduces computational cost but may compromise model accuracy, which is mitigated by gradient clipping.
+B. Training on eight B200 GPUs with data parallelism increases computational cost but is necessary to achieve the desired learning rate and batch size.
+C. The linear warm-up of 500 steps and constant learning rate are designed to balance convergence speed and stability, avoiding premature overfitting.
+D. Disabling gradient accumulation and using a global norm of 0.1 for clipping is a trade-off that prioritizes training speed over model stability.
+2026-05-19 12:35:24,300 [INFO] [Q480] GROUND TRUTH: A
+2026-05-19 12:35:24,300 [INFO] [Q480] MODEL ANSWER (raw): 'Based on the available information, the correct answer is not explicitly supported by the document. However, Option A is the most plausible, as mixed precision (bfloat16) typically reduces computational cost while gradient clipping mitigates potential accuracy loss — a common trade-off in training setups.'  → extracted letter: 'Based on the available information, the correct answer is not explicitly supported by the document. However, Option A is the most plausible, as mixed precision (bfloat16) typically reduces computational cost while gradient clipping mitigates potential accuracy loss — a common trade-off in training setups.'
+2026-05-19 12:35:24,300 [INFO] [Q480] CORRECT: False
+2026-05-19 12:35:24,300 [INFO] [Q480] 最终轮输入 tokens: 3028  各轮: [715, 1790, 2401, 3028]
+2026-05-19 12:35:24,300 [INFO] [Q480] 检索调用 (3 次):
+2026-05-19 12:35:24,301 [INFO]   [1] tool=text_retrieval  query='Section B.6 training setup trade-off between computational efficiency and model performance'
+2026-05-19 12:35:24,301 [INFO]       chunk_id=95  [page_id=14]  score=0.6085
+2026-05-19 12:35:24,301 [INFO]       chunk_id=96  [page_id=14]  score=0.5923
+2026-05-19 12:35:24,301 [INFO]       chunk_id=48  [page_id=7]  score=0.5840
+2026-05-19 12:35:24,301 [INFO]       chunk_id=40  [page_id=5]  score=0.5840
+2026-05-19 12:35:24,301 [INFO]       chunk_id=34  [page_id=5]  score=0.5493
+2026-05-19 12:35:24,301 [INFO]   [2] tool=text_retrieval  query='Training setup in Section B.6 details on computational efficiency and model performance trade-offs'
+2026-05-19 12:35:24,301 [INFO]       chunk_id=95  [page_id=14]  score=0.5459
+2026-05-19 12:35:24,301 [INFO]       chunk_id=96  [page_id=14]  score=0.5341
+2026-05-19 12:35:24,301 [INFO]       chunk_id=40  [page_id=5]  score=0.5330
+2026-05-19 12:35:24,301 [INFO]       chunk_id=108  [page_id=18]  score=0.5326
+2026-05-19 12:35:24,301 [INFO]       chunk_id=48  [page_id=7]  score=0.5223
+2026-05-19 12:35:24,301 [INFO]   [3] tool=text_retrieval  query='Techniques used in Section B.6 to manage trade-off between computational efficiency and model performance'
+2026-05-19 12:35:24,301 [INFO]       chunk_id=40  [page_id=5]  score=0.5741
+2026-05-19 12:35:24,301 [INFO]       chunk_id=96  [page_id=14]  score=0.5693
+2026-05-19 12:35:24,301 [INFO]       chunk_id=95  [page_id=14]  score=0.5134
+2026-05-19 12:35:24,301 [INFO]       chunk_id=48  [page_id=7]  score=0.5095
+2026-05-19 12:35:24,301 [INFO]       chunk_id=108  [page_id=18]  score=0.4995
+2026-05-19 12:35:24,301 [INFO] ======================================================================
+2026-05-19 12:35:24,303 [INFO] 
+######################################################################
+[Q481] paper=2605.09622  type=text  level=3  page_idx=18
+######################################################################
+2026-05-19 12:35:24,303 [INFO] Pipeline (text_only) started. Question='How does the performance of the 3D ControlNet approach compare to the main models, and what is the primary reason attributed for its underperformance?\nA. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.\nB. It performs better than the main models because it uses a more efficient copy-branch architecture.\nC. It performs similarly to the main models but requires less GPU memory.\nD. It performs worse due to its sequential processing of slices, which discards 3D context.'  MAX_TURN=5  K1=5
+2026-05-19 12:35:24,306 [INFO] [Turn 1] 输入 tokens: 677
+2026-05-19 12:35:24,306 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:35:26,083 [INFO] Input tokens: 677
+2026-05-19 12:35:26,084 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To address the question, I need to retrieve information from the document that discusses the performance comparison of the 3D ControlNet approach with the main models and identifies the primary reason for its underperformance. I will start by formulating a targeted retrieval query.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Comparison of 3D ControlNet performance with main models and reasons for underperformance"}}
+</tool_call>
+============================================================
+2026-05-19 12:35:26,084 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Comparison of 3D ControlNet performance with main models and reasons for underperformance'
+2026-05-19 12:35:26,209 [INFO] TextRetriever: query='Comparison of 3D ControlNet performance with main models and', top-5 chunk_ids=[104, 103, 117, 105, 118], scores=[0.6893, 0.6069, 0.5811, 0.579, 0.569]
+2026-05-19 12:35:26,209 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[104, 103, 117, 105, 118]  page_ids=[18, 18, 20, 18, 20]
+2026-05-19 12:35:26,246 [INFO] [Turn 2] 输入 tokens: 1775
+2026-05-19 12:35:26,246 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:35:32,648 [INFO] Input tokens: 1775
+2026-05-19 12:35:32,651 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, we can deduce the following:
+
+1. The 3D ControlNet approach performs worse than the main models, as evidenced by its higher MAE (2.42) and lower Score (125.79) compared to other methods like “Ours (MAISI, CT pretrain)” (MAE 1.89, Score 135.89).
+
+2. The primary reason for its underperformance is explicitly stated: “We attribute this to the fundamental mismatch between the ControlNet design—which assumes a single conditioning modality of the same domain as the generation target—and the RT setting where multiple structurally diverse modalities (CT, binary masks, beam plates, angle encodings) must jointly guide generation.”
+
+This matches option A: “It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.”
+
+Other options are incorrect:
+- B is false because the document does not claim the copy-branch architecture improves performance.
+- C is false because the document does not state that 3D ControlNet performs similarly or requires less memory.
+- D is partially true (sequential processing discards 3D context), but the primary reason cited is the inability to handle multiple modalities jointly, not just sequential processing.
+
+Thus, the correct answer is A.
+
+<answer>A. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.</answer>
+============================================================
+2026-05-19 12:35:32,652 [INFO] [Turn 2] Answer extracted: 'A. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.'
+2026-05-19 12:35:32,652 [INFO] ======================================================================
+2026-05-19 12:35:32,652 [INFO] [Q481] paper=2605.09622  page_idx=18  type=text  level=3
+2026-05-19 12:35:32,652 [INFO] [Q481] QUESTION:
+How does the performance of the 3D ControlNet approach compare to the main models, and what is the primary reason attributed for its underperformance?
+A. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.
+B. It performs better than the main models because it uses a more efficient copy-branch architecture.
+C. It performs similarly to the main models but requires less GPU memory.
+D. It performs worse due to its sequential processing of slices, which discards 3D context.
+2026-05-19 12:35:32,652 [INFO] [Q481] GROUND TRUTH: A
+2026-05-19 12:35:32,652 [INFO] [Q481] MODEL ANSWER (raw): 'A. It performs worse than the main models due to its inability to handle multiple structurally diverse modalities jointly.'  → extracted letter: 'A'
+2026-05-19 12:35:32,653 [INFO] [Q481] CORRECT: True
+2026-05-19 12:35:32,654 [INFO] [Q481] 最终轮输入 tokens: 1775  各轮: [677, 1775]
+2026-05-19 12:35:32,654 [INFO] [Q481] 检索调用 (1 次):
+2026-05-19 12:35:32,654 [INFO]   [1] tool=text_retrieval  query='Comparison of 3D ControlNet performance with main models and reasons for underperformance'
+2026-05-19 12:35:32,655 [INFO]       chunk_id=104  [page_id=18]  score=0.6893
+2026-05-19 12:35:32,655 [INFO]       chunk_id=103  [page_id=18]  score=0.6069
+2026-05-19 12:35:32,655 [INFO]       chunk_id=117  [page_id=20]  score=0.5811
+2026-05-19 12:35:32,655 [INFO]       chunk_id=105  [page_id=18]  score=0.5790
+2026-05-19 12:35:32,655 [INFO]       chunk_id=118  [page_id=20]  score=0.5690
+2026-05-19 12:35:32,655 [INFO] ======================================================================
+2026-05-19 12:35:32,660 [INFO] 
+######################################################################
+[Q482] paper=2605.09622  type=table  level=3  page_idx=19
+######################################################################
+2026-05-19 12:35:32,660 [INFO] Pipeline (text_only) started. Question='According to Table 7, what does the trend in performance metrics as the number of steps increases from 1 to 10 reveal about the relative effectiveness of ε-pred and v-pred?\nA. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.\nB. ε-pred improves more than v-pred, closing the performance gap between them.\nC. v-pred degrades significantly at 10 steps, while ε-pred improves, making ε-pred superior at higher steps.\nD. Both methods degrade in performance as steps increase, indicating instability.'  MAX_TURN=5  K1=5
+2026-05-19 12:35:32,663 [INFO] [Turn 1] 输入 tokens: 699
+2026-05-19 12:35:32,664 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:35:35,588 [INFO] Input tokens: 699
+2026-05-19 12:35:35,588 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To answer this question, I need to analyze Table 7 in the document, which presumably contains performance metrics (like MAE and Score) for ε-pred and v-pred across different numbers of steps (from 1 to 10). I will retrieve the relevant portion of the document that includes Table 7 and its data to determine the trend in performance for both methods.
+
+I will now retrieve the text chunk containing Table 7 and its associated details.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Table 7 showing performance metrics for ε-pred and v-pred across steps from 1 to 10"}}
+</tool_call>
+============================================================
+2026-05-19 12:35:35,588 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Table 7 showing performance metrics for ε-pred and v-pred across steps from 1 to 10'
+2026-05-19 12:35:35,874 [INFO] TextRetriever: query='Table 7 showing performance metrics for ε-pred and v-pred ac', top-5 chunk_ids=[109, 110, 25, 41, 102], scores=[0.6406, 0.5928, 0.5377, 0.5215, 0.5139]
+2026-05-19 12:35:35,874 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[109, 110, 25, 41, 102]  page_ids=[19, 19, 3, 6, 17]
+2026-05-19 12:35:35,906 [INFO] [Turn 2] 输入 tokens: 2094
+2026-05-19 12:35:35,906 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:35:42,096 [INFO] Input tokens: 2094
+2026-05-19 12:35:42,096 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, specifically Chunk 109 and Chunk 110, we can extract the performance metrics for ε-pred and v-pred at 1 and 10 steps:
+
+- At 1 step:
+  - ε-pred: MAE = 2.16, Score = 133.09
+  - v-pred: MAE = 2.12, Score = 133.59
+  → v-pred has a slight edge over ε-pred.
+
+- At 10 steps:
+  - ε-pred: MAE = 1.93, Score = 137.82
+  - v-pred: MAE = 1.91, Score = 138.17
+  → v-pred continues to maintain a slight edge over ε-pred.
+
+The analysis in Chunk 110 also explicitly states: “Between ϵ-pred and v-pred, the gap is modest at 1 step... and narrows further at 10 steps... The consistent advantage of v-pred aligns with observations in the video generation literature...”
+
+This indicates that both methods improve as steps increase, but v-pred consistently maintains a slight edge in both MAE and Score.
+
+Thus, the correct answer is:
+
+<answer>A. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.</answer>
+============================================================
+2026-05-19 12:35:42,096 [INFO] [Turn 2] Answer extracted: 'A. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.'
+2026-05-19 12:35:42,096 [INFO] ======================================================================
+2026-05-19 12:35:42,096 [INFO] [Q482] paper=2605.09622  page_idx=19  type=table  level=3
+2026-05-19 12:35:42,097 [INFO] [Q482] QUESTION:
+According to Table 7, what does the trend in performance metrics as the number of steps increases from 1 to 10 reveal about the relative effectiveness of ε-pred and v-pred?
+A. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.
+B. ε-pred improves more than v-pred, closing the performance gap between them.
+C. v-pred degrades significantly at 10 steps, while ε-pred improves, making ε-pred superior at higher steps.
+D. Both methods degrade in performance as steps increase, indicating instability.
+2026-05-19 12:35:42,097 [INFO] [Q482] GROUND TRUTH: A
+2026-05-19 12:35:42,097 [INFO] [Q482] MODEL ANSWER (raw): 'A. Both ε-pred and v-pred show similar improvements, with v-pred maintaining a slight edge in both MAE and Score.'  → extracted letter: 'A'
+2026-05-19 12:35:42,097 [INFO] [Q482] CORRECT: True
+2026-05-19 12:35:42,097 [INFO] [Q482] 最终轮输入 tokens: 2094  各轮: [699, 2094]
+2026-05-19 12:35:42,097 [INFO] [Q482] 检索调用 (1 次):
+2026-05-19 12:35:42,097 [INFO]   [1] tool=text_retrieval  query='Table 7 showing performance metrics for ε-pred and v-pred across steps from 1 to 10'
+2026-05-19 12:35:42,097 [INFO]       chunk_id=109  [page_id=19]  score=0.6406
+2026-05-19 12:35:42,097 [INFO]       chunk_id=110  [page_id=19]  score=0.5928
+2026-05-19 12:35:42,097 [INFO]       chunk_id=25  [page_id=3]  score=0.5377
+2026-05-19 12:35:42,097 [INFO]       chunk_id=41  [page_id=6]  score=0.5215
+2026-05-19 12:35:42,097 [INFO]       chunk_id=102  [page_id=17]  score=0.5139
+2026-05-19 12:35:42,097 [INFO] ======================================================================
+2026-05-19 12:35:42,099 [INFO] 
+######################################################################
+[Q483] paper=2605.09622  type=table  level=3  page_idx=20
+######################################################################
+2026-05-19 12:35:42,099 [INFO] Pipeline (text_only) started. Question='According to Table 9, what trend is observed in the test MAE as the number of sampling steps increases from 5 to 50 for the noise-prediction variants of the MAISI backbone?\nA. The test MAE decreases significantly, indicating improved performance with more steps.\nB. The test MAE remains constant, suggesting no benefit from increasing sampling steps.\nC. The test MAE increases slightly, indicating a marginal degradation in performance.\nD. The test MAE decreases initially but then increases, forming a U-shaped curve.'  MAX_TURN=5  K1=5
+2026-05-19 12:35:42,102 [INFO] [Turn 1] 输入 tokens: 678
+2026-05-19 12:35:42,102 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:35:43,970 [INFO] Input tokens: 678
+2026-05-19 12:35:43,970 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the trend in test MAE as the number of sampling steps increases from 5 to 50 for the noise-prediction variants of the MAISI backbone, I need to retrieve the relevant data from Table 9 in the document. I will formulate a precise query to extract this information.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Table 9: Test MAE values for noise-prediction variants of the MAISI backbone across different numbers of sampling steps from 5 to 50"}}
+</tool_call>
+============================================================
+2026-05-19 12:35:43,970 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Table 9: Test MAE values for noise-prediction variants of the MAISI backbone across different numbers of sampling steps from 5 to 50'
+2026-05-19 12:35:44,028 [INFO] TextRetriever: query='Table 9: Test MAE values for noise-prediction variants of th', top-5 chunk_ids=[114, 115, 83, 118, 109], scores=[0.7029, 0.6658, 0.6461, 0.5999, 0.5907]
+2026-05-19 12:35:44,028 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[114, 115, 83, 118, 109]  page_ids=[20, 20, 12, 20, 19]
+2026-05-19 12:35:44,034 [INFO] [Turn 2] 输入 tokens: 1941
+2026-05-19 12:35:44,034 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:35:47,107 [INFO] Input tokens: 1941
+2026-05-19 12:35:47,108 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, particularly Chunk 115, it is explicitly stated:  
+> "Increasing the number of sampling steps from 5 to 50 does not recover performance (Table 9)."  
+
+Additionally, the data in Table 9 (as shown in Chunk 114) reveals:  
+- For **5 steps**, the test MAE is **11.945**.  
+- For **50 steps**, the test MAE is **11.969**.  
+
+This shows a **slight increase** in test MAE as the number of sampling steps increases from 5 to 50, indicating a marginal degradation in performance.  
+
+Thus, the correct answer is:  
+**C. The test MAE increases slightly, indicating a marginal degradation in performance.**
+
+<answer>C. The test MAE increases slightly, indicating a marginal degradation in performance.</answer>
+============================================================
+2026-05-19 12:35:47,109 [INFO] [Turn 2] Answer extracted: 'C. The test MAE increases slightly, indicating a marginal degradation in performance.'
+2026-05-19 12:35:47,109 [INFO] ======================================================================
+2026-05-19 12:35:47,109 [INFO] [Q483] paper=2605.09622  page_idx=20  type=table  level=3
+2026-05-19 12:35:47,109 [INFO] [Q483] QUESTION:
+According to Table 9, what trend is observed in the test MAE as the number of sampling steps increases from 5 to 50 for the noise-prediction variants of the MAISI backbone?
+A. The test MAE decreases significantly, indicating improved performance with more steps.
+B. The test MAE remains constant, suggesting no benefit from increasing sampling steps.
+C. The test MAE increases slightly, indicating a marginal degradation in performance.
+D. The test MAE decreases initially but then increases, forming a U-shaped curve.
+2026-05-19 12:35:47,109 [INFO] [Q483] GROUND TRUTH: C
+2026-05-19 12:35:47,110 [INFO] [Q483] MODEL ANSWER (raw): 'C. The test MAE increases slightly, indicating a marginal degradation in performance.'  → extracted letter: 'C'
+2026-05-19 12:35:47,110 [INFO] [Q483] CORRECT: True
+2026-05-19 12:35:47,110 [INFO] [Q483] 最终轮输入 tokens: 1941  各轮: [678, 1941]
+2026-05-19 12:35:47,110 [INFO] [Q483] 检索调用 (1 次):
+2026-05-19 12:35:47,110 [INFO]   [1] tool=text_retrieval  query='Table 9: Test MAE values for noise-prediction variants of the MAISI backbone across different numbers of sampling steps from 5 to 50'
+2026-05-19 12:35:47,110 [INFO]       chunk_id=114  [page_id=20]  score=0.7029
+2026-05-19 12:35:47,110 [INFO]       chunk_id=115  [page_id=20]  score=0.6658
+2026-05-19 12:35:47,111 [INFO]       chunk_id=83  [page_id=12]  score=0.6461
+2026-05-19 12:35:47,111 [INFO]       chunk_id=118  [page_id=20]  score=0.5999
+2026-05-19 12:35:47,111 [INFO]       chunk_id=109  [page_id=19]  score=0.5907
+2026-05-19 12:35:47,111 [INFO] ======================================================================
+2026-05-19 12:35:47,113 [INFO] 
+######################################################################
+[Q484] paper=2605.09662  type=formula  level=5  page_idx=3
+######################################################################
+2026-05-19 12:35:47,113 [INFO] Processing PDF for paper: 2605.09662
+2026-05-19 12:35:47,114 [INFO] Processing PDF: /XYFS01/HDD_POOL/sysu_gbli2/sysu_gbli2xy_1/zdw/Docproject/project/Mybenchmark/data/2605.09662.pdf
+2026-05-19 12:35:47,114 [INFO] Extracting text from PDF via fitz ...
+2026-05-19 12:35:49,675 [INFO] Extracted 60486 characters from 17 pages.
+2026-05-19 12:35:49,675 [INFO] Text split into 88 chunks. Embedding ...
+2026-05-19 12:35:51,155 [INFO]   Embedded 50/88 chunks ...
+2026-05-19 12:35:52,337 [INFO] Text chunk embedding complete.
+2026-05-19 12:35:52,338 [INFO] Rendering PDF pages to images ...
+2026-05-19 12:35:54,982 [INFO] Rendered 17 pages. Computing ColPali embeddings ...
+2026-05-19 12:35:54,983 [INFO] Requesting image embeddings for 17 page(s) ...
+2026-05-19 12:35:55,615 [ERROR] Unexpected error while computing ColPali embeddings: Cannot reach ColQwen server at http://localhost:8788. Is colqwen_server.py running?. Page retrieval will be unavailable.
+2026-05-19 12:35:55,615 [INFO] PDF processed: 88 text chunks, 17 pages.
+2026-05-19 12:35:55,616 [INFO] Pipeline (text_only) started. Question='In Equation (2), what is the design intent of the indicator function H_i(u), and how does it influence the training behavior of Gaussians?\nA. H_i(u) ensures that Gaussians are only penalized when they contribute to pixels of their own class, promoting class-specific rendering.\nB. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.\nC. H_i(u) normalizes the contribution of each Gaussian based on its opacity, ensuring uniform pixel coverage.\nD. H_i(u) is a random noise term added to prevent overfitting during training.'  MAX_TURN=5  K1=5
+2026-05-19 12:35:55,620 [INFO] [Turn 1] 输入 tokens: 703
+2026-05-19 12:35:55,621 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:35:57,462 [INFO] Input tokens: 703
+2026-05-19 12:35:57,462 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the design intent of the indicator function $ H_i(u) $ in Equation (2) and its influence on the training behavior of Gaussians, I need to retrieve relevant text from the document that explains the role of this function in the context of Gaussian-based rendering or segmentation models.
+
+I will now retrieve the most relevant text chunk describing Equation (2) and the indicator function $ H_i(u) $.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Equation (2) and the role of the indicator function H_i(u) in Gaussian rendering or segmentation models"}}
+</tool_call>
+============================================================
+2026-05-19 12:35:57,462 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Equation (2) and the role of the indicator function H_i(u) in Gaussian rendering or segmentation models'
+2026-05-19 12:35:57,501 [INFO] TextRetriever: query='Equation (2) and the role of the indicator function H_i(u) i', top-5 chunk_ids=[57, 53, 58, 18, 52], scores=[0.5816, 0.5775, 0.5694, 0.556, 0.5552]
+2026-05-19 12:35:57,501 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[57, 53, 58, 18, 52]  page_ids=[8, 8, 9, 3, 8]
+2026-05-19 12:35:57,509 [INFO] [Turn 2] 输入 tokens: 2296
+2026-05-19 12:35:57,510 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:36:00,165 [INFO] Input tokens: 2296
+2026-05-19 12:36:00,165 [INFO] [Turn 2] 模型完整输出:
+============================================================
+The retrieved text chunks do not contain direct information about Equation (2) or the indicator function $ H_i(u) $. However, Chunk 18 provides foundational context on 2D Gaussian Splatting, including the formulation of pixel color computation using Gaussians and their parameters (center, orientation, scale, color, opacity). This suggests that Equation (2) likely relates to a loss function or regularization term involving Gaussians and their contributions to pixel values.
+
+Since none of the retrieved chunks explicitly describe $ H_i(u) $ or its role in Equation (2), I will attempt to retrieve more targeted content focusing specifically on the indicator function and its purpose in the context of Gaussian splatting or segmentation.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Role of indicator function H_i(u) in Equation (2) for Gaussian splatting or segmentation models"}}
+</tool_call>
+============================================================
+2026-05-19 12:36:00,165 [INFO] [Turn 2] Tool call: name='text_retrieval'  text_input='Role of indicator function H_i(u) in Equation (2) for Gaussian splatting or segmentation models'
+2026-05-19 12:36:00,192 [INFO] TextRetriever: query='Role of indicator function H_i(u) in Equation (2) for Gaussi', top-5 chunk_ids=[70, 57, 53, 52, 69], scores=[0.5934, 0.5633, 0.56, 0.5522, 0.5441]
+2026-05-19 12:36:00,192 [INFO] [Turn 2] text_retrieval executed. chunk_ids=[70, 57, 53, 52, 69]  page_ids=[10, 8, 8, 8, 10]
+2026-05-19 12:36:00,200 [INFO] [Turn 3] 输入 tokens: 3651
+2026-05-19 12:36:00,201 [INFO] [Turn 3] Calling model ...
+2026-05-19 12:36:02,758 [INFO] Input tokens: 3651
+2026-05-19 12:36:02,759 [INFO] [Turn 3] 模型完整输出:
+============================================================
+None of the retrieved chunks provide explicit details about Equation (2) or the indicator function $ H_i(u) $, nor do they explain its design intent or influence on Gaussian training behavior. This indicates that the required information is likely buried in a more specific section of the document, possibly related to loss functions, boundary handling, or class-specific rendering in Gaussian splatting models.
+
+Given the lack of direct information, I will now retrieve text that discusses “class-specific rendering,” “boundary loss,” or “penalizing Gaussians for cross-class contributions,” as these concepts are closely related to the options provided in the question.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "How Gaussians are penalized for contributing to pixels of different classes or for violating class boundaries in Gaussian splatting models"}}
+</tool_call>
+============================================================
+2026-05-19 12:36:02,759 [INFO] [Turn 3] Tool call: name='text_retrieval'  text_input='How Gaussians are penalized for contributing to pixels of different classes or for violating class boundaries in Gaussian splatting models'
+2026-05-19 12:36:02,791 [INFO] TextRetriever: query='How Gaussians are penalized for contributing to pixels of di', top-5 chunk_ids=[6, 70, 21, 13, 14], scores=[0.6675, 0.6589, 0.6387, 0.6344, 0.6331]
+2026-05-19 12:36:02,792 [INFO] [Turn 3] text_retrieval executed. chunk_ids=[6, 70, 21, 13, 14]  page_ids=[1, 10, 3, 2, 2]
+2026-05-19 12:36:02,804 [INFO] [Turn 4] 输入 tokens: 4832
+2026-05-19 12:36:02,804 [INFO] [Turn 4] Calling model ...
+2026-05-19 12:36:06,423 [INFO] Input tokens: 4832
+2026-05-19 12:36:06,424 [INFO] [Turn 4] 模型完整输出:
+============================================================
+From the retrieved chunks, particularly Chunk 21, we find a clear explanation of the design intent behind penalizing Gaussians for contributing to pixels of different classes. The text states:
+
+> "To ensure that each Gaussian subsequently contributes only to pixels of its class, we introduce a boundary loss that penalizes Gaussians contributing to pixels of different classes."
+
+This directly supports option **B**, which states:
+
+> **B. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.**
+
+Furthermore, Chunk 21 also mentions that Gaussians are encouraged to adjust their position, shape, or opacity rather than altering their assigned class — aligning perfectly with the mechanism described in option B.
+
+Thus, the indicator function $ H_i(u) $ in Equation (2) is designed to enforce class-specific rendering by penalizing Gaussians that contribute to pixels outside their assigned class, thereby guiding them to adjust their geometry or opacity to avoid crossing class boundaries.
+
+<answer>B. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.</answer>
+============================================================
+2026-05-19 12:36:06,424 [INFO] [Turn 4] Answer extracted: 'B. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.'
+2026-05-19 12:36:06,424 [INFO] ======================================================================
+2026-05-19 12:36:06,424 [INFO] [Q484] paper=2605.09662  page_idx=3  type=formula  level=5
+2026-05-19 12:36:06,424 [INFO] [Q484] QUESTION:
+In Equation (2), what is the design intent of the indicator function H_i(u), and how does it influence the training behavior of Gaussians?
+A. H_i(u) ensures that Gaussians are only penalized when they contribute to pixels of their own class, promoting class-specific rendering.
+B. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.
+C. H_i(u) normalizes the contribution of each Gaussian based on its opacity, ensuring uniform pixel coverage.
+D. H_i(u) is a random noise term added to prevent overfitting during training.
+2026-05-19 12:36:06,424 [INFO] [Q484] GROUND TRUTH: B
+2026-05-19 12:36:06,424 [INFO] [Q484] MODEL ANSWER (raw): 'B. H_i(u) penalizes Gaussians for contributing to pixels of different classes, encouraging them to adjust their position, shape, or opacity to avoid boundaries.'  → extracted letter: 'B'
+2026-05-19 12:36:06,424 [INFO] [Q484] CORRECT: True
+2026-05-19 12:36:06,424 [INFO] [Q484] 最终轮输入 tokens: 4832  各轮: [703, 2296, 3651, 4832]
+2026-05-19 12:36:06,424 [INFO] [Q484] 检索调用 (3 次):
+2026-05-19 12:36:06,424 [INFO]   [1] tool=text_retrieval  query='Equation (2) and the role of the indicator function H_i(u) in Gaussian rendering or segmentation models'
+2026-05-19 12:36:06,425 [INFO]       chunk_id=57  [page_id=8]  score=0.5816
+2026-05-19 12:36:06,425 [INFO]       chunk_id=53  [page_id=8]  score=0.5775
+2026-05-19 12:36:06,425 [INFO]       chunk_id=58  [page_id=9]  score=0.5694
+2026-05-19 12:36:06,425 [INFO]       chunk_id=18  [page_id=3]  score=0.5560
+2026-05-19 12:36:06,425 [INFO]       chunk_id=52  [page_id=8]  score=0.5552
+2026-05-19 12:36:06,425 [INFO]   [2] tool=text_retrieval  query='Role of indicator function H_i(u) in Equation (2) for Gaussian splatting or segmentation models'
+2026-05-19 12:36:06,425 [INFO]       chunk_id=70  [page_id=10]  score=0.5934
+2026-05-19 12:36:06,427 [INFO]       chunk_id=57  [page_id=8]  score=0.5633
+2026-05-19 12:36:06,427 [INFO]       chunk_id=53  [page_id=8]  score=0.5600
+2026-05-19 12:36:06,427 [INFO]       chunk_id=52  [page_id=8]  score=0.5522
+2026-05-19 12:36:06,427 [INFO]       chunk_id=69  [page_id=10]  score=0.5441
+2026-05-19 12:36:06,427 [INFO]   [3] tool=text_retrieval  query='How Gaussians are penalized for contributing to pixels of different classes or for violating class boundaries in Gaussian splatting models'
+2026-05-19 12:36:06,428 [INFO]       chunk_id=6  [page_id=1]  score=0.6675
+2026-05-19 12:36:06,428 [INFO]       chunk_id=70  [page_id=10]  score=0.6589
+2026-05-19 12:36:06,428 [INFO]       chunk_id=21  [page_id=3]  score=0.6387
+2026-05-19 12:36:06,428 [INFO]       chunk_id=13  [page_id=2]  score=0.6344
+2026-05-19 12:36:06,428 [INFO]       chunk_id=14  [page_id=2]  score=0.6331
+2026-05-19 12:36:06,428 [INFO] ======================================================================
+2026-05-19 12:36:06,430 [INFO] 
+######################################################################
+[Q485] paper=2605.09662  type=figure  level=3  page_idx=7
+######################################################################
+2026-05-19 12:36:06,430 [INFO] Pipeline (text_only) started. Question="According to Figure 5, what trend is observed in the quality of object boundaries across the different methods for the 'teatime' scene (second column)?\nA. All methods produce similarly clean object boundaries with no visible artifacts.\nB. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.\nC. FlashSplat and ObjectGS show the most accurate boundaries, while BEA-GS introduces noticeable blurring.\nD. The quality of boundaries is inconsistent, with no clear trend across methods."  MAX_TURN=5  K1=5
+2026-05-19 12:36:06,434 [INFO] [Turn 1] 输入 tokens: 675
+2026-05-19 12:36:06,434 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:36:08,143 [INFO] Input tokens: 675
+2026-05-19 12:36:08,143 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the trend in boundary quality for the 'teatime' scene (second column) as shown in Figure 5, I need to retrieve the relevant portion of the document that describes or displays this figure. I will start by retrieving text related to Figure 5 and the 'teatime' scene.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Description of Figure 5, specifically the 'teatime' scene and comparison of object boundary quality across methods."}}
+</tool_call>
+============================================================
+2026-05-19 12:36:08,144 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input="Description of Figure 5, specifically the 'teatime' scene and comparison of object boundary quality across methods."
+2026-05-19 12:36:08,240 [INFO] TextRetriever: query="Description of Figure 5, specifically the 'teatime' scene an", top-5 chunk_ids=[86, 87, 32, 35, 48], scores=[0.5786, 0.5249, 0.5246, 0.5076, 0.5031]
+2026-05-19 12:36:08,240 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[86, 87, 32, 35, 48]  page_ids=[13, 13, 5, 5, 7]
+2026-05-19 12:36:08,251 [INFO] [Turn 2] 输入 tokens: 1762
+2026-05-19 12:36:08,252 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:36:11,434 [INFO] Input tokens: 1762
+2026-05-19 12:36:11,434 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, I can see that Figure 5 is referenced in Section 4.3, where qualitative results are discussed. Specifically, it mentions that “the boundaries obtained by our method are far more precise than those produced by other state-of-the-art methods.” Additionally, it highlights that BEA-GS is capable of disentangling Gaussians and producing correct boundaries, implying fewer artifacts compared to other methods.
+
+However, none of the retrieved chunks explicitly describe the 'teatime' scene or provide a direct comparison of boundary quality across methods for that specific scene. Therefore, I need to retrieve more targeted information about the 'teatime' scene and the comparison of boundary quality in Figure 5.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Detailed description of the 'teatime' scene in Figure 5 and the comparison of object boundary quality among methods like BEA-GS, FlashSplat, and ObjectGS."}}
+</tool_call>
+============================================================
+2026-05-19 12:36:11,434 [INFO] [Turn 2] Tool call: name='text_retrieval'  text_input="Detailed description of the 'teatime' scene in Figure 5 and the comparison of object boundary quality among methods like BEA-GS, FlashSplat, and ObjectGS."
+2026-05-19 12:36:11,516 [INFO] TextRetriever: query="Detailed description of the 'teatime' scene in Figure 5 and ", top-5 chunk_ids=[48, 47, 32, 1, 0], scores=[0.6828, 0.6514, 0.6482, 0.6125, 0.5974]
+2026-05-19 12:36:11,516 [INFO] [Turn 2] text_retrieval executed. chunk_ids=[48, 47, 32, 1, 0]  page_ids=[7, 7, 5, 0, 0]
+2026-05-19 12:36:11,529 [INFO] [Turn 3] 输入 tokens: 3060
+2026-05-19 12:36:11,529 [INFO] [Turn 3] Calling model ...
+2026-05-19 12:36:16,844 [INFO] Input tokens: 3060
+2026-05-19 12:36:16,844 [INFO] [Turn 3] 模型完整输出:
+============================================================
+From the retrieved text, particularly Chunk 47, we now have a clear reference to Figure 5, which includes the 'teatime' scene (LeRF) as one of the columns. The figure compares multiple methods (FlashSplat, ObjectGS, COB-GS, Trace3D, BEA-GS) across different scenes. The text implies that BEA-GS produces more precise boundaries compared to other methods, as it addresses the issue of hidden Gaussians causing boundary artifacts.
+
+Additionally, Chunk 48 reinforces that BEA-GS achieves state-of-the-art results and reduces boundary artifacts. Chunk 1 further supports this by stating that BEA-GS optimizes both seen and partly unseen Gaussians to correctly represent object boundaries, which is a key improvement over previous methods.
+
+Given this context, the trend observed in the 'teatime' scene (second column) is that boundary quality improves with BEA-GS, which shows the least artifacts. This aligns with option B: “Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.”
+
+<answer>B. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.</answer>
+============================================================
+2026-05-19 12:36:16,844 [INFO] [Turn 3] Answer extracted: 'B. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.'
+2026-05-19 12:36:16,844 [INFO] ======================================================================
+2026-05-19 12:36:16,844 [INFO] [Q485] paper=2605.09662  page_idx=7  type=figure  level=3
+2026-05-19 12:36:16,844 [INFO] [Q485] QUESTION:
+According to Figure 5, what trend is observed in the quality of object boundaries across the different methods for the 'teatime' scene (second column)?
+A. All methods produce similarly clean object boundaries with no visible artifacts.
+B. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.
+C. FlashSplat and ObjectGS show the most accurate boundaries, while BEA-GS introduces noticeable blurring.
+D. The quality of boundaries is inconsistent, with no clear trend across methods.
+2026-05-19 12:36:16,845 [INFO] [Q485] GROUND TRUTH: B
+2026-05-19 12:36:16,845 [INFO] [Q485] MODEL ANSWER (raw): 'B. Boundary quality improves consistently from top to bottom, with BEA-GS showing the least artifacts.'  → extracted letter: 'B'
+2026-05-19 12:36:16,845 [INFO] [Q485] CORRECT: True
+2026-05-19 12:36:16,845 [INFO] [Q485] 最终轮输入 tokens: 3060  各轮: [675, 1762, 3060]
+2026-05-19 12:36:16,845 [INFO] [Q485] 检索调用 (2 次):
+2026-05-19 12:36:16,845 [INFO]   [1] tool=text_retrieval  query="Description of Figure 5, specifically the 'teatime' scene and comparison of object boundary quality across methods."
+2026-05-19 12:36:16,845 [INFO]       chunk_id=86  [page_id=13]  score=0.5786
+2026-05-19 12:36:16,845 [INFO]       chunk_id=87  [page_id=13]  score=0.5249
+2026-05-19 12:36:16,845 [INFO]       chunk_id=32  [page_id=5]  score=0.5246
+2026-05-19 12:36:16,845 [INFO]       chunk_id=35  [page_id=5]  score=0.5076
+2026-05-19 12:36:16,845 [INFO]       chunk_id=48  [page_id=7]  score=0.5031
+2026-05-19 12:36:16,845 [INFO]   [2] tool=text_retrieval  query="Detailed description of the 'teatime' scene in Figure 5 and the comparison of object boundary quality among methods like BEA-GS, FlashSplat, and ObjectGS."
+2026-05-19 12:36:16,845 [INFO]       chunk_id=48  [page_id=7]  score=0.6828
+2026-05-19 12:36:16,845 [INFO]       chunk_id=47  [page_id=7]  score=0.6514
+2026-05-19 12:36:16,845 [INFO]       chunk_id=32  [page_id=5]  score=0.6482
+2026-05-19 12:36:16,846 [INFO]       chunk_id=1  [page_id=0]  score=0.6125
+2026-05-19 12:36:16,846 [INFO]       chunk_id=0  [page_id=0]  score=0.5974
+2026-05-19 12:36:16,846 [INFO] ======================================================================
+2026-05-19 12:36:16,848 [INFO] 
+######################################################################
+[Q486] paper=2605.09802  type=figure  level=3  page_idx=0
+######################################################################
+2026-05-19 12:36:25,687 [INFO] Processing PDF for paper: 2605.09802
+2026-05-19 12:36:25,687 [INFO] Processing PDF: /XYFS01/HDD_POOL/sysu_gbli2/sysu_gbli2xy_1/zdw/Docproject/project/Mybenchmark/data/2605.09802.pdf
+2026-05-19 12:36:25,688 [INFO] Extracting text from PDF via fitz ...
+2026-05-19 12:36:25,871 [INFO] Extracted 42660 characters from 10 pages.
+2026-05-19 12:36:25,872 [INFO] Text split into 59 chunks. Embedding ...
+2026-05-19 12:36:28,311 [INFO]   Embedded 50/59 chunks ...
+2026-05-19 12:36:28,773 [INFO] Text chunk embedding complete.
+2026-05-19 12:36:28,794 [INFO] Rendering PDF pages to images ...
+2026-05-19 12:36:29,480 [INFO] Rendered 10 pages. Computing ColPali embeddings ...
+2026-05-19 12:36:29,481 [INFO] Requesting image embeddings for 10 page(s) ...
+2026-05-19 12:36:29,987 [ERROR] Unexpected error while computing ColPali embeddings: Cannot reach ColQwen server at http://localhost:8788. Is colqwen_server.py running?. Page retrieval will be unavailable.
+2026-05-19 12:36:29,987 [INFO] PDF processed: 59 text chunks, 10 pages.
+2026-05-19 12:36:29,987 [INFO] Pipeline (text_only) started. Question='According to Figure 1, what trend is observed in the median box area and coverage percentage as one transitions from ground to aerial views?\nA. Median box area increases and coverage percentage increases\nB. Median box area decreases and coverage percentage increases\nC. Median box area decreases and coverage percentage decreases\nD. Median box area increases and coverage percentage decreases'  MAX_TURN=5  K1=5
+2026-05-19 12:36:30,007 [INFO] [Turn 1] 输入 tokens: 638
+2026-05-19 12:36:30,008 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:36:32,329 [INFO] Input tokens: 638
+2026-05-19 12:36:32,329 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the trend in median box area and coverage percentage as one transitions from ground to aerial views, I need to analyze Figure 1 in the document. Since I cannot directly view figures, I will retrieve relevant text that discusses these trends or describes Figure 1.
+
+I will now retrieve text related to Figure 1 and the trends in median box area and coverage percentage.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Description of Figure 1 showing trends in median box area and coverage percentage from ground to aerial views"}}
+</tool_call>
+============================================================
+2026-05-19 12:36:32,329 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Description of Figure 1 showing trends in median box area and coverage percentage from ground to aerial views'
+2026-05-19 12:36:32,498 [INFO] TextRetriever: query='Description of Figure 1 showing trends in median box area an', top-5 chunk_ids=[51, 4, 40, 41, 3], scores=[0.4695, 0.4645, 0.4581, 0.4486, 0.4456]
+2026-05-19 12:36:32,499 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[51, 4, 40, 41, 3]  page_ids=[7, 0, 6, 6, 0]
+2026-05-19 12:36:32,563 [INFO] [Turn 2] 输入 tokens: 1624
+2026-05-19 12:36:32,566 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:36:35,914 [INFO] Input tokens: 1624
+2026-05-19 12:36:35,914 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, particularly Chunk 3, we can infer the following:
+
+- Ground views contain **fewer but larger objects** with **high coverage** and **tight spatial clustering**.
+- Aerial views contain **more objects with smaller scale**, **broader spatial distribution**, and **larger fields of view**.
+
+This implies that as one transitions from ground to aerial views:
+- The **median box area** (which corresponds to object size) **decreases** because objects become smaller in aerial views.
+- The **coverage percentage** (which likely refers to how much of the scene is covered by detected objects) **increases** because aerial views capture more objects over a broader area.
+
+Thus, the correct trend is:
+**Median box area decreases and coverage percentage increases.**
+
+This matches option **B**.
+
+<answer>B. Median box area decreases and coverage percentage increases</answer>
+============================================================
+2026-05-19 12:36:35,914 [INFO] [Turn 2] Answer extracted: 'B. Median box area decreases and coverage percentage increases'
+2026-05-19 12:36:35,914 [INFO] ======================================================================
+2026-05-19 12:36:35,914 [INFO] [Q486] paper=2605.09802  page_idx=0  type=figure  level=3
+2026-05-19 12:36:35,914 [INFO] [Q486] QUESTION:
+According to Figure 1, what trend is observed in the median box area and coverage percentage as one transitions from ground to aerial views?
+A. Median box area increases and coverage percentage increases
+B. Median box area decreases and coverage percentage increases
+C. Median box area decreases and coverage percentage decreases
+D. Median box area increases and coverage percentage decreases
+2026-05-19 12:36:35,914 [INFO] [Q486] GROUND TRUTH: C
+2026-05-19 12:36:35,914 [INFO] [Q486] MODEL ANSWER (raw): 'B. Median box area decreases and coverage percentage increases'  → extracted letter: 'B'
+2026-05-19 12:36:35,914 [INFO] [Q486] CORRECT: False
+2026-05-19 12:36:35,914 [INFO] [Q486] 最终轮输入 tokens: 1624  各轮: [638, 1624]
+2026-05-19 12:36:35,914 [INFO] [Q486] 检索调用 (1 次):
+2026-05-19 12:36:35,915 [INFO]   [1] tool=text_retrieval  query='Description of Figure 1 showing trends in median box area and coverage percentage from ground to aerial views'
+2026-05-19 12:36:35,915 [INFO]       chunk_id=51  [page_id=7]  score=0.4695
+2026-05-19 12:36:35,915 [INFO]       chunk_id=4  [page_id=0]  score=0.4645
+2026-05-19 12:36:35,915 [INFO]       chunk_id=40  [page_id=6]  score=0.4581
+2026-05-19 12:36:35,915 [INFO]       chunk_id=41  [page_id=6]  score=0.4486
+2026-05-19 12:36:35,915 [INFO]       chunk_id=3  [page_id=0]  score=0.4456
+2026-05-19 12:36:35,915 [INFO] ======================================================================
+2026-05-19 12:36:35,930 [INFO] 
+######################################################################
+[Q487] paper=2605.09802  type=text  level=3  page_idx=4
+######################################################################
+2026-05-19 12:36:35,930 [INFO] Pipeline (text_only) started. Question="How does the interaction between the curriculum and CPA contribute to training stability, according to the paper?\nA. The curriculum provides complexity-aware representations, while CPA shapes the sampling distribution.\nB. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.\nC. The curriculum and CPA operate independently, each contributing to stability through separate mechanisms.\nD. The curriculum reduces variance, while CPA enables robust ground-aerial detection."  MAX_TURN=5  K1=5
+2026-05-19 12:36:35,933 [INFO] [Turn 1] 输入 tokens: 660
+2026-05-19 12:36:35,933 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:36:37,334 [INFO] Input tokens: 660
+2026-05-19 12:36:37,334 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine how the interaction between the curriculum and CPA contributes to training stability, I need to retrieve relevant sections from the paper that discuss their combined effect on stability. I will formulate a targeted query for this purpose.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "interaction between curriculum and CPA in relation to training stability"}}
+</tool_call>
+============================================================
+2026-05-19 12:36:37,334 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='interaction between curriculum and CPA in relation to training stability'
+2026-05-19 12:36:37,492 [INFO] TextRetriever: query='interaction between curriculum and CPA in relation to traini', top-5 chunk_ids=[46, 35, 27, 45, 42], scores=[0.6795, 0.6509, 0.6435, 0.6428, 0.5732]
+2026-05-19 12:36:37,494 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[46, 35, 27, 45, 42]  page_ids=[7, 5, 4, 7, 6]
+2026-05-19 12:36:37,541 [INFO] [Turn 2] 输入 tokens: 1945
+2026-05-19 12:36:37,549 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:36:43,243 [INFO] Input tokens: 1945
+2026-05-19 12:36:43,243 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, we can synthesize the following key points:
+
+1. **Mutual Regularization Effect**: The paper explicitly states that there is a “mutual regularization effect” between the curriculum and CPA. This means they do not operate independently but rather reinforce each other’s stability.
+
+2. **CPA Prevents Curriculum Instability**: CPA’s learned representations stabilize the training process by preventing the curriculum’s progressive schedule from causing optimization instability. This is especially evident in mitigating catastrophic failures (e.g., seed 123 improving from 49.77% to 62.34%).
+
+3. **Curriculum Enhances CPA’s Performance**: Conversely, the curriculum provides stable complexity distributions during early training, which helps CPA’s feature routing remain reliable. Additionally, the curriculum enhances CPA’s representational richness, leading to better overall performance.
+
+4. **Synergistic Gains**: The combination reduces variance by 3.3× compared to curriculum alone and achieves performance gains exceeding the sum of individual contributions.
+
+These findings align precisely with option **B**:  
+> *CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.*
+
+This matches the mutual regularization described in the text.
+
+<answer>B. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.</answer>
+============================================================
+2026-05-19 12:36:43,243 [INFO] [Turn 2] Answer extracted: "B. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA."
+2026-05-19 12:36:43,243 [INFO] ======================================================================
+2026-05-19 12:36:43,243 [INFO] [Q487] paper=2605.09802  page_idx=4  type=text  level=3
+2026-05-19 12:36:43,243 [INFO] [Q487] QUESTION:
+How does the interaction between the curriculum and CPA contribute to training stability, according to the paper?
+A. The curriculum provides complexity-aware representations, while CPA shapes the sampling distribution.
+B. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA.
+C. The curriculum and CPA operate independently, each contributing to stability through separate mechanisms.
+D. The curriculum reduces variance, while CPA enables robust ground-aerial detection.
+2026-05-19 12:36:43,243 [INFO] [Q487] GROUND TRUTH: B
+2026-05-19 12:36:43,243 [INFO] [Q487] MODEL ANSWER (raw): "B. CPA's learned representations prevent the curriculum from causing optimization instability, while the curriculum provides stable complexity distributions for CPA."  → extracted letter: 'B'
+2026-05-19 12:36:43,243 [INFO] [Q487] CORRECT: True
+2026-05-19 12:36:43,243 [INFO] [Q487] 最终轮输入 tokens: 1945  各轮: [660, 1945]
+2026-05-19 12:36:43,243 [INFO] [Q487] 检索调用 (1 次):
+2026-05-19 12:36:43,243 [INFO]   [1] tool=text_retrieval  query='interaction between curriculum and CPA in relation to training stability'
+2026-05-19 12:36:43,243 [INFO]       chunk_id=46  [page_id=7]  score=0.6795
+2026-05-19 12:36:43,243 [INFO]       chunk_id=35  [page_id=5]  score=0.6509
+2026-05-19 12:36:43,244 [INFO]       chunk_id=27  [page_id=4]  score=0.6435
+2026-05-19 12:36:43,244 [INFO]       chunk_id=45  [page_id=7]  score=0.6428
+2026-05-19 12:36:43,244 [INFO]       chunk_id=42  [page_id=6]  score=0.5732
+2026-05-19 12:36:43,244 [INFO] ======================================================================
+2026-05-19 12:36:43,251 [INFO] 
+######################################################################
+[Q488] paper=2605.09802  type=table  level=3  page_idx=5
+######################################################################
+2026-05-19 12:36:43,251 [INFO] Pipeline (text_only) started. Question="According to Table 1, what does the trend in mAP_S and mAP_M across the Vision-Language Models (from Florence-2 to + Both) reveal about the relative performance gains on small versus medium objects?\nA. The model gains more on small objects (mAP_S) than on medium objects (mAP_M) as components are added.\nB. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.\nC. The gains are roughly equal for small and medium objects across all components.\nD. The model's performance on small objects (mAP_S) decreases while performance on medium objects (mAP_M) increases."  MAX_TURN=5  K1=5
+2026-05-19 12:36:43,254 [INFO] [Turn 1] 输入 tokens: 711
+2026-05-19 12:36:43,254 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:36:45,501 [INFO] Input tokens: 711
+2026-05-19 12:36:45,501 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To answer this question, I need to analyze the trend in mAP_S and mAP_M across Vision-Language Models from Florence-2 to + Both as described in Table 1. Since I don't have direct access to Table 1, I will retrieve relevant text chunks that discuss these metrics and their trends.
+
+I will now retrieve the necessary information from the document.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Trend in mAP_S and mAP_M across Vision-Language Models from Florence-2 to + Both"}}
+</tool_call>
+============================================================
+2026-05-19 12:36:45,501 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Trend in mAP_S and mAP_M across Vision-Language Models from Florence-2 to + Both'
+2026-05-19 12:36:45,569 [INFO] TextRetriever: query='Trend in mAP_S and mAP_M across Vision-Language Models from ', top-5 chunk_ids=[33, 32, 34, 29, 0], scores=[0.7349, 0.7128, 0.605, 0.6021, 0.5945]
+2026-05-19 12:36:45,569 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[33, 32, 34, 29, 0]  page_ids=[5, 5, 5, 4, 0]
+2026-05-19 12:36:45,578 [INFO] [Turn 2] 输入 tokens: 2644
+2026-05-19 12:36:45,578 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:36:56,075 [INFO] Input tokens: 2644
+2026-05-19 12:36:56,075 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text chunks, particularly Chunk 32, we can extract the performance values for mAP_S (small objects) and mAP_M (medium objects) across the Vision-Language Models from Florence-2 to + Both:
+
+- **Florence-2 (random)**: mAP_S = 62.08, mAP_M = 49.26
+- **+ CPA (ours)**: mAP_S = 61.80, mAP_M = 59.66
+- **+ Curriculum (ours)**: mAP_S = 63.77, mAP_M = 51.92
+- **+ Both (ours)**: mAP_S = 62.74, mAP_M = 57.41
+
+Now, let’s analyze the trend in gains:
+
+1. **From Florence-2 to + CPA**:
+   - mAP_S: 62.08 → 61.80 (decrease of 0.28)
+   - mAP_M: 49.26 → 59.66 (increase of 10.40)
+
+2. **From + CPA to + Curriculum**:
+   - mAP_S: 61.80 → 63.77 (increase of 1.97)
+   - mAP_M: 59.66 → 51.92 (decrease of 7.74)
+
+3. **From + Curriculum to + Both**:
+   - mAP_S: 63.77 → 62.74 (decrease of 1.03)
+   - mAP_M: 51.92 → 57.41 (increase of 5.49)
+
+Overall, the model shows a pattern where gains on medium objects (mAP_M) are consistently larger than gains on small objects (mAP_S) as components are added. For example:
+- From Florence-2 to + Both, mAP_M increases by 18.15 (57.41 - 49.26), while mAP_S increases by only 0.66 (62.74 - 62.08).
+
+Thus, the correct answer is:
+
+<answer>B. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.</answer>
+============================================================
+2026-05-19 12:36:56,075 [INFO] [Turn 2] Answer extracted: 'B. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.'
+2026-05-19 12:36:56,076 [INFO] ======================================================================
+2026-05-19 12:36:56,076 [INFO] [Q488] paper=2605.09802  page_idx=5  type=table  level=3
+2026-05-19 12:36:56,076 [INFO] [Q488] QUESTION:
+According to Table 1, what does the trend in mAP_S and mAP_M across the Vision-Language Models (from Florence-2 to + Both) reveal about the relative performance gains on small versus medium objects?
+A. The model gains more on small objects (mAP_S) than on medium objects (mAP_M) as components are added.
+B. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.
+C. The gains are roughly equal for small and medium objects across all components.
+D. The model's performance on small objects (mAP_S) decreases while performance on medium objects (mAP_M) increases.
+2026-05-19 12:36:56,076 [INFO] [Q488] GROUND TRUTH: B
+2026-05-19 12:36:56,076 [INFO] [Q488] MODEL ANSWER (raw): 'B. The model gains more on medium objects (mAP_M) than on small objects (mAP_S) as components are added.'  → extracted letter: 'B'
+2026-05-19 12:36:56,076 [INFO] [Q488] CORRECT: True
+2026-05-19 12:36:56,076 [INFO] [Q488] 最终轮输入 tokens: 2644  各轮: [711, 2644]
+2026-05-19 12:36:56,076 [INFO] [Q488] 检索调用 (1 次):
+2026-05-19 12:36:56,076 [INFO]   [1] tool=text_retrieval  query='Trend in mAP_S and mAP_M across Vision-Language Models from Florence-2 to + Both'
+2026-05-19 12:36:56,076 [INFO]       chunk_id=33  [page_id=5]  score=0.7349
+2026-05-19 12:36:56,076 [INFO]       chunk_id=32  [page_id=5]  score=0.7128
+2026-05-19 12:36:56,076 [INFO]       chunk_id=34  [page_id=5]  score=0.6050
+2026-05-19 12:36:56,076 [INFO]       chunk_id=29  [page_id=4]  score=0.6021
+2026-05-19 12:36:56,077 [INFO]       chunk_id=0  [page_id=0]  score=0.5945
+2026-05-19 12:36:56,077 [INFO] ======================================================================
+2026-05-19 12:36:56,078 [INFO] 
+######################################################################
+[Q489] paper=2605.09802  type=text  level=3  page_idx=5
+######################################################################
+2026-05-19 12:36:56,079 [INFO] Pipeline (text_only) started. Question='How do the performance gains of CPA and curriculum learning differ across object scales, and what does this imply about their complementary strengths?\nA. CPA benefits small objects more, while curriculum learning benefits large objects, making them complementary.\nB. CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.\nC. Both components benefit medium-sized objects equally, indicating no complementary strength.\nD. Curriculum learning benefits medium-sized objects, while CPA benefits small objects, indicating a mismatch in strengths.'  MAX_TURN=5  K1=5
+2026-05-19 12:36:56,082 [INFO] [Turn 1] 输入 tokens: 667
+2026-05-19 12:36:56,082 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:36:58,429 [INFO] Input tokens: 667
+2026-05-19 12:36:58,430 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To address the question, I need to understand how CPA (Curriculum-based Progressive Adaptation) and curriculum learning perform differently across object scales and whether their strengths complement each other. This requires retrieving relevant sections from the document that discuss performance gains, object scales, and the interplay between CPA and curriculum learning.
+
+I will start by retrieving text related to "performance gains of CPA and curriculum learning across object scales."
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "performance gains of CPA and curriculum learning across different object scales"}}
+</tool_call>
+============================================================
+2026-05-19 12:36:58,430 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='performance gains of CPA and curriculum learning across different object scales'
+2026-05-19 12:36:58,596 [INFO] TextRetriever: query='performance gains of CPA and curriculum learning across diff', top-5 chunk_ids=[35, 46, 27, 42, 36], scores=[0.6757, 0.6505, 0.6397, 0.6039, 0.5917]
+2026-05-19 12:36:58,597 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[35, 46, 27, 42, 36]  page_ids=[5, 7, 4, 6, 5]
+2026-05-19 12:36:58,649 [INFO] [Turn 2] 输入 tokens: 1901
+2026-05-19 12:36:58,657 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:37:04,960 [INFO] Input tokens: 1901
+2026-05-19 12:37:04,960 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, we can deduce the following:
+
+1. **CPA benefits medium-sized objects** significantly, as indicated by "+10.4pp mAPM on validation," which aligns with its multi-pathway feature routing mechanism.
+
+2. **Curriculum learning benefits small objects**, as noted by "+1.69pp mAPS," suggesting it excels in handling smaller-scale objects through semantic alignment.
+
+3. The combined method shows **synergistic gains**, exceeding the sum of individual contributions, and demonstrates a **mutual regularization effect** — CPA stabilizes curriculum learning, while curriculum learning enhances CPA’s representational richness.
+
+4. The complementary nature of their strengths is explicitly highlighted: CPA handles medium objects well, while curriculum learning handles small objects better, making them complementary rather than redundant.
+
+Thus, the correct answer is:
+
+<answer>A. CPA benefits small objects more, while curriculum learning benefits large objects, making them complementary.</answer>
+
+Wait — this contradicts the retrieved text. Let me re-examine.
+
+Actually, Chunk 36 states: “CPA particularly benefits medium-sized objects... whereas curriculum learning improves small-object detection.” So, **CPA benefits medium objects, curriculum learning benefits small objects** — not large objects.
+
+Therefore, the correct option is:
+
+<answer>B. CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.</answer>
+============================================================
+2026-05-19 12:37:04,960 [INFO] [Turn 2] Answer extracted: 'A. CPA benefits small objects more, while curriculum learning benefits large objects, making them complementary.'
+2026-05-19 12:37:04,960 [INFO] ======================================================================
+2026-05-19 12:37:04,960 [INFO] [Q489] paper=2605.09802  page_idx=5  type=text  level=3
+2026-05-19 12:37:04,960 [INFO] [Q489] QUESTION:
+How do the performance gains of CPA and curriculum learning differ across object scales, and what does this imply about their complementary strengths?
+A. CPA benefits small objects more, while curriculum learning benefits large objects, making them complementary.
+B. CPA benefits medium-sized objects, while curriculum learning benefits small objects, making them complementary.
+C. Both components benefit medium-sized objects equally, indicating no complementary strength.
+D. Curriculum learning benefits medium-sized objects, while CPA benefits small objects, indicating a mismatch in strengths.
+2026-05-19 12:37:04,961 [INFO] [Q489] GROUND TRUTH: B
+2026-05-19 12:37:04,961 [INFO] [Q489] MODEL ANSWER (raw): 'A. CPA benefits small objects more, while curriculum learning benefits large objects, making them complementary.'  → extracted letter: 'A'
+2026-05-19 12:37:04,961 [INFO] [Q489] CORRECT: False
+2026-05-19 12:37:04,961 [INFO] [Q489] 最终轮输入 tokens: 1901  各轮: [667, 1901]
+2026-05-19 12:37:04,961 [INFO] [Q489] 检索调用 (1 次):
+2026-05-19 12:37:04,961 [INFO]   [1] tool=text_retrieval  query='performance gains of CPA and curriculum learning across different object scales'
+2026-05-19 12:37:04,961 [INFO]       chunk_id=35  [page_id=5]  score=0.6757
+2026-05-19 12:37:04,961 [INFO]       chunk_id=46  [page_id=7]  score=0.6505
+2026-05-19 12:37:04,961 [INFO]       chunk_id=27  [page_id=4]  score=0.6397
+2026-05-19 12:37:04,961 [INFO]       chunk_id=42  [page_id=6]  score=0.6039
+2026-05-19 12:37:04,961 [INFO]       chunk_id=36  [page_id=5]  score=0.5917
+2026-05-19 12:37:04,961 [INFO] ======================================================================
+2026-05-19 12:37:04,963 [INFO] 
+######################################################################
+[Q490] paper=2605.09802  type=text  level=4  page_idx=6
+######################################################################
+2026-05-19 12:37:04,964 [INFO] Pipeline (text_only) started. Question="What trade-off does the curriculum learning component introduce in the context of cross-view robustness?\nA. It improves aerial performance at the cost of reduced ground performance.\nB. It reduces the cross-view gap by improving both ground and aerial performance equally.\nC. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.\nD. It stabilizes complexity-induced variation but reduces the model's ability to handle small objects."  MAX_TURN=5  K1=5
+2026-05-19 12:37:04,966 [INFO] [Turn 1] 输入 tokens: 659
+2026-05-19 12:37:04,966 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:37:06,556 [INFO] Input tokens: 659
+2026-05-19 12:37:06,557 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the trade-off introduced by the curriculum learning component in the context of cross-view robustness, I need to retrieve relevant information from the document that discusses curriculum learning, cross-view robustness, and their interplay. I will start by formulating a targeted query for this purpose.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "trade-off of curriculum learning in cross-view robustness"}}
+</tool_call>
+============================================================
+2026-05-19 12:37:06,557 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='trade-off of curriculum learning in cross-view robustness'
+2026-05-19 12:37:06,662 [INFO] TextRetriever: query='trade-off of curriculum learning in cross-view robustness', top-5 chunk_ids=[49, 11, 45, 48, 10], scores=[0.6962, 0.6587, 0.6449, 0.6439, 0.6377]
+2026-05-19 12:37:06,666 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[49, 11, 45, 48, 10]  page_ids=[7, 1, 7, 7, 1]
+2026-05-19 12:37:06,713 [INFO] [Turn 2] 输入 tokens: 1742
+2026-05-19 12:37:06,728 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:37:36,672 [INFO] Input tokens: 1742
+2026-05-19 12:37:36,672 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, we can deduce the following:
+
+- Curriculum learning, when applied independently, shows **severe training instability**, with catastrophic failures observed in some random seeds (e.g., test mAP dropping to 49.77% vs. 61.59% in the best case). This indicates high sensitivity to initialization and poor generalization under varying conditions.
+- However, when combined with other techniques (like paired curriculum learning or mutual regularization), curriculum learning contributes to **synergistic gains** and **improved training stability**, reducing variance significantly.
+- Importantly, the text mentions that curriculum learning **does not inherently reduce the cross-view gap** — instead, it is often paired with other methods (e.g., semantic consistency or complexity-aware fusion) to achieve robust cross-view behavior.
+- The trade-off arises because curriculum learning, while potentially boosting performance, introduces instability unless carefully integrated. This instability can manifest as inconsistent behavior across views or seeds, which might affect generalization.
+
+Now, evaluating the options:
+
+- **A. Improves aerial performance at the cost of reduced ground performance** → Not supported. The text emphasizes narrowing the *ground–aerial performance gap*, not favoring one over the other.
+- **B. Reduces the cross-view gap by improving both ground and aerial performance equally** → Partially true, but the text suggests this is achieved via *combined* methods, not curriculum learning alone. Also, the focus is on stability, not equal improvement.
+- **C. Increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap** → Contradicted by the text, which states that curriculum learning (especially in combination) narrows the gap.
+- **D. Stabilizes complexity-induced variation but reduces the model's ability to handle small objects** → Not mentioned. The text talks about stabilizing training dynamics and handling geometric disparities, not small object detection.
+
+None of the options perfectly match the retrieved text, but **Option C** is the closest to being plausible if we interpret “lower aerial-view consistency” as referring to instability caused by curriculum learning alone — which is explicitly mentioned. However, the text also says that combining curriculum learning with other methods *mitigates* this instability and improves cross-view robustness.
+
+Given the explicit mention of catastrophic failure in some seeds and instability, the most accurate interpretation is that curriculum learning introduces **instability** (which can be seen as a trade-off) — even if it improves performance, it does so inconsistently. But since none of the options fully capture this, and Option C is the only one that references a *gap* (albeit incorrectly framed), it may be the intended answer.
+
+However, upon closer reading, the text does not say curriculum learning *increases ground-view performance* or *reduces aerial-view consistency*. Instead, it says that **when used alone**, curriculum learning is unstable, and **when combined**, it helps narrow the gap. So perhaps the correct answer is not listed — but among the given choices, **C** is the least incorrect, assuming “lower aerial-view consistency” refers to instability.
+
+But wait — let’s reconsider. The text says:  
+> “Curriculum learning exhibits severe training instability... seed 123 encounters catastrophic failure with test mAP dropping to 49.77% — an 11.81pp drop from the best-performing seed (61.59%).”
+
+This implies that curriculum learning alone leads to **inconsistent performance** — possibly worse in aerial views (if aerial is more affected by instability). Since the text doesn’t specify which view is affected, we cannot confirm C.
+
+Actually, the text says:  
+> “The combined design also produces more consistent cross-view behavior by narrowing the ground–aerial performance gap.”
+
+So, curriculum learning alone does not produce consistent cross-view behavior — hence, it may suffer from inconsistency, which could manifest as a larger test set gap. Therefore, **C** is the most reasonable choice, even if imperfect.
+
+<answer>C. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.</answer>
+============================================================
+2026-05-19 12:37:36,673 [INFO] [Turn 2] Answer extracted: 'C. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.'
+2026-05-19 12:37:36,673 [INFO] ======================================================================
+2026-05-19 12:37:36,673 [INFO] [Q490] paper=2605.09802  page_idx=6  type=text  level=4
+2026-05-19 12:37:36,673 [INFO] [Q490] QUESTION:
+What trade-off does the curriculum learning component introduce in the context of cross-view robustness?
+A. It improves aerial performance at the cost of reduced ground performance.
+B. It reduces the cross-view gap by improving both ground and aerial performance equally.
+C. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.
+D. It stabilizes complexity-induced variation but reduces the model's ability to handle small objects.
+2026-05-19 12:37:36,673 [INFO] [Q490] GROUND TRUTH: C
+2026-05-19 12:37:36,674 [INFO] [Q490] MODEL ANSWER (raw): 'C. It increases ground-view performance but suffers from lower aerial-view consistency, resulting in a larger test set gap.'  → extracted letter: 'C'
+2026-05-19 12:37:36,674 [INFO] [Q490] CORRECT: True
+2026-05-19 12:37:36,674 [INFO] [Q490] 最终轮输入 tokens: 1742  各轮: [659, 1742]
+2026-05-19 12:37:36,674 [INFO] [Q490] 检索调用 (1 次):
+2026-05-19 12:37:36,674 [INFO]   [1] tool=text_retrieval  query='trade-off of curriculum learning in cross-view robustness'
+2026-05-19 12:37:36,674 [INFO]       chunk_id=49  [page_id=7]  score=0.6962
+2026-05-19 12:37:36,674 [INFO]       chunk_id=11  [page_id=1]  score=0.6587
+2026-05-19 12:37:36,674 [INFO]       chunk_id=45  [page_id=7]  score=0.6449
+2026-05-19 12:37:36,675 [INFO]       chunk_id=48  [page_id=7]  score=0.6439
+2026-05-19 12:37:36,675 [INFO]       chunk_id=10  [page_id=1]  score=0.6377
+2026-05-19 12:37:36,675 [INFO] ======================================================================
+2026-05-19 12:37:36,683 [INFO] 
+######################################################################
+[Q491] paper=2605.09802  type=text  level=4  page_idx=7
+######################################################################
+2026-05-19 12:37:36,684 [INFO] Pipeline (text_only) started. Question="What trade-off does the combined method introduce regarding the performance of seed 123, and why is this significant for the overall training process?\nA. It sacrifices performance for seed 123 to improve stability across all seeds.\nB. It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure.\nC. It reduces the mean performance to prioritize stability for seed 123.\nD. It increases variance for seed 123 to achieve higher peak performance."  MAX_TURN=5  K1=5
+2026-05-19 12:37:36,688 [INFO] [Turn 1] 输入 tokens: 689
+2026-05-19 12:37:36,698 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:37:40,084 [INFO] Input tokens: 689
+2026-05-19 12:37:40,085 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the correct answer, I need to analyze what the combined method introduces regarding the performance of seed 123 and its significance for the overall training process. This requires retrieving relevant information from the document that discusses the trade-offs and performance implications for seed 123.
+
+I will now retrieve text chunks related to the combined method, seed 123, and its performance trade-offs.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "trade-off introduced by the combined method for seed 123 and its impact on overall training process"}}
+</tool_call>
+============================================================
+2026-05-19 12:37:40,086 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='trade-off introduced by the combined method for seed 123 and its impact on overall training process'
+2026-05-19 12:37:40,228 [INFO] TextRetriever: query='trade-off introduced by the combined method for seed 123 and', top-5 chunk_ids=[31, 46, 49, 48, 27], scores=[0.5808, 0.5749, 0.5666, 0.533, 0.5195]
+2026-05-19 12:37:40,234 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[31, 46, 49, 48, 27]  page_ids=[4, 7, 7, 7, 4]
+2026-05-19 12:37:40,277 [INFO] [Turn 2] 输入 tokens: 1725
+2026-05-19 12:37:40,278 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:37:46,292 [INFO] Input tokens: 1725
+2026-05-19 12:37:46,293 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, we can deduce the following:
+
+- The combined method improves seed 123’s performance from 49.77% (under curriculum-only training) to 62.34% when CPA is included.
+- This improvement is attributed to CPA’s stable representations, which mitigate catastrophic failure modes caused by curriculum learning.
+- The combined method achieves an optimal stability-performance trade-off, reducing variance significantly while improving performance.
+- The mutual regularization effect between CPA and curriculum learning prevents catastrophic failure for seed 123 and enhances overall training stability.
+
+This directly supports option B: “It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure.”
+
+<answer>B. It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure.</answer>
+============================================================
+2026-05-19 12:37:46,293 [INFO] [Turn 2] Answer extracted: "B. It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure."
+2026-05-19 12:37:46,294 [INFO] ======================================================================
+2026-05-19 12:37:46,294 [INFO] [Q491] paper=2605.09802  page_idx=7  type=text  level=4
+2026-05-19 12:37:46,294 [INFO] [Q491] QUESTION:
+What trade-off does the combined method introduce regarding the performance of seed 123, and why is this significant for the overall training process?
+A. It sacrifices performance for seed 123 to improve stability across all seeds.
+B. It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure.
+C. It reduces the mean performance to prioritize stability for seed 123.
+D. It increases variance for seed 123 to achieve higher peak performance.
+2026-05-19 12:37:46,294 [INFO] [Q491] GROUND TRUTH: B
+2026-05-19 12:37:46,294 [INFO] [Q491] MODEL ANSWER (raw): "B. It improves seed 123's performance from 49.77% to 62.34% by leveraging CPA's stable representations, which mitigates catastrophic failure."  → extracted letter: 'B'
+2026-05-19 12:37:46,294 [INFO] [Q491] CORRECT: True
+2026-05-19 12:37:46,295 [INFO] [Q491] 最终轮输入 tokens: 1725  各轮: [689, 1725]
+2026-05-19 12:37:46,295 [INFO] [Q491] 检索调用 (1 次):
+2026-05-19 12:37:46,295 [INFO]   [1] tool=text_retrieval  query='trade-off introduced by the combined method for seed 123 and its impact on overall training process'
+2026-05-19 12:37:46,295 [INFO]       chunk_id=31  [page_id=4]  score=0.5808
+2026-05-19 12:37:46,295 [INFO]       chunk_id=46  [page_id=7]  score=0.5749
+2026-05-19 12:37:46,295 [INFO]       chunk_id=49  [page_id=7]  score=0.5666
+2026-05-19 12:37:46,296 [INFO]       chunk_id=48  [page_id=7]  score=0.5330
+2026-05-19 12:37:46,296 [INFO]       chunk_id=27  [page_id=4]  score=0.5195
+2026-05-19 12:37:46,296 [INFO] ======================================================================
+2026-05-19 12:37:46,298 [INFO] 
+######################################################################
+[Q492] paper=2605.10204  type=figure  level=3  page_idx=2
+######################################################################
+2026-05-19 12:37:46,298 [INFO] Processing PDF for paper: 2605.10204
+2026-05-19 12:37:46,298 [INFO] Processing PDF: /XYFS01/HDD_POOL/sysu_gbli2/sysu_gbli2xy_1/zdw/Docproject/project/Mybenchmark/data/2605.10204.pdf
+2026-05-19 12:37:46,298 [INFO] Extracting text from PDF via fitz ...
+2026-05-19 12:37:51,072 [INFO] Extracted 99021 characters from 30 pages.
+2026-05-19 12:37:51,074 [INFO] Text split into 147 chunks. Embedding ...
+2026-05-19 12:37:55,893 [INFO]   Embedded 50/147 chunks ...
+2026-05-19 12:37:59,594 [INFO]   Embedded 100/147 chunks ...
+2026-05-19 12:38:03,804 [INFO] Text chunk embedding complete.
+2026-05-19 12:38:03,804 [INFO] Rendering PDF pages to images ...
+2026-05-19 12:38:09,962 [INFO] Rendered 30 pages. Computing ColPali embeddings ...
+2026-05-19 12:38:09,978 [INFO] Requesting image embeddings for 30 page(s) ...
+2026-05-19 12:38:12,074 [ERROR] Unexpected error while computing ColPali embeddings: Cannot reach ColQwen server at http://localhost:8788. Is colqwen_server.py running?. Page retrieval will be unavailable.
+2026-05-19 12:38:12,074 [INFO] PDF processed: 147 text chunks, 30 pages.
+2026-05-19 12:38:12,075 [INFO] Pipeline (text_only) started. Question='According to Figure 4, what trend is observed in PSNR as the IOR (Index of Refraction) increases from 1.0 to 1.9 across the material parameter sweep?\nA. PSNR consistently increases with higher IOR values.\nB. PSNR remains constant regardless of IOR changes.\nC. PSNR consistently decreases with higher IOR values.\nD. PSNR shows a non-monotonic relationship with IOR, with some trials improving and others degrading.'  MAX_TURN=5  K1=5
+2026-05-19 12:38:12,079 [INFO] [Turn 1] 输入 tokens: 668
+2026-05-19 12:38:12,079 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:38:15,731 [INFO] Input tokens: 668
+2026-05-19 12:38:15,732 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the trend in PSNR as the IOR increases from 1.0 to 1.9, I need to analyze Figure 4 in the document. Since I cannot directly view figures, I will retrieve relevant text or descriptions that discuss the relationship between PSNR and IOR in the context of Figure 4.
+
+I will now retrieve information related to Figure 4 and the PSNR vs. IOR trend.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Figure 4 analysis: trend of PSNR as IOR increases from 1.0 to 1.9"}}
+</tool_call>
+============================================================
+2026-05-19 12:38:15,732 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Figure 4 analysis: trend of PSNR as IOR increases from 1.0 to 1.9'
+2026-05-19 12:38:15,980 [INFO] TextRetriever: query='Figure 4 analysis: trend of PSNR as IOR increases from 1.0 t', top-5 chunk_ids=[17, 107, 100, 99, 109], scores=[0.696, 0.6821, 0.6015, 0.5881, 0.5698]
+2026-05-19 12:38:15,985 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[17, 107, 100, 99, 109]  page_ids=[2, 18, 16, 16, 18]
+2026-05-19 12:38:16,035 [INFO] [Turn 2] 输入 tokens: 1886
+2026-05-19 12:38:16,042 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:38:20,703 [INFO] Input tokens: 1886
+2026-05-19 12:38:20,704 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, particularly Chunk 109, we can deduce the following:
+
+- The IOR (Index of Refraction) ranges from 1.0 to 1.9.
+- For opaque, non-metallic materials, the IOR has a “very weak, almost negligible” impact on reconstruction quality (PSNR).
+- At a fixed roughness (e.g., 0.3), PSNR varies only slightly (from 27.47 to 29.23, a <2 dB difference) as IOR increases.
+- At high roughness (e.g., 0.9), PSNR remains nearly constant (between 34.14 and 34.68) regardless of IOR changes.
+
+This indicates that PSNR does not consistently increase or decrease with IOR — instead, it remains relatively stable across the IOR range. Therefore, the correct answer is:
+
+<answer>B. PSNR remains constant regardless of IOR changes.</answer>
+============================================================
+2026-05-19 12:38:20,704 [INFO] [Turn 2] Answer extracted: 'B. PSNR remains constant regardless of IOR changes.'
+2026-05-19 12:38:20,704 [INFO] ======================================================================
+2026-05-19 12:38:20,704 [INFO] [Q492] paper=2605.10204  page_idx=2  type=figure  level=3
+2026-05-19 12:38:20,704 [INFO] [Q492] QUESTION:
+According to Figure 4, what trend is observed in PSNR as the IOR (Index of Refraction) increases from 1.0 to 1.9 across the material parameter sweep?
+A. PSNR consistently increases with higher IOR values.
+B. PSNR remains constant regardless of IOR changes.
+C. PSNR consistently decreases with higher IOR values.
+D. PSNR shows a non-monotonic relationship with IOR, with some trials improving and others degrading.
+2026-05-19 12:38:20,704 [INFO] [Q492] GROUND TRUTH: C
+2026-05-19 12:38:20,704 [INFO] [Q492] MODEL ANSWER (raw): 'B. PSNR remains constant regardless of IOR changes.'  → extracted letter: 'B'
+2026-05-19 12:38:20,704 [INFO] [Q492] CORRECT: False
+2026-05-19 12:38:20,704 [INFO] [Q492] 最终轮输入 tokens: 1886  各轮: [668, 1886]
+2026-05-19 12:38:20,704 [INFO] [Q492] 检索调用 (1 次):
+2026-05-19 12:38:20,704 [INFO]   [1] tool=text_retrieval  query='Figure 4 analysis: trend of PSNR as IOR increases from 1.0 to 1.9'
+2026-05-19 12:38:20,704 [INFO]       chunk_id=17  [page_id=2]  score=0.6960
+2026-05-19 12:38:20,704 [INFO]       chunk_id=107  [page_id=18]  score=0.6821
+2026-05-19 12:38:20,704 [INFO]       chunk_id=100  [page_id=16]  score=0.6015
+2026-05-19 12:38:20,704 [INFO]       chunk_id=99  [page_id=16]  score=0.5881
+2026-05-19 12:38:20,704 [INFO]       chunk_id=109  [page_id=18]  score=0.5698
+2026-05-19 12:38:20,704 [INFO] ======================================================================
+2026-05-19 12:38:20,707 [INFO] 
+######################################################################
+[Q493] paper=2605.10204  type=text  level=4  page_idx=7
+######################################################################
+2026-05-19 12:38:20,707 [INFO] Pipeline (text_only) started. Question='What trade-off does the paper implicitly acknowledge in its design of 3DReflecNet, and why is it significant for future research?\nA. The trade-off between dataset size and annotation quality, which is significant because high-quality annotations are essential for training generative models.\nB. The trade-off between synthetic and real-world data, which is significant because real-world data is more diverse but harder to annotate.\nC. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.\nD. The trade-off between computational efficiency and reconstruction accuracy, which is significant because accurate reconstruction requires more computational resources.'  MAX_TURN=5  K1=5
+2026-05-19 12:38:20,710 [INFO] [Turn 1] 输入 tokens: 703
+2026-05-19 12:38:20,710 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:38:23,166 [INFO] Input tokens: 703
+2026-05-19 12:38:23,166 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the correct answer, I need to identify what trade-off the paper implicitly acknowledges in its design of 3DReflecNet and why it is significant for future research. This requires retrieving relevant sections from the document that discuss the design choices, limitations, or implications of 3DReflecNet.
+
+I will start by retrieving text related to the design of 3DReflecNet and any mentioned trade-offs.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "trade-off acknowledged in the design of 3DReflecNet and its significance for future research"}}
+</tool_call>
+============================================================
+2026-05-19 12:38:23,166 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='trade-off acknowledged in the design of 3DReflecNet and its significance for future research'
+2026-05-19 12:38:23,234 [INFO] TextRetriever: query='trade-off acknowledged in the design of 3DReflecNet and its ', top-5 chunk_ids=[46, 3, 45, 42, 44], scores=[0.7757, 0.634, 0.6261, 0.6129, 0.6124]
+2026-05-19 12:38:23,234 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[46, 3, 45, 42, 44]  page_ids=[7, 0, 7, 7, 7]
+2026-05-19 12:38:23,240 [INFO] [Turn 2] 输入 tokens: 1502
+2026-05-19 12:38:23,241 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:38:27,292 [INFO] Input tokens: 1502
+2026-05-19 12:38:27,293 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, it is clear that 3DReflecNet is designed to handle complex material properties (reflectivity, transparency, low texture) and includes both synthetic and real-world data. The paper highlights that current state-of-the-art methods perform poorly on 3DReflecNet because they are optimized for simple Lambertian surfaces and fail under complex optical phenomena. This implies a trade-off between the simplicity of existing methods and their ability to generalize to complex materials.
+
+Additionally, the paper emphasizes the need for models that combine geometric reasoning with photometric modeling, suggesting that simpler methods are insufficient for handling complex materials. This points to a trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.
+
+Thus, the correct answer is:
+
+<answer>C. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.</answer>
+============================================================
+2026-05-19 12:38:27,293 [INFO] [Turn 2] Answer extracted: 'C. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.'
+2026-05-19 12:38:27,293 [INFO] ======================================================================
+2026-05-19 12:38:27,293 [INFO] [Q493] paper=2605.10204  page_idx=7  type=text  level=4
+2026-05-19 12:38:27,293 [INFO] [Q493] QUESTION:
+What trade-off does the paper implicitly acknowledge in its design of 3DReflecNet, and why is it significant for future research?
+A. The trade-off between dataset size and annotation quality, which is significant because high-quality annotations are essential for training generative models.
+B. The trade-off between synthetic and real-world data, which is significant because real-world data is more diverse but harder to annotate.
+C. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.
+D. The trade-off between computational efficiency and reconstruction accuracy, which is significant because accurate reconstruction requires more computational resources.
+2026-05-19 12:38:27,293 [INFO] [Q493] GROUND TRUTH: C
+2026-05-19 12:38:27,293 [INFO] [Q493] MODEL ANSWER (raw): 'C. The trade-off between methodological simplicity and robustness, which is significant because simple methods fail on complex materials, necessitating more sophisticated models.'  → extracted letter: 'C'
+2026-05-19 12:38:27,293 [INFO] [Q493] CORRECT: True
+2026-05-19 12:38:27,293 [INFO] [Q493] 最终轮输入 tokens: 1502  各轮: [703, 1502]
+2026-05-19 12:38:27,293 [INFO] [Q493] 检索调用 (1 次):
+2026-05-19 12:38:27,293 [INFO]   [1] tool=text_retrieval  query='trade-off acknowledged in the design of 3DReflecNet and its significance for future research'
+2026-05-19 12:38:27,293 [INFO]       chunk_id=46  [page_id=7]  score=0.7757
+2026-05-19 12:38:27,293 [INFO]       chunk_id=3  [page_id=0]  score=0.6340
+2026-05-19 12:38:27,293 [INFO]       chunk_id=45  [page_id=7]  score=0.6261
+2026-05-19 12:38:27,293 [INFO]       chunk_id=42  [page_id=7]  score=0.6129
+2026-05-19 12:38:27,293 [INFO]       chunk_id=44  [page_id=7]  score=0.6124
+2026-05-19 12:38:27,293 [INFO] ======================================================================
+2026-05-19 12:38:27,296 [INFO] 
+######################################################################
+[Q494] paper=2605.10204  type=table  level=3  page_idx=15
+######################################################################
+2026-05-19 12:38:27,296 [INFO] Pipeline (text_only) started. Question='According to Table 7, what trend is observed in the performance of the methods as the angular threshold increases from 5° to 20°?\nA. All methods show a consistent decrease in AUC scores.\nB. All methods show a consistent increase in AUC scores.\nC. Most methods show a decrease in AUC scores, indicating improved performance at higher thresholds.\nD. Most methods show an increase in AUC scores, indicating improved performance at higher thresholds.'  MAX_TURN=5  K1=5
+2026-05-19 12:38:27,299 [INFO] [Turn 1] 输入 tokens: 663
+2026-05-19 12:38:27,300 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:38:29,457 [INFO] Input tokens: 663
+2026-05-19 12:38:29,457 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the trend in performance as the angular threshold increases from 5° to 20°, I need to analyze Table 7 in the document. Since the table is not directly accessible, I will retrieve relevant text chunks that discuss Table 7 and its contents.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Table 7 and the performance trends of different methods as the angular threshold increases from 5° to 20°"}}
+</tool_call>
+============================================================
+2026-05-19 12:38:29,457 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Table 7 and the performance trends of different methods as the angular threshold increases from 5° to 20°'
+2026-05-19 12:38:29,528 [INFO] TextRetriever: query='Table 7 and the performance trends of different methods as t', top-5 chunk_ids=[17, 133, 108, 16, 3], scores=[0.5021, 0.4935, 0.4288, 0.427, 0.4164]
+2026-05-19 12:38:29,529 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[17, 133, 108, 16, 3]  page_ids=[2, 22, 18, 2, 0]
+2026-05-19 12:38:29,567 [INFO] [Turn 2] 输入 tokens: 1523
+2026-05-19 12:38:29,569 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:38:32,729 [INFO] Input tokens: 1523
+2026-05-19 12:38:32,730 [INFO] [Turn 2] 模型完整输出:
+============================================================
+None of the retrieved text chunks directly address Table 7 or the performance trends of methods as the angular threshold increases from 5° to 20°. The chunks discuss material properties, PSNR values, and roughness effects but do not mention AUC scores or angular thresholds. Therefore, I cannot determine the correct answer based on the current retrieved information.
+
+I will attempt to retrieve additional text chunks that might contain details about Table 7 or performance trends related to angular thresholds.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Performance trends of methods in Table 7 as angular threshold increases from 5° to 20° and their AUC scores"}}
+</tool_call>
+============================================================
+2026-05-19 12:38:32,730 [INFO] [Turn 2] Tool call: name='text_retrieval'  text_input='Performance trends of methods in Table 7 as angular threshold increases from 5° to 20° and their AUC scores'
+2026-05-19 12:38:32,797 [INFO] TextRetriever: query='Performance trends of methods in Table 7 as angular threshol', top-5 chunk_ids=[33, 133, 17, 34, 100], scores=[0.5614, 0.5401, 0.4904, 0.4659, 0.4457]
+2026-05-19 12:38:32,797 [INFO] [Turn 2] text_retrieval executed. chunk_ids=[33, 133, 17, 34, 100]  page_ids=[5, 22, 2, 6, 16]
+2026-05-19 12:38:32,839 [INFO] [Turn 3] 输入 tokens: 2573
+2026-05-19 12:38:32,840 [INFO] [Turn 3] Calling model ...
+2026-05-19 12:38:36,868 [INFO] Input tokens: 2573
+2026-05-19 12:38:36,868 [INFO] [Turn 3] 模型完整输出:
+============================================================
+From Chunk 34, we observe data from Table 3 (which appears to be analogous to Table 7 in context) showing AUC scores at different angular thresholds: AUC@5°, AUC@10°, and AUC@20°. The table includes methods like SuperPoint, LoFTR, ROMA, etc., and their corresponding AUC scores increase as the threshold increases from 5° to 20°. For example:
+
+- SuperPoint + NN: 11.2 → 20.8 → 27.7
+- LoFTR: 19.8 → 35.6 → 39.2
+- ROMA: 32.1 → 47.5 → 59.1
+
+This indicates that **most methods show an increase in AUC scores as the angular threshold increases**, suggesting improved performance at higher thresholds.
+
+Thus, the correct answer is:
+
+<answer>D. Most methods show an increase in AUC scores, indicating improved performance at higher thresholds.</answer>
+============================================================
+2026-05-19 12:38:36,868 [INFO] [Turn 3] Answer extracted: 'D. Most methods show an increase in AUC scores, indicating improved performance at higher thresholds.'
+2026-05-19 12:38:36,869 [INFO] ======================================================================
+2026-05-19 12:38:36,869 [INFO] [Q494] paper=2605.10204  page_idx=15  type=table  level=3
+2026-05-19 12:38:36,869 [INFO] [Q494] QUESTION:
+According to Table 7, what trend is observed in the performance of the methods as the angular threshold increases from 5° to 20°?
+A. All methods show a consistent decrease in AUC scores.
+B. All methods show a consistent increase in AUC scores.
+C. Most methods show a decrease in AUC scores, indicating improved performance at higher thresholds.
+D. Most methods show an increase in AUC scores, indicating improved performance at higher thresholds.
+2026-05-19 12:38:36,869 [INFO] [Q494] GROUND TRUTH: B
+2026-05-19 12:38:36,869 [INFO] [Q494] MODEL ANSWER (raw): 'D. Most methods show an increase in AUC scores, indicating improved performance at higher thresholds.'  → extracted letter: 'D'
+2026-05-19 12:38:36,869 [INFO] [Q494] CORRECT: False
+2026-05-19 12:38:36,869 [INFO] [Q494] 最终轮输入 tokens: 2573  各轮: [663, 1523, 2573]
+2026-05-19 12:38:36,869 [INFO] [Q494] 检索调用 (2 次):
+2026-05-19 12:38:36,869 [INFO]   [1] tool=text_retrieval  query='Table 7 and the performance trends of different methods as the angular threshold increases from 5° to 20°'
+2026-05-19 12:38:36,869 [INFO]       chunk_id=17  [page_id=2]  score=0.5021
+2026-05-19 12:38:36,869 [INFO]       chunk_id=133  [page_id=22]  score=0.4935
+2026-05-19 12:38:36,869 [INFO]       chunk_id=108  [page_id=18]  score=0.4288
+2026-05-19 12:38:36,869 [INFO]       chunk_id=16  [page_id=2]  score=0.4270
+2026-05-19 12:38:36,870 [INFO]       chunk_id=3  [page_id=0]  score=0.4164
+2026-05-19 12:38:36,870 [INFO]   [2] tool=text_retrieval  query='Performance trends of methods in Table 7 as angular threshold increases from 5° to 20° and their AUC scores'
+2026-05-19 12:38:36,870 [INFO]       chunk_id=33  [page_id=5]  score=0.5614
+2026-05-19 12:38:36,870 [INFO]       chunk_id=133  [page_id=22]  score=0.5401
+2026-05-19 12:38:36,870 [INFO]       chunk_id=17  [page_id=2]  score=0.4904
+2026-05-19 12:38:36,870 [INFO]       chunk_id=34  [page_id=6]  score=0.4659
+2026-05-19 12:38:36,870 [INFO]       chunk_id=100  [page_id=16]  score=0.4457
+2026-05-19 12:38:36,870 [INFO] ======================================================================
+2026-05-19 12:38:36,872 [INFO] 
+######################################################################
+[Q495] paper=2605.10204  type=formula  level=5  page_idx=15
+######################################################################
+2026-05-19 12:38:36,872 [INFO] Pipeline (text_only) started. Question='In Equation (2), what is the design intent behind modeling the observed image I as the sum of a transmission layer It and a reflection layer Ir?\nA. To separate the image into its diffuse and specular components for material classification.\nB. To enable the recovery of the underlying scene by removing the reflection layer.\nC. To model the physical process of light interacting with transparent media, allowing for reflection removal.\nD. To compute the total intensity of light in the scene for exposure correction.'  MAX_TURN=5  K1=5
+2026-05-19 12:38:36,875 [INFO] [Turn 1] 输入 tokens: 665
+2026-05-19 12:38:36,876 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:38:39,256 [INFO] Input tokens: 665
+2026-05-19 12:38:39,257 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the design intent behind modeling the observed image $ I $ as the sum of a transmission layer $ I_t $ and a reflection layer $ I_r $ in Equation (2), I need to understand the context of such a decomposition. This typically arises in image processing or computer vision tasks involving transparent or reflective surfaces, where the goal is to recover the underlying scene content by separating reflections.
+
+I will retrieve relevant text from the document that discusses Equation (2) and the motivation behind decomposing the image into transmission and reflection layers.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Equation (2) and the rationale for decomposing the observed image into transmission and reflection layers"}}
+</tool_call>
+============================================================
+2026-05-19 12:38:39,257 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Equation (2) and the rationale for decomposing the observed image into transmission and reflection layers'
+2026-05-19 12:38:39,389 [INFO] TextRetriever: query='Equation (2) and the rationale for decomposing the observed ', top-5 chunk_ids=[133, 98, 95, 94, 57], scores=[0.6041, 0.5703, 0.5701, 0.568, 0.5584]
+2026-05-19 12:38:39,389 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[133, 98, 95, 94, 57]  page_ids=[22, 16, 15, 15, 9]
+2026-05-19 12:38:39,439 [INFO] [Turn 2] 输入 tokens: 2099
+2026-05-19 12:38:39,453 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:38:42,296 [INFO] Input tokens: 2099
+2026-05-19 12:38:42,296 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, particularly Chunk 94 and Chunk 95, we can see that Equation (2) models the observed image $ I $ as the sum of a transmission layer $ I_t $ and a reflection layer $ I_r $, where $ I_t $ represents the scene visible through a transparent medium (e.g., glass), often affected by refraction and absorption, and $ I_r $ represents the reflection caused by light bouncing off the surface of the medium. This decomposition is explicitly tied to handling images captured through transparent materials, such as glass, and aims to separate the underlying scene from the unwanted reflection.
+
+This aligns with the intent of enabling the recovery of the underlying scene by removing the reflection layer, which is critical for applications like 3D reconstruction, image enhancement, and scene understanding.
+
+Thus, the correct answer is:
+
+<answer>B. To enable the recovery of the underlying scene by removing the reflection layer.</answer>
+============================================================
+2026-05-19 12:38:42,296 [INFO] [Turn 2] Answer extracted: 'B. To enable the recovery of the underlying scene by removing the reflection layer.'
+2026-05-19 12:38:42,296 [INFO] ======================================================================
+2026-05-19 12:38:42,297 [INFO] [Q495] paper=2605.10204  page_idx=15  type=formula  level=5
+2026-05-19 12:38:42,297 [INFO] [Q495] QUESTION:
+In Equation (2), what is the design intent behind modeling the observed image I as the sum of a transmission layer It and a reflection layer Ir?
+A. To separate the image into its diffuse and specular components for material classification.
+B. To enable the recovery of the underlying scene by removing the reflection layer.
+C. To model the physical process of light interacting with transparent media, allowing for reflection removal.
+D. To compute the total intensity of light in the scene for exposure correction.
+2026-05-19 12:38:42,297 [INFO] [Q495] GROUND TRUTH: C
+2026-05-19 12:38:42,297 [INFO] [Q495] MODEL ANSWER (raw): 'B. To enable the recovery of the underlying scene by removing the reflection layer.'  → extracted letter: 'B'
+2026-05-19 12:38:42,297 [INFO] [Q495] CORRECT: False
+2026-05-19 12:38:42,297 [INFO] [Q495] 最终轮输入 tokens: 2099  各轮: [665, 2099]
+2026-05-19 12:38:42,297 [INFO] [Q495] 检索调用 (1 次):
+2026-05-19 12:38:42,297 [INFO]   [1] tool=text_retrieval  query='Equation (2) and the rationale for decomposing the observed image into transmission and reflection layers'
+2026-05-19 12:38:42,297 [INFO]       chunk_id=133  [page_id=22]  score=0.6041
+2026-05-19 12:38:42,297 [INFO]       chunk_id=98  [page_id=16]  score=0.5703
+2026-05-19 12:38:42,297 [INFO]       chunk_id=95  [page_id=15]  score=0.5701
+2026-05-19 12:38:42,297 [INFO]       chunk_id=94  [page_id=15]  score=0.5680
+2026-05-19 12:38:42,297 [INFO]       chunk_id=57  [page_id=9]  score=0.5584
+2026-05-19 12:38:42,298 [INFO] ======================================================================
+2026-05-19 12:38:42,300 [INFO] 
+######################################################################
+[Q496] paper=2605.10204  type=text  level=3  page_idx=16
+######################################################################
+2026-05-19 12:38:42,300 [INFO] Pipeline (text_only) started. Question="How does the paper's description of the physical assumptions of highlight removal versus specular reflection removal relate to the types of materials shown in Figure 15?\nA. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.\nB. Specular reflection removal targets transparent materials, which are represented in Figure 15 by the Transparent category.\nC. Both tasks target the same materials, so the categories in Figure 15 are irrelevant to the distinction.\nD. Highlight removal targets transparent materials, while specular reflection removal targets opaque materials, which is the opposite of what Figure 15 shows."  MAX_TURN=5  K1=5
+2026-05-19 12:38:42,304 [INFO] [Turn 1] 输入 tokens: 696
+2026-05-19 12:38:42,304 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:38:43,871 [INFO] Input tokens: 696
+2026-05-19 12:38:43,871 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To address this question, I need to understand how the paper describes the physical assumptions behind highlight removal versus specular reflection removal and then relate those assumptions to the material categories shown in Figure 15. Since the document contains the necessary details, I will first retrieve relevant text chunks that discuss these concepts.
+
+I will start by retrieving information about the physical assumptions of highlight removal and specular reflection removal.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "physical assumptions of highlight removal versus specular reflection removal"}}
+</tool_call>
+============================================================
+2026-05-19 12:38:43,872 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='physical assumptions of highlight removal versus specular reflection removal'
+2026-05-19 12:38:43,986 [INFO] TextRetriever: query='physical assumptions of highlight removal versus specular re', top-5 chunk_ids=[91, 85, 98, 138, 133], scores=[0.6879, 0.6784, 0.642, 0.6406, 0.637]
+2026-05-19 12:38:43,990 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[91, 85, 98, 138, 133]  page_ids=[14, 13, 16, 23, 22]
+2026-05-19 12:38:44,045 [INFO] [Turn 2] 输入 tokens: 1861
+2026-05-19 12:38:44,052 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:38:48,192 [INFO] Input tokens: 1861
+2026-05-19 12:38:48,193 [INFO] [Turn 2] 模型完整输出:
+============================================================
+Now that I have retrieved the relevant text, I will analyze the key points:
+
+1. **Highlight removal** is described as targeting **localized reflections on opaque surfaces** (Chunk 98). This implies it deals with materials that are not transparent and reflect light in a focused manner, such as glossy or metallic surfaces.
+
+2. **Specular reflection removal**, on the other hand, is described as addressing **global reflections through transparent materials** (Chunk 98). This indicates it is concerned with materials like glass or water, where reflections span across the entire surface.
+
+3. Looking at **Figure 15**, although the figure itself isn't visible here, the context suggests it categorizes materials into types such as **Diffuse, Metallic, and Transparent** (as referenced in Chunk 91, which mentions performance drops on Metallic and Transparent materials).
+
+Given this, highlight removal targets **opaque surfaces** (which include Diffuse and Metallic), while specular reflection removal targets **transparent materials** (Transparent category). This aligns with option A.
+
+Thus, the correct answer is:
+
+<answer>A. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.</answer>
+============================================================
+2026-05-19 12:38:48,193 [INFO] [Turn 2] Answer extracted: 'A. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.'
+2026-05-19 12:38:48,193 [INFO] ======================================================================
+2026-05-19 12:38:48,193 [INFO] [Q496] paper=2605.10204  page_idx=16  type=text  level=3
+2026-05-19 12:38:48,193 [INFO] [Q496] QUESTION:
+How does the paper's description of the physical assumptions of highlight removal versus specular reflection removal relate to the types of materials shown in Figure 15?
+A. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.
+B. Specular reflection removal targets transparent materials, which are represented in Figure 15 by the Transparent category.
+C. Both tasks target the same materials, so the categories in Figure 15 are irrelevant to the distinction.
+D. Highlight removal targets transparent materials, while specular reflection removal targets opaque materials, which is the opposite of what Figure 15 shows.
+2026-05-19 12:38:48,193 [INFO] [Q496] GROUND TRUTH: B
+2026-05-19 12:38:48,193 [INFO] [Q496] MODEL ANSWER (raw): 'A. Highlight removal targets opaque surfaces, which are represented in Figure 15 by the Diffuse and Metallic categories.'  → extracted letter: 'A'
+2026-05-19 12:38:48,193 [INFO] [Q496] CORRECT: False
+2026-05-19 12:38:48,193 [INFO] [Q496] 最终轮输入 tokens: 1861  各轮: [696, 1861]
+2026-05-19 12:38:48,193 [INFO] [Q496] 检索调用 (1 次):
+2026-05-19 12:38:48,193 [INFO]   [1] tool=text_retrieval  query='physical assumptions of highlight removal versus specular reflection removal'
+2026-05-19 12:38:48,194 [INFO]       chunk_id=91  [page_id=14]  score=0.6879
+2026-05-19 12:38:48,194 [INFO]       chunk_id=85  [page_id=13]  score=0.6784
+2026-05-19 12:38:48,194 [INFO]       chunk_id=98  [page_id=16]  score=0.6420
+2026-05-19 12:38:48,194 [INFO]       chunk_id=138  [page_id=23]  score=0.6406
+2026-05-19 12:38:48,194 [INFO]       chunk_id=133  [page_id=22]  score=0.6370
+2026-05-19 12:38:48,194 [INFO] ======================================================================
+2026-05-19 12:38:48,196 [INFO] 
+######################################################################
+[Q497] paper=2605.10204  type=figure  level=3  page_idx=18
+######################################################################
+2026-05-19 12:38:48,197 [INFO] Pipeline (text_only) started. Question='According to Figure 16, what does the trend in PSNR values as roughness increases from 0.0 to 0.9 indicate about the reconstruction quality for opaque, non-metallic materials?\nA. Reconstruction quality remains constant regardless of roughness.\nB. Reconstruction quality improves significantly as roughness increases.\nC. Reconstruction quality degrades as roughness increases.\nD. Reconstruction quality is primarily affected by IOR, not roughness.'  MAX_TURN=5  K1=5
+2026-05-19 12:38:48,200 [INFO] [Turn 1] 输入 tokens: 658
+2026-05-19 12:38:48,200 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:38:50,244 [INFO] Input tokens: 658
+2026-05-19 12:38:50,244 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the correct answer, I need to analyze the trend in PSNR values as roughness increases from 0.0 to 0.9 for opaque, non-metallic materials, as described in Figure 16. Since I don't have direct access to the figure, I will retrieve relevant text from the document that discusses this relationship.
+
+I will now retrieve the text related to Figure 16 and the PSNR trend with respect to roughness for opaque, non-metallic materials.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Figure 16: Trend of PSNR values as roughness increases from 0.0 to 0.9 for opaque, non-metallic materials"}}
+</tool_call>
+============================================================
+2026-05-19 12:38:50,245 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Figure 16: Trend of PSNR values as roughness increases from 0.0 to 0.9 for opaque, non-metallic materials'
+2026-05-19 12:38:50,341 [INFO] TextRetriever: query='Figure 16: Trend of PSNR values as roughness increases from ', top-5 chunk_ids=[107, 17, 108, 16, 111], scores=[0.7819, 0.7539, 0.7498, 0.7403, 0.6786]
+2026-05-19 12:38:50,341 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[107, 17, 108, 16, 111]  page_ids=[18, 2, 18, 2, 18]
+2026-05-19 12:38:50,349 [INFO] [Turn 2] 输入 tokens: 2173
+2026-05-19 12:38:50,350 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:38:53,348 [INFO] Input tokens: 2173
+2026-05-19 12:38:53,348 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, particularly Chunk 108, we learn the following:
+
+- For opaque, non-metallic materials, reconstruction quality **fails catastrophically at low roughness** (Roughness = 0.0), with PSNR values clustering in the 23–27 dB range.
+- As roughness increases to 0.9, PSNR values **improve significantly**, reaching the 34–35 dB range.
+- This improvement is attributed to the fact that higher roughness provides diffuse light scattering, which acts as high-frequency texture, aiding the 3DGS algorithm in matching views.
+
+This directly supports option **B**: *Reconstruction quality improves significantly as roughness increases.*
+
+Additionally, Chunk 107 corroborates this by showing the PSNR values increasing from ~23–27 dB at roughness 0.0 to ~34–35 dB at roughness 0.9.
+
+Thus, the correct answer is:
+
+<answer>B. Reconstruction quality improves significantly as roughness increases.</answer>
+============================================================
+2026-05-19 12:38:53,348 [INFO] [Turn 2] Answer extracted: 'B. Reconstruction quality improves significantly as roughness increases.'
+2026-05-19 12:38:53,349 [INFO] ======================================================================
+2026-05-19 12:38:53,349 [INFO] [Q497] paper=2605.10204  page_idx=18  type=figure  level=3
+2026-05-19 12:38:53,349 [INFO] [Q497] QUESTION:
+According to Figure 16, what does the trend in PSNR values as roughness increases from 0.0 to 0.9 indicate about the reconstruction quality for opaque, non-metallic materials?
+A. Reconstruction quality remains constant regardless of roughness.
+B. Reconstruction quality improves significantly as roughness increases.
+C. Reconstruction quality degrades as roughness increases.
+D. Reconstruction quality is primarily affected by IOR, not roughness.
+2026-05-19 12:38:53,349 [INFO] [Q497] GROUND TRUTH: B
+2026-05-19 12:38:53,349 [INFO] [Q497] MODEL ANSWER (raw): 'B. Reconstruction quality improves significantly as roughness increases.'  → extracted letter: 'B'
+2026-05-19 12:38:53,349 [INFO] [Q497] CORRECT: True
+2026-05-19 12:38:53,349 [INFO] [Q497] 最终轮输入 tokens: 2173  各轮: [658, 2173]
+2026-05-19 12:38:53,350 [INFO] [Q497] 检索调用 (1 次):
+2026-05-19 12:38:53,350 [INFO]   [1] tool=text_retrieval  query='Figure 16: Trend of PSNR values as roughness increases from 0.0 to 0.9 for opaque, non-metallic materials'
+2026-05-19 12:38:53,350 [INFO]       chunk_id=107  [page_id=18]  score=0.7819
+2026-05-19 12:38:53,350 [INFO]       chunk_id=17  [page_id=2]  score=0.7539
+2026-05-19 12:38:53,350 [INFO]       chunk_id=108  [page_id=18]  score=0.7498
+2026-05-19 12:38:53,350 [INFO]       chunk_id=16  [page_id=2]  score=0.7403
+2026-05-19 12:38:53,350 [INFO]       chunk_id=111  [page_id=18]  score=0.6786
+2026-05-19 12:38:53,351 [INFO] ======================================================================
+2026-05-19 12:38:53,356 [INFO] 
+######################################################################
+[Q498] paper=2605.10204  type=table  level=3  page_idx=24
+######################################################################
+2026-05-19 12:38:57,004 [INFO] Pipeline (text_only) started. Question="Based on Table 14, which lighting condition category is the most prevalent, and what might this imply about the dataset's design?\nA. Indoor - Furnished is the most prevalent, suggesting a focus on domestic environments.\nB. Outdoor - Natural is the most prevalent, indicating a strong emphasis on natural lighting scenarios.\nC. Studio is the most prevalent, implying a controlled environment for consistent rendering.\nD. Outdoor - Urban is the most prevalent, reflecting a focus on cityscapes."  MAX_TURN=5  K1=5
+2026-05-19 12:38:57,008 [INFO] [Turn 1] 输入 tokens: 666
+2026-05-19 12:38:57,008 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:38:58,267 [INFO] Input tokens: 666
+2026-05-19 12:38:58,267 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To determine the most prevalent lighting condition category from Table 14 and infer its implication about the dataset's design, I need to retrieve the relevant portion of the document that contains Table 14 and its data.
+
+I will now retrieve the text chunk containing Table 14 and its associated details.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "Table 14: Distribution of lighting conditions in the dataset"}}
+</tool_call>
+============================================================
+2026-05-19 12:38:58,268 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='Table 14: Distribution of lighting conditions in the dataset'
+2026-05-19 12:38:58,357 [INFO] TextRetriever: query='Table 14: Distribution of lighting conditions in the dataset', top-5 chunk_ids=[133, 142, 144, 137, 132], scores=[0.5653, 0.5571, 0.5399, 0.5168, 0.5081]
+2026-05-19 12:38:58,357 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[133, 142, 144, 137, 132]  page_ids=[22, 24, 24, 23, 21]
+2026-05-19 12:38:58,364 [INFO] [Turn 2] 输入 tokens: 1641
+2026-05-19 12:38:58,364 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:39:00,694 [INFO] Input tokens: 1641
+2026-05-19 12:39:00,695 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, specifically Chunk 142, we can extract the Lighting Condition Distribution from Table 14:
+
+- Indoor - Furnished: 8.58%
+- Indoor - Empty: 16.22%
+- Outdoor - Natural: 28.24%
+- Outdoor - Urban: 21.22%
+- Studio: 25.74%
+
+The highest percentage is **Outdoor - Natural at 28.24%**, making it the most prevalent lighting condition category.
+
+This implies that the dataset was designed with a strong emphasis on natural lighting scenarios, likely to ensure robust performance under realistic environmental conditions. This aligns with option B.
+
+<answer>B. Outdoor - Natural is the most prevalent, indicating a strong emphasis on natural lighting scenarios.</answer>
+============================================================
+2026-05-19 12:39:00,695 [INFO] [Turn 2] Answer extracted: 'B. Outdoor - Natural is the most prevalent, indicating a strong emphasis on natural lighting scenarios.'
+2026-05-19 12:39:00,695 [INFO] ======================================================================
+2026-05-19 12:39:00,695 [INFO] [Q498] paper=2605.10204  page_idx=24  type=table  level=3
+2026-05-19 12:39:00,695 [INFO] [Q498] QUESTION:
+Based on Table 14, which lighting condition category is the most prevalent, and what might this imply about the dataset's design?
+A. Indoor - Furnished is the most prevalent, suggesting a focus on domestic environments.
+B. Outdoor - Natural is the most prevalent, indicating a strong emphasis on natural lighting scenarios.
+C. Studio is the most prevalent, implying a controlled environment for consistent rendering.
+D. Outdoor - Urban is the most prevalent, reflecting a focus on cityscapes.
+2026-05-19 12:39:00,695 [INFO] [Q498] GROUND TRUTH: B
+2026-05-19 12:39:00,695 [INFO] [Q498] MODEL ANSWER (raw): 'B. Outdoor - Natural is the most prevalent, indicating a strong emphasis on natural lighting scenarios.'  → extracted letter: 'B'
+2026-05-19 12:39:00,695 [INFO] [Q498] CORRECT: True
+2026-05-19 12:39:00,695 [INFO] [Q498] 最终轮输入 tokens: 1641  各轮: [666, 1641]
+2026-05-19 12:39:00,695 [INFO] [Q498] 检索调用 (1 次):
+2026-05-19 12:39:00,695 [INFO]   [1] tool=text_retrieval  query='Table 14: Distribution of lighting conditions in the dataset'
+2026-05-19 12:39:00,695 [INFO]       chunk_id=133  [page_id=22]  score=0.5653
+2026-05-19 12:39:00,695 [INFO]       chunk_id=142  [page_id=24]  score=0.5571
+2026-05-19 12:39:00,695 [INFO]       chunk_id=144  [page_id=24]  score=0.5399
+2026-05-19 12:39:00,695 [INFO]       chunk_id=137  [page_id=23]  score=0.5168
+2026-05-19 12:39:00,695 [INFO]       chunk_id=132  [page_id=21]  score=0.5081
+2026-05-19 12:39:00,695 [INFO] ======================================================================
+2026-05-19 12:39:00,698 [INFO] 
+######################################################################
+[Q499] paper=2605.10349  type=text  level=3  page_idx=7
+######################################################################
+2026-05-19 12:39:00,698 [INFO] Processing PDF for paper: 2605.10349
+2026-05-19 12:39:00,698 [INFO] Processing PDF: /XYFS01/HDD_POOL/sysu_gbli2/sysu_gbli2xy_1/zdw/Docproject/project/Mybenchmark/data/2605.10349.pdf
+2026-05-19 12:39:00,698 [INFO] Extracting text from PDF via fitz ...
+2026-05-19 12:39:00,985 [INFO] Extracted 43629 characters from 10 pages.
+2026-05-19 12:39:00,986 [INFO] Text split into 63 chunks. Embedding ...
+2026-05-19 12:39:02,360 [INFO]   Embedded 50/63 chunks ...
+2026-05-19 12:39:02,719 [INFO] Text chunk embedding complete.
+2026-05-19 12:39:02,719 [INFO] Rendering PDF pages to images ...
+2026-05-19 12:39:03,365 [INFO] Rendered 10 pages. Computing ColPali embeddings ...
+2026-05-19 12:39:03,366 [INFO] Requesting image embeddings for 10 page(s) ...
+2026-05-19 12:39:03,611 [ERROR] Unexpected error while computing ColPali embeddings: Cannot reach ColQwen server at http://localhost:8788. Is colqwen_server.py running?. Page retrieval will be unavailable.
+2026-05-19 12:39:03,612 [INFO] PDF processed: 63 text chunks, 10 pages.
+2026-05-19 12:39:03,612 [INFO] Pipeline (text_only) started. Question='What does the ablation study on GUIDE weightage (Fig. 5b) reveal about the optimal balance between LIUS and GUIDE scores in the selection score equation?\nA. Increasing the GUIDE weight beyond 0.1 leads to diminishing returns and potential performance degradation.\nB. The GUIDE weight should be set to 0 to maximize early-round performance.\nC. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.\nD. The performance is most sensitive to GUIDE weight in later rounds of training.'  MAX_TURN=5  K1=5
+2026-05-19 12:39:03,619 [INFO] [Turn 1] 输入 tokens: 679
+2026-05-19 12:39:03,619 [INFO] [Turn 1] Calling model ...
+2026-05-19 12:39:05,004 [INFO] Input tokens: 679
+2026-05-19 12:39:05,004 [INFO] [Turn 1] 模型完整输出:
+============================================================
+To address the question, I need to retrieve information specifically related to the ablation study on GUIDE weightage (Fig. 5b) and its implications for the optimal balance between LIUS and GUIDE scores in the selection score equation. I will formulate a targeted query for the text retrieval tool.
+
+<tool_call>
+{"name": "text_retrieval", "arguments": {"text_input": "ablation study on GUIDE weightage in Fig. 5b and optimal balance between LIUS and GUIDE scores"}}
+</tool_call>
+============================================================
+2026-05-19 12:39:05,004 [INFO] [Turn 1] Tool call: name='text_retrieval'  text_input='ablation study on GUIDE weightage in Fig. 5b and optimal balance between LIUS and GUIDE scores'
+2026-05-19 12:39:05,034 [INFO] TextRetriever: query='ablation study on GUIDE weightage in Fig. 5b and optimal bal', top-5 chunk_ids=[45, 46, 30, 43, 31], scores=[0.6913, 0.6667, 0.6022, 0.5891, 0.5855]
+2026-05-19 12:39:05,035 [INFO] [Turn 1] text_retrieval executed. chunk_ids=[45, 46, 30, 43, 31]  page_ids=[7, 7, 4, 6, 4]
+2026-05-19 12:39:05,041 [INFO] [Turn 2] 输入 tokens: 1570
+2026-05-19 12:39:05,042 [INFO] [Turn 2] Calling model ...
+2026-05-19 12:39:07,387 [INFO] Input tokens: 1570
+2026-05-19 12:39:07,387 [INFO] [Turn 2] 模型完整输出:
+============================================================
+From the retrieved text, particularly Chunk 46, it is explicitly stated:  
+> "As shown in Fig. 5 (b), neither increasing nor decreasing the GUIDE weight improves performance; a 0.1 GUIDE weight remains near-optimal under our setup."
+
+This directly supports option C:  
+**C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.**
+
+The other options are either contradicted (e.g., B claims setting GUIDE weight to 0 maximizes early-round performance, which is false as Chunk 45 shows degradation) or unsupported (e.g., D claims sensitivity in later rounds, but the text emphasizes early-round performance).
+
+<answer>C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.</answer>
+============================================================
+2026-05-19 12:39:07,387 [INFO] [Turn 2] Answer extracted: 'C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.'
+2026-05-19 12:39:07,387 [INFO] ======================================================================
+2026-05-19 12:39:07,387 [INFO] [Q499] paper=2605.10349  page_idx=7  type=text  level=3
+2026-05-19 12:39:07,387 [INFO] [Q499] QUESTION:
+What does the ablation study on GUIDE weightage (Fig. 5b) reveal about the optimal balance between LIUS and GUIDE scores in the selection score equation?
+A. Increasing the GUIDE weight beyond 0.1 leads to diminishing returns and potential performance degradation.
+B. The GUIDE weight should be set to 0 to maximize early-round performance.
+C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.
+D. The performance is most sensitive to GUIDE weight in later rounds of training.
+2026-05-19 12:39:07,387 [INFO] [Q499] GROUND TRUTH: C
+2026-05-19 12:39:07,387 [INFO] [Q499] MODEL ANSWER (raw): 'C. A GUIDE weight of 0.1 is near-optimal, and neither increasing nor decreasing it improves performance.'  → extracted letter: 'C'
+2026-05-19 12:39:07,387 [INFO] [Q499] CORRECT: True
+2026-05-19 12:39:07,387 [INFO] [Q499] 最终轮输入 tokens: 1570  各轮: [679, 1570]
+2026-05-19 12:39:07,387 [INFO] [Q499] 检索调用 (1 次):
+2026-05-19 12:39:07,387 [INFO]   [1] tool=text_retrieval  query='ablation study on GUIDE weightage in Fig. 5b and optimal balance between LIUS and GUIDE scores'
+2026-05-19 12:39:07,387 [INFO]       chunk_id=45  [page_id=7]  score=0.6913
+2026-05-19 12:39:07,387 [INFO]       chunk_id=46  [page_id=7]  score=0.6667
+2026-05-19 12:39:07,388 [INFO]       chunk_id=30  [page_id=4]  score=0.6022
+2026-05-19 12:39:07,388 [INFO]       chunk_id=43  [page_id=6]  score=0.5891
+2026-05-19 12:39:07,388 [INFO]       chunk_id=31  [page_id=4]  score=0.5855
+2026-05-19 12:39:07,388 [INFO] ======================================================================
+2026-05-19 12:39:07,390 [INFO] 
+======================================================================
+2026-05-19 12:39:07,390 [INFO] 评测完成。评测题数: 24
+2026-05-19 12:39:07,390 [INFO] 准确率: 15/24 = 0.6250
+2026-05-19 12:39:07,390 [INFO] Log:  ./ablation_text_only/results/eval_20260519_122546.log
+2026-05-19 12:39:07,390 [INFO] JSON: ./ablation_text_only/results/eval_20260519_122546.json
+2026-05-19 12:39:07,390 [INFO] ======================================================================
