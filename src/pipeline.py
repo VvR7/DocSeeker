@@ -355,6 +355,159 @@ def run_pipeline(pdf_path: str, question: str) -> Tuple[str, List[Dict[str, Any]
     return run_pipeline_with_retrievers(text_retriever, page_retriever, question)
 
 
+# ─── Callback-based dialogue loop (for streaming) ────────────────────────────
+
+def _run_pipeline_dialogue_with_callback(
+    text_retriever: TextRetriever,
+    page_retriever: PageRetriever,
+    question: str,
+    callback,
+) -> None:
+    """
+    Same logic as run_pipeline_with_retrievers, but fires ``callback(event_dict)``
+    at each meaningful step instead of returning values.  Used by
+    run_pipeline_streaming to drive the SSE event stream.
+    """
+    system_prompt = SYSTEM_PROMPT_TEMPLATE.format(k1=config.K1, k2=config.K2)
+    user_prompt = USER_PROMPT_TEMPLATE.format(question=question)
+
+    messages: List[Dict[str, Any]] = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt},
+    ]
+
+    for turn_idx in range(config.MAX_TURN):
+        turn_num = turn_idx + 1
+        is_last_turn = turn_num == config.MAX_TURN
+
+        callback({"type": "turn_start", "turn": turn_num, "total": config.MAX_TURN})
+
+        if is_last_turn:
+            messages.append({"role": "user", "content": LAST_TURN_PROMPT})
+
+        callback({"type": "model_thinking", "turn": turn_num})
+        raw_response: str = llm.get_response(messages)
+        messages.append({"role": "assistant", "content": raw_response})
+
+        answer = parse_answer(raw_response)
+        if answer is not None:
+            callback({"type": "answer", "content": answer})
+            return
+
+        if is_last_turn:
+            callback({"type": "answer", "content": ""})
+            return
+
+        tool_call = parse_tool_call(raw_response)
+        if tool_call is None:
+            callback({"type": "answer", "content": ""})
+            return
+
+        tool_name: str = tool_call["name"]
+        query: str = tool_call["arguments"].get("text_input", "")
+
+        # Extract the model's reasoning text that precedes the <tool_call> tag
+        thinking_text = re.sub(r"<tool_call>.*", "", raw_response, flags=re.DOTALL).strip()
+
+        callback({
+            "type": "tool_call",
+            "turn": turn_num,
+            "tool": tool_name,
+            "query": query,
+            "thinking": thinking_text[:400] if thinking_text else "",
+        })
+
+        result = _execute_tool(tool_call, text_retriever, page_retriever)
+        if result is None:
+            callback({"type": "answer", "content": ""})
+            return
+
+        tool_content, record = result
+
+        # Build a lightweight results summary — skip raw PIL images
+        summary: List[Dict[str, Any]] = []
+        for r in record.get("results", []):
+            if "chunk_id" in r:  # text_retrieval
+                summary.append({
+                    "chunk_id": r["chunk_id"],
+                    "page_id": r.get("page_id"),
+                    "score": round(float(r["score"]), 4),
+                    "snippet": r["text"][:150].strip(),
+                })
+            else:  # page_retrieval
+                summary.append({
+                    "page_num": r["page_num"],
+                    "score": round(float(r["score"]), 4),
+                })
+
+        callback({
+            "type": "tool_result",
+            "turn": turn_num,
+            "tool": tool_name,
+            "results": summary,
+        })
+
+        messages.append({"role": "user", "content": tool_content})
+
+    callback({"type": "answer", "content": ""})
+
+
+def run_pipeline_streaming(pdf_path: str, question: str):
+    """
+    Generator-based pipeline that yields event dicts as processing progresses.
+
+    Runs the blocking pipeline in a daemon thread and bridges results back via
+    a queue so the caller can iterate lazily without blocking the event loop.
+
+    Yielded event shapes
+    --------------------
+    {"type": "status",        "message": str}
+    {"type": "turn_start",    "turn": int, "total": int}
+    {"type": "model_thinking","turn": int}
+    {"type": "tool_call",     "turn": int, "tool": str, "query": str, "thinking": str}
+    {"type": "tool_result",   "turn": int, "tool": str, "results": list}
+    {"type": "answer",        "content": str}
+    {"type": "error",         "message": str}
+    """
+    import queue as _queue
+    import threading as _threading
+
+    q: _queue.Queue = _queue.Queue()
+    _DONE = object()
+
+    def _cb(event: dict) -> None:
+        q.put(event)
+
+    def _worker() -> None:
+        try:
+            _cb({"type": "status", "message": "Processing PDF document..."})
+            processor = PDFProcessor()
+            pdf_data = processor.process(pdf_path)
+
+            encoder = EmbeddingEncoder()
+            text_retriever = TextRetriever(pdf_data["text_chunks"], encoder)
+            page_retriever = PageRetriever(pdf_data["pages"])
+
+            _cb({"type": "status", "message": "PDF processed. Starting inference..."})
+            _run_pipeline_dialogue_with_callback(
+                text_retriever, page_retriever, question, _cb
+            )
+        except Exception as exc:
+            logger.exception("run_pipeline_streaming worker error")
+            _cb({"type": "error", "message": str(exc)})
+        finally:
+            q.put(_DONE)
+
+    thread = _threading.Thread(target=_worker, daemon=True)
+    thread.start()
+
+    while True:
+        item = q.get()
+        if item is _DONE:
+            return
+        yield item
+
+
 # ─── CLI entry point ──────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
