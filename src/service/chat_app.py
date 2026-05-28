@@ -130,7 +130,7 @@ def _mock_pipeline_streaming(pdf_path: str, question: str):
         "figures, and mathematical formulas.\n\n"
         "(Note: this is a mock answer for UI testing — no real model was invoked.)"
     )
-    yield {"type": "answer", "content": answer}
+    yield {"type": "answer", "content": answer, "turn_count": 3}
 
 
 def _mock_get_response(pdf_path: str, question: str) -> str:

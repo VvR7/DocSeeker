@@ -8,834 +8,1154 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --accent:        #6366f1;
-            --accent-dark:   #4f46e5;
-            --accent-light:  #e0e7ff;
-            --green:         #10b981;
-            --green-light:   #d1fae5;
-            --amber:         #f59e0b;
-            --amber-light:   #fef3c7;
-            --pink:          #ec4899;
-            --pink-light:    #fce7f3;
-            --red:           #ef4444;
-            --red-light:     #fee2e2;
-            --blue:          #3b82f6;
-            --blue-light:    #dbeafe;
-            --surface:       #ffffff;
-            --surface-2:     #f8fafc;
-            --surface-3:     #f1f5f9;
-            --border:        #e2e8f0;
-            --border-focus:  #6366f1;
-            --text-primary:  #0f172a;
-            --text-secondary:#475569;
-            --text-muted:    #94a3b8;
-            --shadow-sm:     0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
-            --shadow-md:     0 4px 16px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
-            --shadow-lg:     0 10px 40px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.06);
-            --radius:        14px;
-            --radius-sm:     9px;
+            --bg:               #f9f9f8;
+            --sidebar-bg:       #efefec;
+            --surface:          #ffffff;
+            --border:           #e4e4e1;
+            --border-strong:    #d0d0cc;
+            --accent:           #8b5cf6;
+            --accent-dark:      #7c3aed;
+            --accent-light:     #ede9fe;
+            --accent-light2:    #f5f3ff;
+            --green:            #10b981;
+            --green-light:      #f0fdf4;
+            --blue:             #3b82f6;
+            --blue-light:       #eff6ff;
+            --pink:             #ec4899;
+            --pink-light:       #fdf2f8;
+            --red:              #ef4444;
+            --red-light:        #fef2f2;
+            --amber:            #f59e0b;
+            --text:             #1a1a1a;
+            --text-secondary:   #6b6b6b;
+            --text-muted:       #a0a0a0;
+            --user-bg:          #f0efea;
+            --thinking-bg:      #faf7ff;
+            --thinking-border:  #e2d9f8;
+            --radius:           16px;
+            --radius-sm:        10px;
+            --radius-xs:        6px;
         }
 
-        html, body {
-            height: 100%;
-        }
+        html, body { height: 100%; overflow: hidden; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(145deg, #eef2ff 0%, #f0fdf4 50%, #fdf4ff 100%);
-            color: var(--text-primary);
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter',
+                         system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            height: 100vh;
             font-size: 15px;
         }
 
-        /* ── Container ── */
-        .container {
-            width: 100%;
-            max-width: 1080px;
-            background: var(--surface);
-            border-radius: 24px;
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
+        /* ── Sidebar ─────────────────────────────────────────────────────────── */
+        .sidebar {
+            width: 256px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            height: 94vh;
-            max-height: 1000px;
-            border: 1px solid rgba(255,255,255,0.8);
+            flex-shrink: 0;
+            overflow: hidden;
         }
 
-        /* ── Header ── */
-        .header {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
-            color: #fff;
-            padding: 22px 36px;
+        .sidebar-logo {
+            padding: 18px 16px 12px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .header::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.12) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .header-left h1 {
-            font-size: 22px;
+            gap: 9px;
+            font-size: 16px;
             font-weight: 700;
-            letter-spacing: -0.3px;
+            color: var(--text);
+            user-select: none;
         }
-        .header-left p {
-            font-size: 13.5px;
-            opacity: 0.8;
-            margin-top: 2px;
-        }
-        .header-badge {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 13px;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
+        .sidebar-logo-icon {
+            width: 30px; height: 30px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px; color: #fff;
+            flex-shrink: 0;
         }
 
-        /* ── Main content ── */
-        .main-content {
+        .sidebar-btn {
+            margin: 0 10px 10px;
+            padding: 9px 12px;
+            background: rgba(0,0,0,0);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-xs);
+            font-size: 13.5px;
+            cursor: pointer;
+            color: var(--text);
+            text-align: left;
+            transition: background 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .sidebar-btn:hover { background: rgba(0,0,0,0.06); }
+
+        .sidebar-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 4px 10px 12px;
+        }
+
+        /* PDF upload section */
+        .pdf-section {
             flex: 1;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            padding: 22px 28px;
-            overflow: hidden;
-            gap: 16px;
+            padding: 0 10px 16px;
+            min-height: 0;
         }
 
-        /* ── Upload area ── */
-        .upload-area {
-            border: 2px dashed var(--border);
-            border-radius: var(--radius);
-            padding: 18px 24px;
+        .pdf-section-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            margin-bottom: 8px;
+            padding: 0 2px;
+        }
+
+        .pdf-drop-zone {
+            border: 1.5px dashed var(--border-strong);
+            border-radius: var(--radius-sm);
+            padding: 22px 14px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.22s ease;
-            background: var(--surface-2);
-            position: relative;
-            flex-shrink: 0;
-        }
-        .upload-area:hover               { border-color: var(--accent); background: #eef2ff; }
-        .upload-area.drag-over           { border-color: var(--accent); background: #e0e7ff; transform: scale(1.01); box-shadow: var(--shadow-md); }
-        .upload-area.has-file            { border-color: var(--green); background: #f0fdf4; border-style: solid; }
-        .upload-icon                     { font-size: 28px; margin-bottom: 6px; display: block; }
-        .upload-text                     { font-size: 15px; color: var(--text-secondary); }
-        .upload-text strong              { color: var(--accent); }
-        .upload-hint                     { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
-        .file-info                       { display: none; align-items: center; justify-content: center; gap: 10px; font-size: 15px; color: #065f46; }
-        .upload-area.has-file .upload-icon,
-        .upload-area.has-file .upload-text,
-        .upload-area.has-file .upload-hint { display: none; }
-        .upload-area.has-file .file-info   { display: flex; }
-        .file-info .file-icon            { font-size: 20px; }
-        .file-info .file-name            { font-weight: 600; max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .file-info .remove-file          { background: none; border: none; color: var(--red); cursor: pointer; font-size: 20px; line-height: 1; padding: 0 4px; transition: color 0.15s; }
-        .file-info .remove-file:hover    { color: #c2000b; }
-        #fileInput                       { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
-
-        /* ── Input section ── */
-        .input-section { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
-        .input-row     { display: flex; gap: 10px; align-items: flex-end; }
-        .input-row textarea {
-            flex: 1;
-            padding: 14px 18px;
-            border: 2px solid var(--border);
-            border-radius: var(--radius);
-            font-size: 15px;
-            font-family: inherit;
-            resize: none;
-            height: 56px;
-            line-height: 1.5;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            outline: none;
-            background: var(--surface-2);
-            color: var(--text-primary);
-        }
-        .input-row textarea:focus {
-            border-color: var(--accent);
-            background: var(--surface);
-            box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
-        }
-        .input-row textarea::placeholder { color: var(--text-muted); }
-
-        .btn-submit {
-            padding: 14px 30px;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: #fff;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
             transition: all 0.2s;
-            white-space: nowrap;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
+            background: rgba(255,255,255,0.5);
             flex-shrink: 0;
-            letter-spacing: 0.2px;
         }
-        .btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,0.45); }
-        .btn-submit:active:not(:disabled){ transform: translateY(0); }
-        .btn-submit:disabled             { opacity: 0.5; cursor: not-allowed; transform: none; }
-        .btn-submit .spinner {
-            display: none;
-            width: 16px; height: 16px;
-            border: 2.5px solid rgba(255,255,255,0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-        }
-        .btn-submit.loading .spinner { display: inline-block; }
-        .btn-submit.loading .btn-text { display: none; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .pdf-drop-zone:hover    { border-color: var(--accent); background: var(--accent-light2); }
+        .pdf-drop-zone.drag-over{ border-color: var(--accent); background: var(--accent-light); transform: scale(1.01); }
+        .pdf-drop-zone.has-file { border-style: solid; border-color: var(--green); background: var(--green-light); }
 
-        .status-bar {
-            font-size: 13.5px;
+        .pdf-drop-icon    { font-size: 26px; margin-bottom: 8px; }
+        .pdf-drop-text    { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+        .pdf-drop-text b  { color: var(--accent); font-weight: 600; }
+        .pdf-drop-hint    { font-size: 11.5px; color: var(--text-muted); margin-top: 4px; }
+
+        .pdf-file-info    { display: none; text-align: left; }
+        .pdf-drop-zone.has-file .pdf-drop-icon,
+        .pdf-drop-zone.has-file .pdf-drop-text,
+        .pdf-drop-zone.has-file .pdf-drop-hint { display: none; }
+        .pdf-drop-zone.has-file .pdf-file-info  { display: block; }
+
+        .pdf-file-icon-row {
+            display: flex; align-items: flex-start; gap: 8px;
+        }
+        .pdf-icon-big { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+        .pdf-meta { flex: 1; min-width: 0; }
+        .pdf-fname {
+            font-size: 13px; font-weight: 600; color: #065f46;
+            word-break: break-all; line-height: 1.4;
+        }
+        .pdf-fsize {
+            font-size: 12px; color: var(--text-muted); margin-top: 2px;
+        }
+        .pdf-remove {
+            display: inline-flex; align-items: center; gap: 4px;
+            margin-top: 10px;
+            font-size: 12px; color: var(--red);
+            background: none; border: none; cursor: pointer;
+            padding: 0; transition: opacity 0.15s;
+        }
+        .pdf-remove:hover { opacity: 0.7; }
+
+        /* Upload status toast */
+        .upload-toast {
+            font-size: 12px;
+            margin-top: 8px;
+            padding: 6px 10px;
+            border-radius: var(--radius-xs);
+            display: none;
+            animation: fadeIn 0.2s ease;
+        }
+        .upload-toast.info    { background: #e0e7ff; color: #3730a3; }
+        .upload-toast.success { background: #dcfce7; color: #15803d; }
+        .upload-toast.error   { background: var(--red-light); color: #991b1b; }
+        .upload-toast.visible { display: block; }
+
+        /* Sidebar footer */
+        .sidebar-footer {
+            padding: 10px 12px 14px;
+            font-size: 12px;
             color: var(--text-muted);
-            min-height: 20px;
+            border-top: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 6px;
-            padding: 0 2px;
         }
-        .status-bar.error   { color: var(--red); }
-        .status-bar.success { color: var(--green); }
-
-        /* ── Output section ── */
-        .output-section {
-            flex: 1;
-            min-height: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        /* ── Pipeline Trace ── */
-        .trace-section {
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius);
-            background: var(--surface-2);
-            flex-shrink: 0;
-            max-height: 320px;
-            display: flex;
-            flex-direction: column;
-            transition: max-height 0.32s cubic-bezier(.4,0,.2,1), border-color 0.2s;
-            overflow: hidden;
-        }
-        .trace-section.collapsed { max-height: 50px; }
-        .trace-section.active    { border-color: #a5b4fc; }
-
-        .trace-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 13px 18px;
-            cursor: pointer;
-            user-select: none;
-            flex-shrink: 0;
-            border-bottom: 1.5px solid transparent;
-            transition: background 0.15s, border-color 0.2s;
-        }
-        .trace-section:not(.collapsed) .trace-header {
-            border-bottom-color: var(--border);
-        }
-        .trace-header:hover { background: var(--surface-3); }
-
-        .trace-header-left { display: flex; align-items: center; gap: 10px; }
-
-        .trace-title-wrap  { display: flex; align-items: center; gap: 6px; }
-        .trace-title-icon  { font-size: 16px; }
-        .trace-title       { font-size: 14px; font-weight: 700; color: var(--text-secondary); letter-spacing: 0.2px; }
-
-        .trace-badge {
-            font-size: 12px;
+        .mock-pill {
+            background: #fef9c3;
+            color: #854d0e;
+            border: 1px solid #fef08a;
+            border-radius: 20px;
+            padding: 2px 8px;
+            font-size: 11px;
             font-weight: 700;
-            background: var(--accent);
-            color: #fff;
-            border-radius: 12px;
-            padding: 2px 9px;
-            display: none;
-            line-height: 1.5;
         }
-        .trace-badge.visible { display: inline-block; }
 
-        .trace-toggle {
-            font-size: 13px;
-            color: var(--text-muted);
-            transition: transform 0.25s;
-            line-height: 1;
+        /* ── Chat Main ────────────────────────────────────────────────────────── */
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 0;
+            background: var(--bg);
         }
-        .trace-section.collapsed .trace-toggle { transform: rotate(-90deg); }
 
-        .trace-body {
+        /* ── Messages area ── */
+        .messages-area {
             flex: 1;
             overflow-y: auto;
-            padding: 12px 14px 14px;
+            padding: 28px 0 8px;
+            scrollbar-width: thin;
+            scrollbar-color: #d1d5db transparent;
+        }
+
+        /* Welcome screen */
+        .welcome-screen {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            scrollbar-width: thin;
-            scrollbar-color: #cbd5e1 transparent;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-secondary);
         }
-        .trace-section.collapsed .trace-body { display: none; }
-
-        /* ── Trace entry types ── */
-        .trace-entry {
-            font-size: 14px;
-            line-height: 1.55;
-            padding: 10px 14px;
+        .welcome-icon  { font-size: 52px; margin-bottom: 16px; }
+        .welcome-title { font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .welcome-desc  { font-size: 15px; line-height: 1.7; max-width: 420px; }
+        .welcome-steps {
+            margin-top: 28px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            max-width: 520px;
+        }
+        .welcome-step {
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: var(--radius-sm);
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            border: 1px solid transparent;
-            transition: box-shadow 0.15s;
-        }
-        .trace-entry:hover { box-shadow: var(--shadow-sm); }
-        .entry-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; line-height: 1.3; }
-        .entry-body { flex: 1; min-width: 0; }
-
-        .trace-entry.status-entry   { background: #eef2ff; border-color: #c7d2fe; color: #3730a3; }
-        .trace-entry.turn-entry     { background: var(--amber-light); border-color: #fde68a; color: #78350f;
-                                      border-left: 4px solid var(--amber); padding-left: 11px; }
-        .trace-entry.thinking-entry { background: var(--surface-3); border-color: var(--border); color: var(--text-secondary); font-style: italic; }
-        .trace-entry.tool-call-entry{ background: #ede9fe; border-color: #c4b5fd; color: #4c1d95;
-                                      border-left: 4px solid #7c3aed; padding-left: 11px; }
-        .trace-entry.tool-result-entry { background: #ecfdf5; border-color: #a7f3d0; color: #064e3b;
-                                         border-left: 4px solid var(--green); padding-left: 11px; }
-        .trace-entry.answer-entry   { background: #f0fdf4; border-color: #bbf7d0; color: #14532d;
-                                      border-left: 4px solid var(--green); padding-left: 11px; }
-        .trace-entry.error-entry    { background: var(--red-light); border-color: #fca5a5; color: #7f1d1d;
-                                      border-left: 4px solid var(--red); padding-left: 11px; }
-
-        .turn-label {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.1px;
-        }
-        .turn-sublabel {
+            padding: 14px 12px;
             font-size: 13px;
-            opacity: 0.75;
-            margin-left: 6px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        .welcome-step-num {
+            width: 24px; height: 24px;
+            background: var(--accent-light);
+            color: var(--accent);
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 8px;
+        }
+        .welcome-step-text { line-height: 1.5; }
+
+        /* Message wrapper */
+        .msg-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 2px 28px 14px;
+            animation: fadeSlideIn 0.25s ease;
+        }
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .tool-badge {
+        /* ── User message ── */
+        .user-msg { display: flex; justify-content: flex-end; }
+
+        .user-bubble {
+            background: var(--user-bg);
+            border-radius: 18px 18px 4px 18px;
+            padding: 12px 16px;
+            max-width: 72%;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text);
+            word-break: break-word;
+        }
+        .user-pdf-badge {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            font-size: 12.5px;
-            font-weight: 700;
-            padding: 2px 10px;
-            border-radius: 20px;
-            margin-right: 6px;
-            vertical-align: middle;
-            letter-spacing: 0.2px;
+            gap: 5px;
+            font-size: 12px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 5px;
+            padding: 2px 8px;
+            margin-bottom: 7px;
+            color: var(--text-secondary);
         }
-        .tool-badge.text_retrieval { background: var(--blue-light); color: #1e40af; }
-        .tool-badge.page_retrieval { background: var(--pink-light); color: #9d174d; }
+        .user-question-text { white-space: pre-wrap; }
 
-        .tool-query {
-            font-weight: 600;
-            word-break: break-word;
-            color: inherit;
-        }
-
-        .thinking-block {
-            margin-top: 8px;
-            padding: 8px 12px;
-            background: rgba(124,58,237,0.06);
-            border-radius: 7px;
-            border-left: 3px solid #a78bfa;
-        }
-        .thinking-label {
-            font-size: 11.5px;
-            font-weight: 700;
-            color: #7c3aed;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 3px;
-        }
-        .thinking-text {
-            font-size: 13px;
-            font-style: italic;
-            color: #6d28d9;
-            word-break: break-word;
-            line-height: 1.55;
+        /* ── AI message ── */
+        .ai-msg {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
         }
 
-        .result-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
-        .chip {
-            font-size: 13px;
-            padding: 3px 10px;
-            border-radius: 6px;
-            background: #d1fae5;
-            color: #065f46;
-            font-weight: 500;
-            white-space: nowrap;
-            border: 1px solid #a7f3d0;
-        }
-        .chip.page-chip {
-            background: var(--pink-light);
-            color: #9d174d;
-            border-color: #fbcfe8;
-        }
-
-        .result-summary {
+        .ai-avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            display: flex; align-items: center; justify-content: center;
             font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 2px;
+            flex-shrink: 0;
+            margin-top: 3px;
+            color: #fff;
+            font-weight: 700;
         }
 
-        /* ── Answer area ── */
-        .answer-section { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+        .ai-body { flex: 1; min-width: 0; }
 
-        .answer-label-row {
+        .ai-name-row {
             display: flex;
             align-items: center;
             gap: 8px;
             margin-bottom: 8px;
         }
-        .answer-label {
+        .ai-name {
             font-size: 13.5px;
             font-weight: 700;
             color: var(--text-secondary);
-            letter-spacing: 0.2px;
         }
-        .answer-label-icon { font-size: 16px; }
+        .ai-status-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            transition: background 0.3s;
+        }
+        .ai-status-dot.thinking { background: var(--amber); animation: pulse 1.2s ease infinite; }
+        .ai-status-dot.done     { background: var(--green); }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
 
-        .output-area {
+        /* ── Thinking section ── */
+        .thinking-section {
+            background: var(--thinking-bg);
+            border: 1px solid var(--thinking-border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .thinking-section.done { border-color: #c4b5fd; }
+
+        .thinking-toggle {
+            width: 100%;
+            padding: 9px 13px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: left;
+            transition: background 0.15s;
+        }
+        .thinking-toggle:hover { background: rgba(139,92,246,0.05); }
+
+        .toggle-chevron {
+            font-size: 9px;
+            color: var(--accent);
+            transition: transform 0.22s;
+            flex-shrink: 0;
+        }
+        .thinking-section.collapsed .toggle-chevron { transform: rotate(-90deg); }
+
+        .toggle-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
             flex: 1;
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius);
-            padding: 18px 22px;
-            overflow-y: auto;
-            background: var(--surface-2);
-            font-size: 15.5px;
+        }
+        .toggle-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .thinking-body {
+            padding: 2px 14px 14px;
+            overflow: hidden;
+        }
+        .thinking-section.collapsed .thinking-body { display: none; }
+
+        /* Turn block */
+        .turn-block { margin-bottom: 10px; }
+
+        .turn-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0 4px;
+        }
+        .turn-label-text {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .turn-hr {
+            flex: 1;
+            height: 1px;
+            background: var(--thinking-border);
+        }
+
+        /* Reasoning text */
+        .reasoning-block {
+            font-size: 13px;
+            color: #5b21b6;
+            font-style: italic;
+            line-height: 1.65;
+            padding: 8px 12px;
+            background: rgba(139,92,246,0.07);
+            border-radius: 8px;
+            border-left: 3px solid #c4b5fd;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        /* Status line */
+        .status-inline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            padding: 4px 2px 8px;
+        }
+
+        /* Spinner dots */
+        .dots-anim {
+            display: inline-flex; gap: 3px;
+        }
+        .dots-anim span {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: dotBounce 1.3s ease-in-out infinite;
+            display: inline-block;
+        }
+        .dots-anim span:nth-child(2) { animation-delay: 0.2s; }
+        .dots-anim span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotBounce {
+            0%,80%,100% { transform: scale(0.6); opacity: 0.4; }
+            40%          { transform: scale(1);   opacity: 1;   }
+        }
+
+        /* Tool card */
+        .tool-card {
+            border-radius: var(--radius-xs);
+            border: 1px solid;
+            overflow: hidden;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+        .tool-card.text-ret  { border-color: #bfdbfe; }
+        .tool-card.page-ret  { border-color: #fbcfe8; }
+
+        .tool-card-head {
+            padding: 7px 11px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .tool-card.text-ret .tool-card-head { background: #dbeafe; color: #1e40af; }
+        .tool-card.page-ret .tool-card-head { background: #fce7f3; color: #9d174d; }
+
+        .tool-card-body { padding: 8px 11px; background: var(--surface); }
+        .tool-query { font-weight: 500; color: var(--text); margin-bottom: 7px; word-break: break-word; }
+
+        .tool-chips { display: flex; flex-wrap: wrap; gap: 4px; min-height: 20px; }
+        .tool-chip {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .chip-text { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+        .chip-page { background: #fce7f3; color: #9d174d; border: 1px solid #fbcfe8; }
+
+        /* ── Answer text ── */
+        .answer-text {
+            font-size: 15px;
             line-height: 1.8;
+            color: var(--text);
             white-space: pre-wrap;
             word-break: break-word;
-            color: var(--text-primary);
-            scrollbar-width: thin;
-            scrollbar-color: #cbd5e1 transparent;
         }
-        .output-area:empty::before {
-            content: 'The answer will appear here once processing is complete…';
-            color: var(--text-muted);
-            font-size: 14.5px;
-        }
+
         .typing-cursor {
             display: inline-block;
-            width: 2px; height: 1.1em;
+            width: 2px; height: 1.05em;
             background: var(--accent);
             margin-left: 2px;
-            animation: blink 0.8s step-end infinite;
+            animation: blink 0.85s step-end infinite;
             vertical-align: text-bottom;
             border-radius: 1px;
         }
         @keyframes blink { 50% { opacity: 0; } }
 
+        /* Error bubble */
+        .error-bubble {
+            background: var(--red-light);
+            border: 1px solid #fca5a5;
+            border-radius: var(--radius-xs);
+            padding: 10px 14px;
+            font-size: 13.5px;
+            color: #991b1b;
+        }
+
+        /* ── Input area ─────────────────────────────────────────────────────── */
+        .input-area {
+            padding: 12px 28px 20px;
+            background: var(--bg);
+            flex-shrink: 0;
+        }
+
+        .input-wrapper {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .input-box {
+            background: var(--surface);
+            border: 1.5px solid var(--border-strong);
+            border-radius: 14px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+        }
+        .input-box:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 1px 6px rgba(0,0,0,0.06), 0 0 0 3px rgba(139,92,246,0.12);
+        }
+
+        .input-inner {
+            display: flex;
+            align-items: flex-end;
+            padding: 11px 12px 9px;
+            gap: 8px;
+        }
+
+        .input-textarea {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-family: inherit;
+            resize: none;
+            line-height: 1.55;
+            min-height: 26px;
+            max-height: 220px;
+            background: transparent;
+            color: var(--text);
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+        .input-textarea::placeholder { color: var(--text-muted); }
+
+        .input-send {
+            width: 34px; height: 34px;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.15s, opacity 0.15s;
+            line-height: 1;
+        }
+        .input-send:hover:not(:disabled) { background: var(--accent-dark); }
+        .input-send:disabled             { opacity: 0.35; cursor: not-allowed; }
+
+        .input-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 5px 12px 0;
+            border-top: 1px solid #f0f0ee;
+        }
+        .input-hint .pdf-indicator {
+            font-weight: 600;
+            color: var(--green);
+        }
+        .input-hint.error-hint { color: var(--red); }
+
         /* ── Scrollbar ── */
-        ::-webkit-scrollbar        { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track  { background: transparent; }
-        ::-webkit-scrollbar-thumb  { background: #cbd5e1; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        ::-webkit-scrollbar       { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
 
         /* ── Responsive ── */
-        @media (max-width: 640px) {
-            body { padding: 8px; font-size: 14px; }
-            .container { height: 99vh; max-height: none; border-radius: 16px; }
-            .header { padding: 16px 18px; }
-            .header-badge { display: none; }
-            .main-content { padding: 14px 14px; gap: 12px; }
-            .input-row { flex-direction: column; }
-            .btn-submit { width: 100%; }
-            .trace-section { max-height: 260px; }
+        @media (max-width: 680px) {
+            .sidebar { display: none; }
+            .msg-wrapper { padding: 2px 14px 12px; }
+            .input-area { padding: 8px 14px 16px; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- ── Header ── -->
-    <div class="header">
-        <div class="header-left">
-            <h1>📄 Document Chat</h1>
-            <p>Upload a PDF and ask questions — powered by multimodal RAG</p>
-        </div>
-        <div class="header-badge">🤖 AI Assistant</div>
+
+<!-- ── Sidebar ── -->
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">✦</div>
+        Document Chat
     </div>
 
-    <div class="main-content">
-        <!-- ── Upload ── -->
-        <input type="file" id="fileInput" accept=".pdf">
-        <div class="upload-area" id="uploadArea">
-            <span class="upload-icon">📂</span>
-            <div class="upload-text">Drag &amp; drop your PDF here, or <strong>click to browse</strong></div>
-            <div class="upload-hint">Supports PDF files only · Max recommended size: 50 MB</div>
-            <div class="file-info">
-                <span class="file-icon">📎</span>
-                <span class="file-name" id="fileName"></span>
-                <button class="remove-file" id="removeFile" title="Remove file">&times;</button>
-            </div>
-        </div>
+    <button class="sidebar-btn" id="newChatBtn">
+        <span>＋</span> 新对话
+    </button>
 
-        <!-- ── Question Input ── -->
-        <div class="input-section">
-            <div class="input-row">
-                <textarea id="questionInput" placeholder="Ask a question about the document… (Enter to send, Shift+Enter for newline)" rows="2"></textarea>
-                <button class="btn-submit" id="submitBtn">
-                    <span class="btn-text">✦ Send</span>
-                    <span class="spinner"></span>
-                </button>
-            </div>
-            <div class="status-bar" id="statusBar"></div>
-        </div>
+    <div class="sidebar-divider"></div>
 
-        <!-- ── Output: trace + answer ── -->
-        <div class="output-section">
-            <!-- Pipeline Trace -->
-            <div class="trace-section collapsed" id="traceSection">
-                <div class="trace-header" id="traceHeader">
-                    <div class="trace-header-left">
-                        <div class="trace-title-wrap">
-                            <span class="trace-title-icon">⚙️</span>
-                            <span class="trace-title">Pipeline Trace</span>
-                        </div>
-                        <span class="trace-badge" id="traceBadge">0</span>
+    <div class="pdf-section">
+        <div class="pdf-section-label">当前文档</div>
+
+        <input type="file" id="fileInput" accept=".pdf" style="display:none">
+        <div class="pdf-drop-zone" id="uploadArea">
+            <div class="pdf-drop-icon">📂</div>
+            <div class="pdf-drop-text">拖拽 PDF 到此处<br>或 <b>点击上传</b></div>
+            <div class="pdf-drop-hint">仅支持 PDF · 建议 ≤ 50 MB</div>
+            <div class="pdf-file-info">
+                <div class="pdf-file-icon-row">
+                    <div class="pdf-icon-big">📄</div>
+                    <div class="pdf-meta">
+                        <div class="pdf-fname" id="pdfFname"></div>
+                        <div class="pdf-fsize" id="pdfFsize"></div>
                     </div>
-                    <span class="trace-toggle">▼</span>
                 </div>
-                <div class="trace-body" id="traceBody"></div>
+                <button class="pdf-remove" id="pdfRemoveBtn">× 移除文件</button>
             </div>
+        </div>
 
-            <!-- Final Answer -->
-            <div class="answer-section">
-                <div class="answer-label-row">
-                    <span class="answer-label-icon">💬</span>
-                    <span class="answer-label">Answer</span>
+        <div class="upload-toast" id="uploadToast"></div>
+    </div>
+
+    <div class="sidebar-footer">
+        <span class="mock-pill">MOCK</span>
+        本地演示模式 · 无需 GPU
+    </div>
+</aside>
+
+<!-- ── Chat Main ── -->
+<main class="chat-main">
+    <div class="messages-area" id="messagesArea">
+        <!-- Welcome -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="welcome-icon">🤖</div>
+            <div class="welcome-title">Document Chat</div>
+            <div class="welcome-desc">
+                上传一份 PDF 文档，然后向 AI 提问。<br>
+                模型将通过多轮检索与推理来回答您的问题。
+            </div>
+            <div class="welcome-steps">
+                <div class="welcome-step">
+                    <div class="welcome-step-num">1</div>
+                    <div class="welcome-step-text">在左侧上传<br>PDF 文档</div>
                 </div>
-                <div class="output-area" id="outputArea"></div>
+                <div class="welcome-step">
+                    <div class="welcome-step-num">2</div>
+                    <div class="welcome-step-text">在下方输入<br>问题并发送</div>
+                </div>
+                <div class="welcome-step">
+                    <div class="welcome-step-num">3</div>
+                    <div class="welcome-step-text">观看 AI 实时<br>推理与检索</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Input -->
+    <div class="input-area">
+        <div class="input-wrapper">
+            <div class="input-box">
+                <div class="input-inner">
+                    <textarea
+                        class="input-textarea"
+                        id="questionInput"
+                        placeholder="向 AI 提问… (Enter 发送，Shift+Enter 换行)"
+                        rows="1"
+                    ></textarea>
+                    <button class="input-send" id="sendBtn" disabled title="发送">↑</button>
+                </div>
+                <div class="input-hint" id="inputHint">请先在左侧上传 PDF 文档</div>
+            </div>
+        </div>
+    </div>
+</main>
 
 <script>
-    /* ── DOM refs ── */
-    const uploadArea    = document.getElementById('uploadArea');
-    const fileInput     = document.getElementById('fileInput');
-    const fileNameEl    = document.getElementById('fileName');
-    const removeFileBtn = document.getElementById('removeFile');
-    const questionInput = document.getElementById('questionInput');
-    const submitBtn     = document.getElementById('submitBtn');
-    const outputArea    = document.getElementById('outputArea');
-    const statusBar     = document.getElementById('statusBar');
-    const traceSection  = document.getElementById('traceSection');
-    const traceHeader   = document.getElementById('traceHeader');
-    const traceBody     = document.getElementById('traceBody');
-    const traceBadge    = document.getElementById('traceBadge');
+/* ───────────────────────────── State ───────────────────────────── */
+let uploadedFilePath = '';
+let uploadedFileName = '';
+let isUploading  = false;
+let isSubmitting = false;
+let msgIdx = 0;
 
-    let uploadedFilePath = '';
-    let isUploading      = false;
-    let isSubmitting     = false;
-    let traceCount       = 0;
+/* ───────────────────────────── DOM refs ─────────────────────────── */
+const uploadArea    = document.getElementById('uploadArea');
+const fileInput     = document.getElementById('fileInput');
+const pdfFname      = document.getElementById('pdfFname');
+const pdfFsize      = document.getElementById('pdfFsize');
+const pdfRemoveBtn  = document.getElementById('pdfRemoveBtn');
+const uploadToast   = document.getElementById('uploadToast');
+const newChatBtn    = document.getElementById('newChatBtn');
+const messagesArea  = document.getElementById('messagesArea');
+const welcomeScreen = document.getElementById('welcomeScreen');
+const questionInput = document.getElementById('questionInput');
+const sendBtn       = document.getElementById('sendBtn');
+const inputHint     = document.getElementById('inputHint');
 
-    /* ── Helpers ── */
-    function setStatus(msg, type) {
-        statusBar.textContent = msg;
-        statusBar.className = 'status-bar' + (type ? ' ' + type : '');
+/* ───────────────────────── Utility ─────────────────────────────── */
+function esc(s) {
+    return String(s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmtSize(bytes) {
+    if (bytes < 1024)        return bytes + ' B';
+    if (bytes < 1048576)     return (bytes/1024).toFixed(1) + ' KB';
+    return (bytes/1048576).toFixed(1) + ' MB';
+}
+function scrollBottom() {
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+}
+function hideWelcome() {
+    if (welcomeScreen) welcomeScreen.style.display = 'none';
+}
+
+/* ── Toast helper ── */
+function showToast(msg, type = 'info') {
+    uploadToast.textContent = msg;
+    uploadToast.className = `upload-toast ${type} visible`;
+}
+function clearToast() { uploadToast.className = 'upload-toast'; }
+
+/* ── Input hint ── */
+function setHint(msg, isError = false) {
+    inputHint.className = isError ? 'input-hint error-hint' : 'input-hint';
+    inputHint.innerHTML = msg;
+}
+function updateHint() {
+    if (uploadedFilePath) {
+        setHint(`文档已加载: <span class="pdf-indicator">📄 ${esc(uploadedFileName)}</span>`);
+        sendBtn.disabled = false;
+    } else {
+        setHint('请先在左侧上传 PDF 文档');
+        sendBtn.disabled = true;
+    }
+}
+
+/* ─────────────────────────── Upload ───────────────────────────── */
+uploadArea.addEventListener('click', (e) => {
+    if (pdfRemoveBtn.contains(e.target)) return;
+    if (uploadedFilePath) return;
+    fileInput.click();
+});
+uploadArea.addEventListener('dragover',  (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
+uploadArea.addEventListener('dragleave', ()  => uploadArea.classList.remove('drag-over'));
+uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('drag-over');
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', () => {
+    if (fileInput.files.length) handleFile(fileInput.files[0]);
+});
+pdfRemoveBtn.addEventListener('click', (e) => { e.stopPropagation(); resetUpload(); });
+
+function resetUpload() {
+    uploadedFilePath = '';
+    uploadedFileName = '';
+    uploadArea.classList.remove('has-file');
+    fileInput.value = '';
+    clearToast();
+    updateHint();
+}
+
+async function handleFile(file) {
+    if (!file.name.toLowerCase().endsWith('.pdf')) {
+        showToast('仅支持 PDF 文件', 'error'); return;
+    }
+    isUploading = true;
+    showToast('⏫ 上传中…', 'info');
+
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+        const res  = await fetch('/upload', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (!res.ok) { showToast(data.error || '上传失败', 'error'); return; }
+
+        uploadedFilePath = data.path;
+        uploadedFileName = data.filename;
+        pdfFname.textContent = data.filename;
+        pdfFsize.textContent = fmtSize(file.size);
+        uploadArea.classList.add('has-file');
+        showToast('✅ 文件上传成功', 'success');
+        updateHint();
+    } catch {
+        showToast('网络错误，请重试', 'error');
+    } finally {
+        isUploading = false;
+    }
+}
+
+/* ──────────────────────── New Chat ─────────────────────────────── */
+newChatBtn.addEventListener('click', () => {
+    // Clear all messages but keep PDF
+    const nodes = [...messagesArea.children];
+    nodes.forEach(n => { if (n !== welcomeScreen) n.remove(); });
+    welcomeScreen.style.display = '';
+    msgIdx = 0;
+});
+
+/* ─────────────────────── Auto-resize textarea ───────────────────── */
+questionInput.addEventListener('input', () => {
+    questionInput.style.height = 'auto';
+    questionInput.style.height = Math.min(questionInput.scrollHeight, 220) + 'px';
+});
+
+questionInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitQuestion(); }
+});
+sendBtn.addEventListener('click', submitQuestion);
+
+/* ─────────────────────── Message rendering ─────────────────────── */
+function addUserMessage(question) {
+    hideWelcome();
+    const id = 'u-' + (++msgIdx);
+    const wrap = document.createElement('div');
+    wrap.className = 'msg-wrapper';
+    wrap.id = id;
+    wrap.innerHTML = `
+      <div class="user-msg">
+        <div class="user-bubble">
+          ${uploadedFileName
+            ? `<div class="user-pdf-badge">📎 ${esc(uploadedFileName)}</div>` : ''}
+          <div class="user-question-text">${esc(question)}</div>
+        </div>
+      </div>`;
+    messagesArea.appendChild(wrap);
+    scrollBottom();
+    return id;
+}
+
+function createAiMessage() {
+    hideWelcome();
+    const id = 'a-' + (++msgIdx);
+    const wrap = document.createElement('div');
+    wrap.className = 'msg-wrapper';
+    wrap.id = id;
+    wrap.innerHTML = `
+      <div class="ai-msg">
+        <div class="ai-avatar">✦</div>
+        <div class="ai-body">
+          <div class="ai-name-row">
+            <span class="ai-name">AI 助手</span>
+            <span class="ai-status-dot thinking" id="${id}-dot"></span>
+          </div>
+          <div class="thinking-section" id="${id}-thinking">
+            <button class="thinking-toggle" onclick="toggleThinking('${id}-thinking')">
+              <span class="toggle-chevron">▶</span>
+              <span class="toggle-label">思考过程</span>
+              <span class="toggle-meta" id="${id}-meta">推理中…</span>
+            </button>
+            <div class="thinking-body" id="${id}-tbody"></div>
+          </div>
+          <div class="answer-text" id="${id}-ans"></div>
+        </div>
+      </div>`;
+    messagesArea.appendChild(wrap);
+    scrollBottom();
+    return id;
+}
+
+function toggleThinking(sectionId) {
+    const sec = document.getElementById(sectionId);
+    if (sec) sec.classList.toggle('collapsed');
+}
+
+/* ── Thinking body helpers ── */
+
+function addStatusInThinking(id, msg) {
+    const tbody = document.getElementById(id + '-tbody');
+    if (!tbody) return;
+    const el = document.createElement('div');
+    el.className = 'status-inline';
+    el.innerHTML = `<span>⏳</span> ${esc(msg)}`;
+    tbody.appendChild(el);
+    scrollBottom();
+}
+
+function addTurnBlock(id, turn, total) {
+    const tbody = document.getElementById(id + '-tbody');
+    if (!tbody) return;
+    const block = document.createElement('div');
+    block.className = 'turn-block';
+    block.id = id + '-t' + turn;
+    block.innerHTML = `
+      <div class="turn-header">
+        <span class="turn-label-text">Turn ${turn} / ${total}</span>
+        <div class="turn-hr"></div>
+      </div>`;
+    tbody.appendChild(block);
+    scrollBottom();
+}
+
+function addThinkingDots(id, turn) {
+    const block = document.getElementById(id + '-t' + turn);
+    if (!block) return;
+    const el = document.createElement('div');
+    el.className = 'status-inline';
+    el.id = id + '-dots-' + turn;
+    el.style.color = 'var(--accent)';
+    el.innerHTML = `
+      <div class="dots-anim">
+        <span></span><span></span><span></span>
+      </div>
+      模型正在推理中…`;
+    block.appendChild(el);
+    scrollBottom();
+}
+
+function removeThinkingDots(id, turn) {
+    const el = document.getElementById(id + '-dots-' + turn);
+    if (el) el.remove();
+}
+
+function addToolCall(id, turn, tool, query, thinking) {
+    removeThinkingDots(id, turn);
+    const block = document.getElementById(id + '-t' + turn);
+    if (!block) return;
+
+    if (thinking) {
+        const txt = thinking.length > 450 ? thinking.slice(0, 450) + '…' : thinking;
+        const r = document.createElement('div');
+        r.className = 'reasoning-block';
+        r.textContent = txt;
+        block.appendChild(r);
     }
 
-    function setOutput(text) { outputArea.textContent = text; }
+    const isText  = tool === 'text_retrieval';
+    const cls     = isText ? 'text-ret' : 'page-ret';
+    const icon    = isText ? '🔍' : '🖼️';
+    const label   = isText ? '文本检索 (Text Retrieval)' : '页面检索 (Page Retrieval)';
 
-    function streamOutput(text) {
-        outputArea.textContent = '';
-        if (!text) { outputArea.textContent = '(No answer returned)'; return; }
-        let idx = 0;
-        const cursor = document.createElement('span');
-        cursor.className = 'typing-cursor';
-        outputArea.appendChild(cursor);
-        // adaptive speed: faster for long text
-        const delay = text.length > 800 ? 10 : text.length > 300 ? 14 : 18;
-        function typeChar() {
-            if (idx < text.length) {
-                cursor.before(document.createTextNode(text[idx++]));
-                outputArea.scrollTop = outputArea.scrollHeight;
-                setTimeout(typeChar, delay);
-            } else {
-                cursor.remove();
-            }
+    const card = document.createElement('div');
+    card.className = 'tool-card ' + cls;
+    card.id = id + '-card-' + turn;
+    card.innerHTML = `
+      <div class="tool-card-head">${icon} ${label}</div>
+      <div class="tool-card-body">
+        <div class="tool-query">查询: ${esc(query)}</div>
+        <div class="tool-chips" id="${id}-chips-${turn}">
+          <div class="status-inline" style="color:var(--accent)">
+            <div class="dots-anim"><span></span><span></span><span></span></div>
+            检索中…
+          </div>
+        </div>
+      </div>`;
+    block.appendChild(card);
+    scrollBottom();
+}
+
+function addToolResult(id, turn, tool, results) {
+    const chips = document.getElementById(id + '-chips-' + turn);
+    if (!chips) return;
+    chips.innerHTML = '';
+    const isText = tool === 'text_retrieval';
+
+    if (!results || results.length === 0) {
+        chips.innerHTML = '<span style="font-size:12px;color:var(--text-muted)">无结果</span>';
+        return;
+    }
+
+    results.forEach(r => {
+        const chip = document.createElement('span');
+        chip.className = 'tool-chip ' + (isText ? 'chip-text' : 'chip-page');
+        if (isText) {
+            const score = typeof r.score === 'number' ? r.score.toFixed(3) : r.score;
+            chip.title = r.snippet || '';
+            chip.textContent = `块 ${r.chunk_id} · p.${r.page_id ?? '?'} · ${score}`;
+        } else {
+            const score = typeof r.score === 'number' ? r.score.toFixed(3) : r.score;
+            chip.textContent = `页 ${r.page_num} · ${score}`;
         }
-        typeChar();
+        chips.appendChild(chip);
+    });
+    scrollBottom();
+}
+
+function finalizeThinking(id, turnCount) {
+    const meta = document.getElementById(id + '-meta');
+    if (meta) meta.textContent = turnCount ? `共 ${turnCount} 轮推理` : '推理完成';
+    const sec = document.getElementById(id + '-thinking');
+    if (sec) sec.classList.add('done');
+}
+
+function setDotDone(id) {
+    const dot = document.getElementById(id + '-dot');
+    if (dot) { dot.classList.remove('thinking'); dot.classList.add('done'); }
+}
+
+/* ── Type-writer answer ── */
+function typeAnswer(id, content) {
+    const ansEl = document.getElementById(id + '-ans');
+    if (!ansEl) return;
+    ansEl.textContent = '';
+
+    const cursor = document.createElement('span');
+    cursor.className = 'typing-cursor';
+    ansEl.appendChild(cursor);
+
+    const delay = content.length > 800 ? 8 : content.length > 300 ? 12 : 16;
+    let i = 0;
+    function tick() {
+        if (i < content.length) {
+            cursor.before(document.createTextNode(content[i++]));
+            scrollBottom();
+            setTimeout(tick, delay);
+        } else {
+            cursor.remove();
+        }
     }
+    tick();
+}
 
-    /* ── Trace helpers ── */
-    function expandTrace() {
-        traceSection.classList.remove('collapsed');
-        traceSection.classList.add('active');
+function showErrorInMsg(id, msg) {
+    const ansEl = document.getElementById(id + '-ans');
+    if (!ansEl) return;
+    ansEl.innerHTML = `<div class="error-bubble">❌ ${esc(msg)}</div>`;
+    const dot = document.getElementById(id + '-dot');
+    if (dot) { dot.classList.remove('thinking'); dot.style.background = 'var(--red)'; }
+}
+
+/* ─────────────────────── Event handler ─────────────────────────── */
+function handleEvent(ev, aiId) {
+    switch (ev.type) {
+        case 'status':
+            addStatusInThinking(aiId, ev.message);
+            break;
+        case 'turn_start':
+            addTurnBlock(aiId, ev.turn, ev.total);
+            break;
+        case 'model_thinking':
+            addThinkingDots(aiId, ev.turn);
+            break;
+        case 'tool_call':
+            addToolCall(aiId, ev.turn, ev.tool, ev.query, ev.thinking);
+            break;
+        case 'tool_result':
+            addToolResult(aiId, ev.turn, ev.tool, ev.results);
+            break;
+        case 'answer':
+            // Collapse thinking after a short delay, then type the answer
+            finalizeThinking(aiId, ev.turn_count || '');
+            setDotDone(aiId);
+            setTimeout(() => {
+                const sec = document.getElementById(aiId + '-thinking');
+                if (sec) sec.classList.add('collapsed');
+            }, 600);
+            typeAnswer(aiId, ev.content);
+            break;
+        case 'error':
+            showErrorInMsg(aiId, ev.message);
+            break;
     }
+}
 
-    function scoreColor(score) {
-        if (score >= 0.9) return '#065f46';
-        if (score >= 0.8) return '#1d4ed8';
-        return '#92400e';
-    }
+/* ─────────────────────── Submit ─────────────────────────────────── */
+async function submitQuestion() {
+    const q = questionInput.value.trim();
+    if (!uploadedFilePath) { setHint('请先上传 PDF 文档', true); return; }
+    if (!q)                { setHint('请输入问题', true); return; }
+    if (isSubmitting)      return;
 
-    function addTraceEntry(type, content) {
-        traceCount++;
-        traceBadge.textContent = traceCount;
-        traceBadge.classList.add('visible');
+    isSubmitting = true;
+    sendBtn.disabled = true;
+    questionInput.value = '';
+    questionInput.style.height = 'auto';
+    updateHint();
 
-        const entry = document.createElement('div');
-        entry.className = `trace-entry ${type}-entry`;
+    addUserMessage(q);
+    const aiId = createAiMessage();
 
-        let icon = '•';
-        let html = '';
+    // Track max turn seen locally (fallback if server doesn't send turn_count)
+    let maxTurnSeen = 0;
 
-        if (type === 'status') {
-            icon = '⏳';
-            html = `<span style="font-weight:500">${escHtml(content.message)}</span>`;
+    const formData = new FormData();
+    formData.append('pdf_path', uploadedFilePath);
+    formData.append('question', q);
 
-        } else if (type === 'turn') {
-            icon = '🔄';
-            html = `<span class="turn-label">Turn ${content.turn} of ${content.total}</span>`
-                 + `<span class="turn-sublabel">— Calling model…</span>`;
+    try {
+        const response = await fetch('/chat/stream', { method: 'POST', body: formData });
+        if (!response.ok) {
+            const data = await response.json().catch(() => ({}));
+            showErrorInMsg(aiId, data.error || '请求失败');
+            return;
+        }
 
-        } else if (type === 'thinking') {
-            icon = '🧠';
-            html = `<span style="font-weight:500">Model is generating a response</span>`;
+        const reader  = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
 
-        } else if (type === 'tool-call') {
-            icon = content.tool === 'text_retrieval' ? '🔍' : '🖼️';
-            const badgeClass = content.tool === 'text_retrieval' ? 'text_retrieval' : 'page_retrieval';
-            const badgeLabel = content.tool === 'text_retrieval' ? '📝 Text Retrieval' : '🖼️ Page Retrieval';
-            html = `<div style="margin-bottom:5px">`
-                 + `<span class="tool-badge ${badgeClass}">${badgeLabel}</span>`
-                 + `</div>`
-                 + `<div class="tool-query">${escHtml(content.query)}</div>`;
-            if (content.thinking) {
-                const preview = content.thinking.length > 360
-                    ? content.thinking.slice(0, 360) + '…'
-                    : content.thinking;
-                html += `<div class="thinking-block">`
-                      + `<div class="thinking-label">Model Reasoning</div>`
-                      + `<div class="thinking-text">${escHtml(preview)}</div>`
-                      + `</div>`;
-            }
-
-        } else if (type === 'tool-result') {
-            icon = '📋';
-            const badgeClass = content.tool === 'text_retrieval' ? 'text_retrieval' : 'page_retrieval';
-            const badgeLabel = content.tool === 'text_retrieval' ? '📝 Text Retrieval' : '🖼️ Page Retrieval';
-            html = `<div style="margin-bottom:5px">`
-                 + `<span class="tool-badge ${badgeClass}">${badgeLabel}</span>`
-                 + `</div>`
-                 + `<div class="result-summary">Retrieved <strong>${content.results.length}</strong> result(s)</div>`;
-            if (content.results.length > 0) {
-                const chips = content.results.map(r => {
-                    const scoreVal = typeof r.score === 'number' ? r.score.toFixed(4) : r.score;
-                    if ('chunk_id' in r) {
-                        const snippet = r.snippet ? ` — "${r.snippet.slice(0, 55)}…"` : '';
-                        return `<span class="chip" title="${escHtml(r.snippet || '')}">Chunk ${r.chunk_id} · p.${r.page_id ?? '?'} · ${scoreVal}</span>`;
-                    } else {
-                        return `<span class="chip page-chip">Page ${r.page_num} · ${scoreVal}</span>`;
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop();
+            for (const line of lines) {
+                if (!line.startsWith('data: ')) continue;
+                try {
+                    const ev = JSON.parse(line.slice(6));
+                    if (ev.turn && ev.turn > maxTurnSeen) maxTurnSeen = ev.turn;
+                    // Inject local turn count into answer event if missing
+                    if (ev.type === 'answer' && !ev.turn_count) {
+                        ev.turn_count = maxTurnSeen;
                     }
-                }).join('');
-                html += `<div class="result-chips">${chips}</div>`;
+                    handleEvent(ev, aiId);
+                } catch { /* ignore malformed */ }
             }
-
-        } else if (type === 'answer') {
-            icon = '✅';
-            html = `<span style="font-weight:600">Answer generated successfully</span>`;
-
-        } else if (type === 'error') {
-            icon = '❌';
-            html = `<span style="font-weight:600">${escHtml(content.message)}</span>`;
         }
-
-        entry.innerHTML = `<span class="entry-icon">${icon}</span><div class="entry-body">${html}</div>`;
-        traceBody.appendChild(entry);
-        traceBody.scrollTop = traceBody.scrollHeight;
+    } catch {
+        showErrorInMsg(aiId, '网络错误，请重试');
+    } finally {
+        isSubmitting = false;
+        sendBtn.disabled = !uploadedFilePath;
+        updateHint();
     }
+}
 
-    function clearTrace() {
-        traceBody.innerHTML = '';
-        traceCount = 0;
-        traceBadge.textContent = '0';
-        traceBadge.classList.remove('visible');
-        traceSection.classList.add('collapsed');
-        traceSection.classList.remove('active');
-    }
-
-    function escHtml(str) {
-        return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
-    }
-
-    /* ── Pipeline event handler ── */
-    function handlePipelineEvent(event) {
-        switch (event.type) {
-            case 'status':
-                setStatus('⏳ ' + event.message);
-                addTraceEntry('status', event);
-                expandTrace();
-                break;
-            case 'turn_start':
-                addTraceEntry('turn', event);
-                break;
-            case 'model_thinking':
-                addTraceEntry('thinking', event);
-                break;
-            case 'tool_call':
-                addTraceEntry('tool-call', event);
-                setStatus(`🔍 Calling ${event.tool}…`);
-                break;
-            case 'tool_result':
-                addTraceEntry('tool-result', event);
-                setStatus(`📋 Retrieved ${event.results ? event.results.length : 0} result(s) from ${event.tool}`);
-                break;
-            case 'answer':
-                addTraceEntry('answer', event);
-                setStatus('✅ Completed', 'success');
-                streamOutput(event.content);
-                break;
-            case 'error':
-                addTraceEntry('error', event);
-                setStatus(event.message, 'error');
-                break;
-        }
-    }
-
-    /* ── Upload ── */
-    uploadArea.addEventListener('click', (e) => {
-        if (e.target === removeFileBtn || removeFileBtn.contains(e.target)) return;
-        if (uploadedFilePath) return;
-        fileInput.click();
-    });
-    uploadArea.addEventListener('dragover',  (e) => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
-    uploadArea.addEventListener('dragleave', ()  => { uploadArea.classList.remove('drag-over'); });
-    uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.classList.remove('drag-over');
-        if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
-    });
-    fileInput.addEventListener('change', () => {
-        if (fileInput.files.length > 0) handleFile(fileInput.files[0]);
-    });
-    removeFileBtn.addEventListener('click', (e) => { e.stopPropagation(); resetUpload(); });
-
-    function resetUpload() {
-        uploadedFilePath = '';
-        uploadArea.classList.remove('has-file');
-        fileInput.value = '';
-        setStatus('');
-    }
-
-    async function handleFile(file) {
-        if (!file.name.toLowerCase().endsWith('.pdf')) {
-            setStatus('Only PDF files are supported', 'error'); return;
-        }
-        isUploading = true;
-        setStatus('⏫ Uploading…');
-        const formData = new FormData();
-        formData.append('file', file);
-        try {
-            const res  = await fetch('/upload', { method: 'POST', body: formData });
-            const data = await res.json();
-            if (!res.ok) { setStatus(data.error || 'Upload failed', 'error'); return; }
-            uploadedFilePath   = data.path;
-            fileNameEl.textContent = data.filename;
-            uploadArea.classList.add('has-file');
-            setStatus('✅ File uploaded — ready to ask questions', 'success');
-        } catch (err) {
-            setStatus('Network error during upload', 'error');
-        } finally {
-            isUploading = false;
-        }
-    }
-
-    /* ── Trace toggle ── */
-    traceHeader.addEventListener('click', () => {
-        traceSection.classList.toggle('collapsed');
-    });
-
-    /* ── Submit ── */
-    questionInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitQuestion(); }
-    });
-    submitBtn.addEventListener('click', submitQuestion);
-
-    async function submitQuestion() {
-        const question = questionInput.value.trim();
-        if (!uploadedFilePath) { setStatus('Please upload a PDF file first', 'error'); return; }
-        if (!question)         { setStatus('Please enter a question', 'error'); return; }
-        if (isSubmitting)      return;
-
-        isSubmitting = true;
-        submitBtn.disabled = true;
-        submitBtn.classList.add('loading');
-        setOutput('');
-        clearTrace();
-        setStatus('Connecting…');
-
-        const formData = new FormData();
-        formData.append('pdf_path', uploadedFilePath);
-        formData.append('question', question);
-
-        try {
-            const response = await fetch('/chat/stream', { method: 'POST', body: formData });
-            if (!response.ok) {
-                const data = await response.json().catch(() => ({}));
-                setStatus(data.error || 'Request failed', 'error');
-                return;
-            }
-
-            const reader  = response.body.getReader();
-            const decoder = new TextDecoder();
-            let buffer    = '';
-
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-                buffer += decoder.decode(value, { stream: true });
-                const lines = buffer.split('\n');
-                buffer = lines.pop();
-                for (const line of lines) {
-                    if (!line.startsWith('data: ')) continue;
-                    try {
-                        const event = JSON.parse(line.slice(6));
-                        handlePipelineEvent(event);
-                    } catch (e) {
-                        console.warn('Failed to parse SSE event:', line);
-                    }
-                }
-            }
-        } catch (err) {
-            setStatus('Network error, please try again', 'error');
-        } finally {
-            isSubmitting = false;
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('loading');
-        }
-    }
+/* ── Init ── */
+updateHint();
 </script>
 </body>
 </html>
