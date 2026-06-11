@@ -55,11 +55,7 @@ VLLM_GPU_MEMORY_UTILIZATION = 0.7
 # torch.cuda.device_count() returning the full GPU count in vLLM worker processes.
 VLLM_TENSOR_PARALLEL_SIZE = None
 
-# ─── API inference (used when INFERENCE_MODE == "api") ────────────────────────
 
-API_KEY = ""
-API_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
-API_MODEL = "qwen2.5-vl-72b-instruct"   # e.g. "qwen-vl-max", "qwen-vl-plus"
 
 # ─── Page image rendering ─────────────────────────────────────────────────────
 PAGE_RENDER_DPI = 200  # DPI used when rasterising PDF pages to PIL images
