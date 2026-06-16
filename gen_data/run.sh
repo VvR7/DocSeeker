@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=2,4 python gen_benchmark.py
