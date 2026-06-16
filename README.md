@@ -5,6 +5,8 @@
 |DocSeeker框架|`./src/Mybenchmark/Qwen3vl8b`|
 |对比实验|`./src/compare_experiment`|
 |消融实验|`./src/ablation_text_only`,`./src/ablation_page_only`|
+
+![](figure/main_res.png)
 ## 环境配置
 由于Qwen3VL的VLLM/Transformer库推理与Colpali所需的环境**有着不可解决的冲突**，因此需要各自配置隔离的环境。
 ```
