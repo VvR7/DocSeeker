@@ -1,5 +1,5 @@
 # DocSeeker: 基于多模态检索工具增强的文档理解智能体
-## 视频Demo
+## 视频Demo(点击图片跳转)
 [![Click to Play](figure/Frame1.png)](https://www.youtube.com/watch?v=9q8K9ybtt54)
 
 ## 原始实验结果公开
